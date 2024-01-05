@@ -14,8 +14,10 @@ class StockDetailCell: UITableViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         valueTextView.textContainer.maximumNumberOfLines = 2
+        valueTextView.textAlignment = .left
         valueTextView.isEditable = false
-        valueTextView.isSelectable = false
+        valueTextView.isSelectable = true
+        valueTextView.dataDetectorTypes = [.link, .phoneNumber]
     }
     
     func configure(title: String, value: String?) {

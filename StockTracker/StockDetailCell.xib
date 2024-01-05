@@ -11,20 +11,20 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
         <view contentMode="scaleToFill" id="iN0-l3-epB" customClass="StockDetailCell" customModule="StockTracker" customModuleProvider="target">
-            <rect key="frame" x="0.0" y="0.0" width="505" height="68"/>
+            <rect key="frame" x="0.0" y="0.0" width="505" height="70"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <stackView opaque="NO" contentMode="scaleToFill" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="JCJ-Jr-9bm">
-                    <rect key="frame" x="20" y="-13" width="465" height="94"/>
+                    <rect key="frame" x="20" y="10" width="465" height="50"/>
                     <subviews>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yv2-2U-JF4">
-                            <rect key="frame" x="0.0" y="0.0" width="186" height="94"/>
+                            <rect key="frame" x="0.0" y="0.0" width="186" height="50.000000000000007"/>
                             <fontDescription key="fontDescription" type="boldSystem" pointSize="16"/>
                             <nil key="textColor"/>
                             <nil key="highlightedColor"/>
                         </label>
-                        <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" text="Lorem ipsum dolor sit er elit lamet, " textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="TNN-Wd-V8G">
-                            <rect key="frame" x="206" y="0.0" width="259" height="94"/>
+                        <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" text="Lorem ipsum" translatesAutoresizingMaskIntoConstraints="NO" id="TNN-Wd-V8G">
+                            <rect key="frame" x="206" y="0.0" width="259" height="50"/>
                             <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                             <color key="textColor" systemColor="labelColor"/>
                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
@@ -39,8 +39,10 @@
             <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
             <color key="backgroundColor" systemColor="systemBackgroundColor"/>
             <constraints>
+                <constraint firstItem="JCJ-Jr-9bm" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="10" id="2fy-vt-CvG"/>
                 <constraint firstItem="JCJ-Jr-9bm" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" id="K7F-Th-osQ"/>
                 <constraint firstAttribute="trailing" secondItem="JCJ-Jr-9bm" secondAttribute="trailing" constant="20" id="Oun-J3-9eq"/>
+                <constraint firstAttribute="bottom" secondItem="JCJ-Jr-9bm" secondAttribute="bottom" constant="10" id="hNZ-A0-ISO"/>
                 <constraint firstItem="JCJ-Jr-9bm" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="20" id="paM-Hf-yHm"/>
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
@@ -48,7 +50,7 @@
                 <outlet property="titleLabel" destination="yv2-2U-JF4" id="rV8-pG-NGu"/>
                 <outlet property="valueTextView" destination="TNN-Wd-V8G" id="3wm-q4-3SA"/>
             </connections>
-            <point key="canvasLocation" x="222.13740458015266" y="30.281690140845072"/>
+            <point key="canvasLocation" x="222.13740458015266" y="-14.084507042253522"/>
         </view>
     </objects>
     <resources>
