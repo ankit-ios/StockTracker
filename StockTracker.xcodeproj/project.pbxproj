@@ -23,6 +23,7 @@
 		AD4AA3E72B47F78B005E3107 /* StockLogoCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = AD4AA3E62B47F78B005E3107 /* StockLogoCell.xib */; };
 		AD4AA3E92B47FDA1005E3107 /* StockReadMoreCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = AD4AA3E82B47FDA1005E3107 /* StockReadMoreCell.xib */; };
 		AD4AA3EB2B47FDA7005E3107 /* StockReadMoreCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD4AA3EA2B47FDA7005E3107 /* StockReadMoreCell.swift */; };
+		AD6A01032B4FE195008BD703 /* StockDetailViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AD6A01022B4FE195008BD703 /* StockDetailViewController.storyboard */; };
 		AD92C8592B4D905300849A65 /* DataTransferService.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD92C8582B4D905300849A65 /* DataTransferService.swift */; };
 		AD92C85B2B4D907100849A65 /* NetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD92C85A2B4D907100849A65 /* NetworkService.swift */; };
 		AD92C85D2B4D908400849A65 /* Endpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD92C85C2B4D908400849A65 /* Endpoint.swift */; };
@@ -58,7 +59,6 @@
 		AD92C8A62B4F047500849A65 /* StockDetailResponseDTO+Mapping.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD92C8A52B4F047500849A65 /* StockDetailResponseDTO+Mapping.swift */; };
 		AD92C8A92B4F082B00849A65 /* StockListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD92C8A82B4F082B00849A65 /* StockListViewController.swift */; };
 		AD92C8AB2B4F085700849A65 /* StockListViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AD92C8AA2B4F085700849A65 /* StockListViewController.storyboard */; };
-		AD92C8AD2B4F094A00849A65 /* StockDetailViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AD92C8AC2B4F094A00849A65 /* StockDetailViewController.storyboard */; };
 		AD92C8B22B4F1E7B00849A65 /* StockListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD92C8B12B4F1E7B00849A65 /* StockListViewModel.swift */; };
 		AD92C8B42B4F1E8700849A65 /* StockDetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD92C8B32B4F1E8700849A65 /* StockDetailViewModel.swift */; };
 /* End PBXBuildFile section */
@@ -101,6 +101,7 @@
 		AD4AA3E62B47F78B005E3107 /* StockLogoCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = StockLogoCell.xib; sourceTree = "<group>"; };
 		AD4AA3E82B47FDA1005E3107 /* StockReadMoreCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = StockReadMoreCell.xib; sourceTree = "<group>"; };
 		AD4AA3EA2B47FDA7005E3107 /* StockReadMoreCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StockReadMoreCell.swift; sourceTree = "<group>"; };
+		AD6A01022B4FE195008BD703 /* StockDetailViewController.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = StockDetailViewController.storyboard; sourceTree = "<group>"; };
 		AD92C8582B4D905300849A65 /* DataTransferService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataTransferService.swift; sourceTree = "<group>"; };
 		AD92C85A2B4D907100849A65 /* NetworkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkService.swift; sourceTree = "<group>"; };
 		AD92C85C2B4D908400849A65 /* Endpoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Endpoint.swift; sourceTree = "<group>"; };
@@ -136,7 +137,6 @@
 		AD92C8A52B4F047500849A65 /* StockDetailResponseDTO+Mapping.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "StockDetailResponseDTO+Mapping.swift"; sourceTree = "<group>"; };
 		AD92C8A82B4F082B00849A65 /* StockListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StockListViewController.swift; sourceTree = "<group>"; };
 		AD92C8AA2B4F085700849A65 /* StockListViewController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = StockListViewController.storyboard; sourceTree = "<group>"; };
-		AD92C8AC2B4F094A00849A65 /* StockDetailViewController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = StockDetailViewController.storyboard; path = ../../../../../../../../Documents/StockDetailViewController.storyboard; sourceTree = "<group>"; };
 		AD92C8B12B4F1E7B00849A65 /* StockListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StockListViewModel.swift; sourceTree = "<group>"; };
 		AD92C8B32B4F1E8700849A65 /* StockDetailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StockDetailViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -305,7 +305,7 @@
 			isa = PBXGroup;
 			children = (
 				AD4AA3E22B46F77D005E3107 /* StockDetailViewController.swift */,
-				AD92C8AC2B4F094A00849A65 /* StockDetailViewController.storyboard */,
+				AD6A01022B4FE195008BD703 /* StockDetailViewController.storyboard */,
 				AD92C8B02B4F09FB00849A65 /* Cells */,
 			);
 			path = View;
@@ -596,7 +596,7 @@
 				AD4AA3E92B47FDA1005E3107 /* StockReadMoreCell.xib in Resources */,
 				AD4AA3DB2B46F069005E3107 /* StockListCell.xib in Resources */,
 				AD4AA3E12B46F5D8005E3107 /* StockDetailCell.xib in Resources */,
-				AD92C8AD2B4F094A00849A65 /* StockDetailViewController.storyboard in Resources */,
+				AD6A01032B4FE195008BD703 /* StockDetailViewController.storyboard in Resources */,
 				AD4AA3E72B47F78B005E3107 /* StockLogoCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
