@@ -27,17 +27,16 @@ struct StockDetailDataSource {
 }
 
 
-class StockDetailViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
+class StockDetailViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, StoryboardInstantiable, Alertable {
     
-    var stock: Stock?
     var stockDetail: StockDetail?
-    private var stockDetailUseCase: StockDetailUseCaseProtocol!
+    private var viewModel: StockDetailViewModel!
     @IBOutlet weak var tableView: UITableView!
     
-    
-    static var instance: StockDetailViewController {
-        let storyboard = UIStoryboard(name: "Main", bundle: nil)
-        return storyboard.instantiateViewController(withIdentifier: "StockDetailViewController") as! StockDetailViewController
+    static func create(with viewModel: StockDetailViewModel) -> StockDetailViewController {
+        let view = StockDetailViewController.instantiateViewController()
+        view.viewModel = viewModel
+        return view
     }
     
     private let sections: [String] = ["General Information", "Company Details", "Contact Information"]
@@ -75,15 +74,8 @@ class StockDetailViewController: UIViewController, UITableViewDataSource, UITabl
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        print(">>>>>>")
-        
-        print(stock)
-        print("<<<<<<<<<<")
-        self.title = stock?.symbol
-        
-        let apiClient = APIClient()
-        stockDetailUseCase = StockDetailUseCase(apiClient: apiClient)
-        
+        viewModel.fetchStockDetail()
+                
         ["StockDetailCell", "StockLogoCell", "StockReadMoreCell"].forEach {
             let nib = UINib(nibName: $0, bundle: nil)
             tableView.register(nib, forCellReuseIdentifier: $0)
@@ -96,30 +88,29 @@ class StockDetailViewController: UIViewController, UITableViewDataSource, UITabl
         tableView.estimatedRowHeight = 100.0
         tableView.allowsSelection = false
         
-        fetchDataAndUpdateUI()
-        
+        bind(to: viewModel)
     }
     
-    
-    func fetchDataAndUpdateUI() {
-        // Assume 'stockUseCase' is an instance of your StockUseCase
-        stockDetailUseCase.fetchStockDetail(symbol: stock?.symbol ?? "") { result in
-            switch result {
-            case .success(let data):
-                do {
-                    let decodedStockDetail = try JSONDecoder().decode([StockDetail].self, from: data)
-                    DispatchQueue.main.async {
-                        self.stockDetail = decodedStockDetail.first
-                        self.tableView.reloadData()
-                    }
-                    print(decodedStockDetail)
-                } catch {
-                    print("Decoding error:", error)
-                }
-            case .failure(let error):
-                print("Error:", error)
-            }
+    private func bind(to viewModel: StockDetailViewModel) {
+        
+        self.title = viewModel.screenTitle
+
+        viewModel.stockDetail.observe(on: self) { [weak self] _ in
+            self?.updateItems()
         }
+        viewModel.error.observe(on: self) { [weak self] in self?.showError($0) }
+    }
+    
+    func updateItems() {
+        DispatchQueue.main.async {
+            self.stockDetail = self.viewModel.stockDetail.value
+            self.tableView.reloadData()
+        }
+    }
+    
+    private func showError(_ error: String) {
+        guard !error.isEmpty else { return }
+        showAlert(title: error, message: error)
     }
     
     // MARK: - UITableViewDataSource
@@ -186,24 +177,6 @@ class StockDetailViewController: UIViewController, UITableViewDataSource, UITabl
         }
     }
 }
-
-protocol StockDetailUseCaseProtocol {
-    func fetchStockDetail(symbol: String, completion: @escaping (Result<Data, APIError>) -> Void)
-}
-
-class StockDetailUseCase: StockDetailUseCaseProtocol {
-    private let apiClient: APIClientProtocol
-    
-    init(apiClient: APIClientProtocol) {
-        self.apiClient = apiClient
-    }
-    
-    func fetchStockDetail(symbol: String, completion: @escaping (Result<Data, APIError>) -> Void) {
-        let endpoint = Endpoint.stockDetails(symbol: symbol)
-        apiClient.fetchData(from: endpoint, completion: completion)
-    }
-}
-
 
 class ImageDownloader {
     static let shared = ImageDownloader()
