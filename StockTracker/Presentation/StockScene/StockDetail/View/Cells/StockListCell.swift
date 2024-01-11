@@ -7,17 +7,19 @@
 
 import UIKit
 
-class StockListCell: UITableViewCell {
+final class StockListCell: UITableViewCell {
     
-    @IBOutlet weak var stockSymbolLabel: UILabel!
-    @IBOutlet weak var stockNameLabel: UILabel!
-    @IBOutlet weak var stockExchangeLabel: UILabel!
-    @IBOutlet weak var exchangeShortNameLabel: UILabel!
+    static let reuseIdentifier = String(describing: StockListCell.self)
+    
+    @IBOutlet private weak var stockSymbolLabel: UILabel!
+    @IBOutlet private weak var stockNameLabel: UILabel!
+    @IBOutlet private weak var stockExchangeLabel: UILabel!
+    @IBOutlet private weak var exchangeShortNameLabel: UILabel!
     
     func configure(with stock: Stock) {
         stockSymbolLabel.text = stock.symbol
         stockNameLabel.text = stock.name
         stockExchangeLabel.text = stock.stockExchange
         exchangeShortNameLabel.text = stock.exchangeShortName
-      }
+    }
 }

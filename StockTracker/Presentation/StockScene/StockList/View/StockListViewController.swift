@@ -7,10 +7,10 @@
 
 import UIKit
 
-class StockListViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, StoryboardInstantiable, Alertable {
+final class StockListViewController: UIViewController, StoryboardInstantiable, Alertable {
     
     private var viewModel: StockListViewModel!
-    @IBOutlet weak var tableView: UITableView!
+    @IBOutlet private weak var tableView: UITableView!
     
     static func create(with viewModel: StockListViewModel) -> StockListViewController {
         let view = StockListViewController.instantiateViewController()
@@ -22,8 +22,8 @@ class StockListViewController: UIViewController, UITableViewDataSource, UITableV
         super.viewDidLoad()
         
         self.title = viewModel.screenTitle
-        let nib = UINib(nibName: "StockListCell", bundle: nil)
-        tableView.register(nib, forCellReuseIdentifier: "StockListCell")
+        let nib = UINib(nibName: StockListCell.reuseIdentifier, bundle: nil)
+        tableView.register(nib, forCellReuseIdentifier: StockListCell.reuseIdentifier)
         
         bind(to: viewModel)
         viewModel.fetchStockList()
@@ -42,23 +42,27 @@ class StockListViewController: UIViewController, UITableViewDataSource, UITableV
     
     private func showError(_ error: String) {
         guard !error.isEmpty else { return }
-        showAlert(title: viewModel.errorTitle, message: error)
+        DispatchQueue.main.async {
+            self.showAlert(title: self.viewModel.errorTitle, message: error)
+        }
     }
-    
-    // MARK: - UITableViewDataSource
+}
+
+// MARK: - UITableViewDataSource & UITableViewDelegate
+
+extension StockListViewController: UITableViewDataSource, UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return viewModel.items.value.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "StockListCell", for: indexPath) as! StockListCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: StockListCell.reuseIdentifier, for: indexPath) as! StockListCell
         let stock = viewModel.items.value[indexPath.row]
         cell.configure(with: stock)
         return cell
     }
     
-    // MARK: - UITableViewDelegate
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         viewModel.didSelectItem(at: indexPath.row)
     }

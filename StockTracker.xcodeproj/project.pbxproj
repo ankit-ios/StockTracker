@@ -36,7 +36,6 @@
 		AD92C8732B4EF96E00849A65 /* Alertable.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD92C8722B4EF96E00849A65 /* Alertable.swift */; };
 		AD92C8752B4EF97A00849A65 /* StoryboardInstantiable.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD92C8742B4EF97900849A65 /* StoryboardInstantiable.swift */; };
 		AD92C8772B4EF98600849A65 /* Observable.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD92C8762B4EF98600849A65 /* Observable.swift */; };
-		AD92C8792B4EF99700849A65 /* AccessibilityIdentifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD92C8782B4EF99700849A65 /* AccessibilityIdentifier.swift */; };
 		AD92C87B2B4EF9A400849A65 /* LoadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD92C87A2B4EF9A400849A65 /* LoadingView.swift */; };
 		AD92C87D2B4EF9F200849A65 /* StockDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD92C87C2B4EF9F200849A65 /* StockDetail.swift */; };
 		AD92C87F2B4EFA0700849A65 /* Stock.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD92C87E2B4EFA0700849A65 /* Stock.swift */; };
@@ -115,7 +114,6 @@
 		AD92C8722B4EF96E00849A65 /* Alertable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Alertable.swift; sourceTree = "<group>"; };
 		AD92C8742B4EF97900849A65 /* StoryboardInstantiable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoryboardInstantiable.swift; sourceTree = "<group>"; };
 		AD92C8762B4EF98600849A65 /* Observable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Observable.swift; sourceTree = "<group>"; };
-		AD92C8782B4EF99700849A65 /* AccessibilityIdentifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccessibilityIdentifier.swift; sourceTree = "<group>"; };
 		AD92C87A2B4EF9A400849A65 /* LoadingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingView.swift; sourceTree = "<group>"; };
 		AD92C87C2B4EF9F200849A65 /* StockDetail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StockDetail.swift; sourceTree = "<group>"; };
 		AD92C87E2B4EFA0700849A65 /* Stock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Stock.swift; sourceTree = "<group>"; };
@@ -412,7 +410,6 @@
 				AD92C8722B4EF96E00849A65 /* Alertable.swift */,
 				AD92C8742B4EF97900849A65 /* StoryboardInstantiable.swift */,
 				AD92C8762B4EF98600849A65 /* Observable.swift */,
-				AD92C8782B4EF99700849A65 /* AccessibilityIdentifier.swift */,
 				AD92C87A2B4EF9A400849A65 /* LoadingView.swift */,
 			);
 			path = Utils;
@@ -649,7 +646,6 @@
 				AD92C8A62B4F047500849A65 /* StockDetailResponseDTO+Mapping.swift in Sources */,
 				AD92C8952B4EFC3600849A65 /* RepositoryTask.swift in Sources */,
 				AD92C8822B4EFA5000849A65 /* UseCase.swift in Sources */,
-				AD92C8792B4EF99700849A65 /* AccessibilityIdentifier.swift in Sources */,
 				AD92C88B2B4EFB0200849A65 /* FetchStockDetailUseCase.swift in Sources */,
 				AD4AA3EB2B47FDA7005E3107 /* StockReadMoreCell.swift in Sources */,
 				AD92C8A02B4F044B00849A65 /* StockListRequestDTO+Mapping.swift in Sources */,

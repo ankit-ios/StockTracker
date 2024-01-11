@@ -7,34 +7,64 @@
 
 import UIKit
 
-class StockReadMoreCell: UITableViewCell {
-    @IBOutlet weak var titleLabel: UILabel!
-    @IBOutlet weak var valueLabel: UILabel!
-    @IBOutlet weak var readMoreButton: UIButton!
-
+final class StockReadMoreCell: UITableViewCell {
+    
+    static let reuseIdentifier = String(describing: StockReadMoreCell.self)
+    
+    @IBOutlet private weak var titleLabel: UILabel!
+    @IBOutlet private weak var valueLabel: UILabel!
+    @IBOutlet private weak var readMoreButton: UIButton!
+    
     var readMoreTapped: (() -> Void)?
-
+    var isExpanded: Bool = false {
+        didSet {
+            updateDescriptionLabel()
+        }
+    }
+    
     override func awakeFromNib() {
         super.awakeFromNib()
-        valueLabel.numberOfLines = 3
         readMoreButton.addTarget(self, action: #selector(readMoreButtonTapped), for: .touchUpInside)
-        
-        readMoreButton.configuration?.contentInsets = NSDirectionalEdgeInsets(top: 0, leading: 0, bottom: 0, trailing: 0)
+        readMoreButton.configuration?.contentInsets = .zero
+        isExpanded = false
     }
-
+    
     @objc private func readMoreButtonTapped() {
         readMoreTapped?()
     }
-
+    
     func configure(title: String, value: String?) {
         titleLabel.text = title
         valueLabel.text = value
-        updateButtonTitle()
+        readMoreButton.setTitle(ReadMoreAttribute.readMore.title, for: .normal)
+    }
+}
+
+private extension StockReadMoreCell {
+    
+    enum ReadMoreAttribute {
+        case readMore
+        case readLess
+        
+        var title: String {
+            switch self {
+            case .readMore: "Read more"
+            case .readLess: "Read less"
+            }
+        }
+        
+        var numberOfLines: Int {
+            switch self {
+            case .readMore: 3
+            case .readLess: 0
+            }
+        }
     }
     
-    func updateButtonTitle() {
-        let buttonTitle = valueLabel.numberOfLines == 3 ? "Read more" : "Read less"
-        readMoreButton.setTitle(buttonTitle, for: .normal)
+    private func updateDescriptionLabel() {
+        let attribute = isExpanded ? ReadMoreAttribute.readLess : .readMore
+        valueLabel.numberOfLines = attribute.numberOfLines
+        readMoreButton.setTitle(attribute.title, for: .normal)
     }
 }
 

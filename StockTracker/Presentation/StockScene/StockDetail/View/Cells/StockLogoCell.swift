@@ -7,10 +7,12 @@
 
 import UIKit
 
-class StockLogoCell: UITableViewCell {
+final class StockLogoCell: UITableViewCell {
     
-    @IBOutlet weak var logoTitleLabel: UILabel!
-    @IBOutlet weak var logoImageView: UIImageView!
+    static let reuseIdentifier = String(describing: StockLogoCell.self)
+
+    @IBOutlet private weak var logoTitleLabel: UILabel!
+    @IBOutlet private weak var logoImageView: UIImageView!
     
     func configure(with title: String, logoUrl: String?) {
         logoTitleLabel.text = title

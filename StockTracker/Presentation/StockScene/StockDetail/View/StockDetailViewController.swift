@@ -7,31 +7,11 @@
 
 import UIKit
 
-enum StockDetailCellType {
-    case text
-    case image
-    case readMore
-}
-
-struct StockDetailDataSource {
-    let id = UUID().uuidString
-    let title: String
-    let value: String?
-    let cellType: StockDetailCellType
-    
-    init(title: String, value: String?, cellType: StockDetailCellType = .text) {
-        self.title = title
-        self.value = value
-        self.cellType = cellType
-    }
-}
-
-
-class StockDetailViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, StoryboardInstantiable, Alertable {
+final class StockDetailViewController: UIViewController, StoryboardInstantiable, Alertable {
     
     var stockDetail: StockDetail?
     private var viewModel: StockDetailViewModel!
-    @IBOutlet weak var tableView: UITableView!
+    @IBOutlet private weak var tableView: UITableView!
     
     static func create(with viewModel: StockDetailViewModel) -> StockDetailViewController {
         let view = StockDetailViewController.instantiateViewController()
@@ -39,44 +19,16 @@ class StockDetailViewController: UIViewController, UITableViewDataSource, UITabl
         return view
     }
     
-    private let sections: [String] = ["General Information", "Company Details", "Contact Information"]
-    
-    private var data: [[StockDetailDataSource]] { [
-        // General Information Section
-        [
-            .init(title: "Company Name", value: stockDetail?.companyName),
-            .init(title: "Company Logo", value: stockDetail?.image, cellType: .image),
-            .init(title: "Currency", value: stockDetail?.currency),
-            .init(title: "Stock Exchange", value: stockDetail?.stockExchange),
-            .init(title: "Exchange Short Name", value: stockDetail?.exchangeShortName),
-            .init(title: "Price", value: stockDetail?.price.map { String($0) })
-        ],
-        // Company Details Section
-        [
-            .init(title: "Description", value: stockDetail?.description, cellType: .readMore),
-            .init(title: "Industry", value: stockDetail?.industry),
-            .init(title: "CEO", value: stockDetail?.ceo),
-            .init(title: "Sector", value: stockDetail?.sector),
-            .init(title: "Country", value: stockDetail?.country),
-            .init(title: "Full-Time Employees", value: stockDetail?.fullTimeEmployees),
-            .init(title: "Website", value: stockDetail?.website)
-        ],
-        // Contact Information Section
-        [
-            .init(title: "Phone", value: stockDetail?.phone),
-            .init(title: "Address", value: stockDetail?.address),
-            .init(title: "City", value: stockDetail?.city),
-            .init(title: "State", value: stockDetail?.state),
-            .init(title: "Zip", value: stockDetail?.zip)
-        ]
-    ] }
-    
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         viewModel.fetchStockDetail()
-                
-        ["StockDetailCell", "StockLogoCell", "StockReadMoreCell"].forEach {
+        setupTableView()
+        bind(to: viewModel)
+    }
+    
+    private func setupTableView() {
+        let cellIdentifiers = [StockDetailCell.reuseIdentifier, StockLogoCell.reuseIdentifier, StockReadMoreCell.reuseIdentifier]
+        cellIdentifiers.forEach {
             let nib = UINib(nibName: $0, bundle: nil)
             tableView.register(nib, forCellReuseIdentifier: $0)
         }
@@ -87,21 +39,17 @@ class StockDetailViewController: UIViewController, UITableViewDataSource, UITabl
         tableView.rowHeight = UITableView.automaticDimension
         tableView.estimatedRowHeight = 100.0
         tableView.allowsSelection = false
-        
-        bind(to: viewModel)
     }
     
     private func bind(to viewModel: StockDetailViewModel) {
-        
         self.title = viewModel.screenTitle
-
         viewModel.stockDetail.observe(on: self) { [weak self] _ in
             self?.updateItems()
         }
         viewModel.error.observe(on: self) { [weak self] in self?.showError($0) }
     }
     
-    func updateItems() {
+    private func updateItems() {
         DispatchQueue.main.async {
             self.stockDetail = self.viewModel.stockDetail.value
             self.tableView.reloadData()
@@ -110,41 +58,47 @@ class StockDetailViewController: UIViewController, UITableViewDataSource, UITabl
     
     private func showError(_ error: String) {
         guard !error.isEmpty else { return }
-        showAlert(title: error, message: error)
+        DispatchQueue.main.async {
+            self.showAlert(title: self.viewModel.errorTitle, message: error)
+        }
     }
-    
-    // MARK: - UITableViewDataSource
+}
+
+
+// MARK: - UITableViewDataSource & UITableViewDelegate
+
+extension StockDetailViewController: UITableViewDataSource, UITableViewDelegate {
     
     func numberOfSections(in tableView: UITableView) -> Int {
-        return sections.count
+        return viewModel.sections.count
     }
     
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        return sections[section]
+        return viewModel.sections[section]
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return data[section].count
+        return viewModel.dataSource[section].count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let data = data[indexPath.section][indexPath.row]
+        let data = viewModel.dataSource[indexPath.section][indexPath.row]
         
         switch data.cellType {
         case .text:
-            guard let cell = tableView.dequeueReusableCell(withIdentifier: "StockDetailCell", for: indexPath) as? StockDetailCell else {
+            guard let cell = tableView.dequeueReusableCell(withIdentifier: StockDetailCell.reuseIdentifier, for: indexPath) as? StockDetailCell else {
                 return UITableViewCell()
             }
             cell.configure(title: data.title, value: data.value)
             return cell
         case .image:
-            guard let cell = tableView.dequeueReusableCell(withIdentifier: "StockLogoCell", for: indexPath) as? StockLogoCell else {
+            guard let cell = tableView.dequeueReusableCell(withIdentifier: StockLogoCell.reuseIdentifier, for: indexPath) as? StockLogoCell else {
                 return UITableViewCell()
             }
             cell.configure(with: data.title, logoUrl: data.value)
             return cell
         case .readMore:
-            guard let cell = tableView.dequeueReusableCell(withIdentifier: "StockReadMoreCell", for: indexPath) as? StockReadMoreCell else {
+            guard let cell = tableView.dequeueReusableCell(withIdentifier: StockReadMoreCell.reuseIdentifier, for: indexPath) as? StockReadMoreCell else {
                 return UITableViewCell()
             }
             cell.configure(title: data.title, value: data.value)
@@ -153,8 +107,7 @@ class StockDetailViewController: UIViewController, UITableViewDataSource, UITabl
                 // Handle "Read more" button tapped
                 // You can toggle between expanded and collapsed states
                 self?.tableView.beginUpdates()
-                cell.valueLabel.numberOfLines = cell.valueLabel.numberOfLines == 3 ? 0 : 3
-                cell.updateButtonTitle()
+                cell.isExpanded.toggle()
                 self?.tableView.endUpdates()
             }
             
@@ -163,11 +116,11 @@ class StockDetailViewController: UIViewController, UITableViewDataSource, UITabl
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        let data = data[indexPath.section][indexPath.row]
+        let data = viewModel.dataSource[indexPath.section][indexPath.row]
         
         switch data.cellType {
         case .text:
-            let prototypeCell = tableView.dequeueReusableCell(withIdentifier: "StockDetailCell") as! StockDetailCell
+            let prototypeCell = tableView.dequeueReusableCell(withIdentifier: StockDetailCell.reuseIdentifier) as! StockDetailCell
             prototypeCell.configure(title: data.title, value: data.value)
             return prototypeCell.heightForCell(width: tableView.bounds.width * 0.4)
         case .image:

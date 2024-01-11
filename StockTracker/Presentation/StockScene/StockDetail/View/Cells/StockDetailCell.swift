@@ -7,9 +7,12 @@
 
 import UIKit
 
-class StockDetailCell: UITableViewCell {
-    @IBOutlet weak var titleLabel: UILabel!
-    @IBOutlet weak var valueTextView: UITextView!
+final class StockDetailCell: UITableViewCell {
+    
+    static let reuseIdentifier = String(describing: StockDetailCell.self)
+    
+    @IBOutlet private weak var titleLabel: UILabel!
+    @IBOutlet private weak var valueTextView: UITextView!
     
     override func awakeFromNib() {
         super.awakeFromNib()
