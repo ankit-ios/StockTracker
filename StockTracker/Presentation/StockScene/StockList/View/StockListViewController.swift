@@ -30,8 +30,13 @@ final class StockListViewController: UIViewController, StoryboardInstantiable, A
     }
     
     private func bind(to viewModel: StockListViewModel) {
+        viewModel.loading.observe(on: self) { [weak self] in self?.updateLoadingView($0) }
         viewModel.items.observe(on: self) { [weak self] _ in self?.updateItems() }
         viewModel.error.observe(on: self) { [weak self] in self?.showError($0) }
+    }
+    
+    private func updateLoadingView(_ aFlag: Bool) {
+        aFlag ? LoadingView.show() : LoadingView.hide()
     }
     
     private func updateItems() {

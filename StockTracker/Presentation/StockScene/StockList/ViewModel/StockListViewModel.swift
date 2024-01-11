@@ -17,6 +17,7 @@ protocol StockListViewModelInput {
 }
 
 protocol StockListViewModelOutput {
+    var loading: Observable<Bool> { get }
     var items: Observable<[Stock]> { get }
     var error: Observable<String> { get }
     var screenTitle: String { get }
@@ -26,6 +27,7 @@ protocol StockListViewModelOutput {
 typealias StockListViewModel = StockListViewModelInput & StockListViewModelOutput
 
 final class DefaultStockListViewModel: StockListViewModel {
+    var loading: Observable<Bool> = .init(false)
     let error: Observable<String> = .init("")
     let screenTitle: String = "Stock List"
     let errorTitle: String = "Failed loading stocks"
@@ -42,6 +44,7 @@ final class DefaultStockListViewModel: StockListViewModel {
     }
     
     func fetchStockList() {
+        loading.value = true
         stockListLoadTask = fetchStockListUseCase.fetchStockList(completion: { result in
             switch result {
             case .success(let stockList):
@@ -49,6 +52,7 @@ final class DefaultStockListViewModel: StockListViewModel {
             case .failure(let error):
                 self.error.value = error.localizedDescription
             }
+            self.loading.value = false
         })
     }
 

@@ -43,10 +43,15 @@ final class StockDetailViewController: UIViewController, StoryboardInstantiable,
     
     private func bind(to viewModel: StockDetailViewModel) {
         self.title = viewModel.screenTitle
+        viewModel.loading.observe(on: self) { [weak self] in self?.updateLoadingView($0) }
         viewModel.stockDetail.observe(on: self) { [weak self] _ in
             self?.updateItems()
         }
         viewModel.error.observe(on: self) { [weak self] in self?.showError($0) }
+    }
+    
+    private func updateLoadingView(_ aFlag: Bool) {
+        aFlag ? LoadingView.show() : LoadingView.hide()
     }
     
     private func updateItems() {

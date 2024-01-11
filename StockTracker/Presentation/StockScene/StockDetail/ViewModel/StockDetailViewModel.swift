@@ -18,6 +18,7 @@ protocol StockDetailViewModelInput {
 protocol StockDetailViewModelOutput {
     var sections: [String] { get }
     var dataSource: [[StockDetailDataSource]] { get }
+    var loading: Observable<Bool> { get }
     var stockDetail: Observable<StockDetail?> { get }
     var error: Observable<String> { get }
     var screenTitle: String { get }
@@ -28,6 +29,7 @@ typealias StockDetailViewModel = StockDetailViewModelInput & StockDetailViewMode
 
 final class DefaultStockDetailViewModel: StockDetailViewModel {
     
+    let loading: Observable<Bool> = .init(false)
     let stockDetail: Observable<StockDetail?> = .init(nil)
     let screenTitle: String
     let error: Observable<String> = .init("")
@@ -51,6 +53,7 @@ final class DefaultStockDetailViewModel: StockDetailViewModel {
     }
     
     func fetchStockDetail() {
+        loading.value = true
         stockDetailLoadTask = fetchStockDetailUseCase.fetchStockDetail(symbol: stockSymbol) { result in
             switch result {
             case .success(let stockDetail):
@@ -58,6 +61,7 @@ final class DefaultStockDetailViewModel: StockDetailViewModel {
             case .failure(let error):
                 self.error.value = error.localizedDescription
             }
+            self.loading.value = false
         }
     }
     
