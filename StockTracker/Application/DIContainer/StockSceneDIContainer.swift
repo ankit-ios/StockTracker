@@ -1,5 +1,5 @@
 //
-//  MoviesSceneDIContainer.swift
+//  StockSceneDIContainer.swift
 //  StockTracker
 //
 //  Created by Ankit Sharma on 10/01/24.

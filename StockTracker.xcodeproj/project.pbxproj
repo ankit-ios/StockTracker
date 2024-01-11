@@ -35,7 +35,7 @@
 		AD92C8652B4EF71A00849A65 /* AppConfigurations.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD92C8642B4EF71A00849A65 /* AppConfigurations.swift */; };
 		AD92C8672B4EF72C00849A65 /* AppFlowCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD92C8662B4EF72C00849A65 /* AppFlowCoordinator.swift */; };
 		AD92C86A2B4EF76E00849A65 /* AppDIContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD92C8692B4EF76E00849A65 /* AppDIContainer.swift */; };
-		AD92C86C2B4EF77700849A65 /* MoviesSceneDIContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD92C86B2B4EF77700849A65 /* MoviesSceneDIContainer.swift */; };
+		AD92C86C2B4EF77700849A65 /* StockSceneDIContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD92C86B2B4EF77700849A65 /* StockSceneDIContainer.swift */; };
 		AD92C8702B4EF8F100849A65 /* StockFlowCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD92C86F2B4EF8F100849A65 /* StockFlowCoordinator.swift */; };
 		AD92C8732B4EF96E00849A65 /* Alertable.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD92C8722B4EF96E00849A65 /* Alertable.swift */; };
 		AD92C8752B4EF97A00849A65 /* StoryboardInstantiable.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD92C8742B4EF97900849A65 /* StoryboardInstantiable.swift */; };
@@ -116,7 +116,7 @@
 		AD92C8642B4EF71A00849A65 /* AppConfigurations.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppConfigurations.swift; sourceTree = "<group>"; };
 		AD92C8662B4EF72C00849A65 /* AppFlowCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppFlowCoordinator.swift; sourceTree = "<group>"; };
 		AD92C8692B4EF76E00849A65 /* AppDIContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDIContainer.swift; sourceTree = "<group>"; };
-		AD92C86B2B4EF77700849A65 /* MoviesSceneDIContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoviesSceneDIContainer.swift; sourceTree = "<group>"; };
+		AD92C86B2B4EF77700849A65 /* StockSceneDIContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StockSceneDIContainer.swift; sourceTree = "<group>"; };
 		AD92C86F2B4EF8F100849A65 /* StockFlowCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StockFlowCoordinator.swift; sourceTree = "<group>"; };
 		AD92C8722B4EF96E00849A65 /* Alertable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Alertable.swift; sourceTree = "<group>"; };
 		AD92C8742B4EF97900849A65 /* StoryboardInstantiable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoryboardInstantiable.swift; sourceTree = "<group>"; };
@@ -398,7 +398,7 @@
 			isa = PBXGroup;
 			children = (
 				AD92C8692B4EF76E00849A65 /* AppDIContainer.swift */,
-				AD92C86B2B4EF77700849A65 /* MoviesSceneDIContainer.swift */,
+				AD92C86B2B4EF77700849A65 /* StockSceneDIContainer.swift */,
 			);
 			path = DIContainer;
 			sourceTree = "<group>";
@@ -674,7 +674,7 @@
 				AD92C86A2B4EF76E00849A65 /* AppDIContainer.swift in Sources */,
 				AD4AA3DD2B46F076005E3107 /* StockListCell.swift in Sources */,
 				AD4AA3AD2B46D8E1005E3107 /* SceneDelegate.swift in Sources */,
-				AD92C86C2B4EF77700849A65 /* MoviesSceneDIContainer.swift in Sources */,
+				AD92C86C2B4EF77700849A65 /* StockSceneDIContainer.swift in Sources */,
 				AD92C85F2B4D909E00849A65 /* NetworkConfig.swift in Sources */,
 				AD92C8972B4EFC5800849A65 /* DefaultStockListRepository.swift in Sources */,
 				AD92C8652B4EF71A00849A65 /* AppConfigurations.swift in Sources */,
