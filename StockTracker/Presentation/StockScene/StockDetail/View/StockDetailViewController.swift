@@ -94,7 +94,7 @@ extension StockDetailViewController: UITableViewDataSource, UITableViewDelegate 
             guard let cell = tableView.dequeueReusableCell(withIdentifier: StockDetailCell.reuseIdentifier, for: indexPath) as? StockDetailCell else {
                 return UITableViewCell()
             }
-            cell.configure(title: data.title, value: data.value)
+            cell.configure(title: data.title, value: data.value, enableDataDetection: data.enableDataDetection)
             return cell
         case .image:
             guard let cell = tableView.dequeueReusableCell(withIdentifier: StockLogoCell.reuseIdentifier, for: indexPath) as? StockLogoCell else {
@@ -132,10 +132,10 @@ extension StockDetailViewController: UITableViewDataSource, UITableViewDelegate 
         switch data.cellType {
         case .text:
             let prototypeCell = tableView.dequeueReusableCell(withIdentifier: StockDetailCell.reuseIdentifier) as! StockDetailCell
-            prototypeCell.configure(title: data.title, value: data.value)
+            prototypeCell.configure(title: data.title, value: data.value, enableDataDetection: data.enableDataDetection)
             return prototypeCell.heightForCell(width: tableView.bounds.width * 0.4)
         case .image:
-            return 170.0
+            return StockLogoCell.cellHeight
         case .readMore:
             return UITableView.automaticDimension
         }

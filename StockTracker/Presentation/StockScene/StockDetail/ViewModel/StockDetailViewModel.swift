@@ -47,6 +47,7 @@ final class DefaultStockDetailViewModel: StockDetailViewModel {
     private let fetchStockDetailUseCase: FetchStockDetailUseCase
     private let imageDownloadUseCase: ImageDownloadUseCase
     private var stockDetailLoadTask: Cancellable? { willSet { stockDetailLoadTask?.cancel() } }
+    private var imageDownloadingState: ImageDownloadingState = .notStarted
     
     init(symbol: String,
          fetchStockDetailUseCase: FetchStockDetailUseCase,
@@ -73,8 +74,10 @@ final class DefaultStockDetailViewModel: StockDetailViewModel {
     }
     
     func downloadStockLogo() {
+        guard imageDownloadingState == .notStarted else { return }
         guard let imageUrl = stockDetail.value?.image else { return }
         
+        imageDownloadingState = .inProgress
         stockDetailLoadTask = imageDownloadUseCase.fetchImage(
             with: imageUrl, completion: { [weak self] result in
                 switch result {
@@ -85,6 +88,7 @@ final class DefaultStockDetailViewModel: StockDetailViewModel {
                 case .failure(let error):
                     self?.error.value = error.localizedDescription
                 }
+                self?.imageDownloadingState = .done
             })
     }
     
@@ -108,17 +112,25 @@ final class DefaultStockDetailViewModel: StockDetailViewModel {
                 .init(title: "Sector", value: stockDetail?.sector),
                 .init(title: "Country", value: stockDetail?.country),
                 .init(title: "Full-Time Employees", value: stockDetail?.fullTimeEmployees),
-                .init(title: "Website", value: stockDetail?.website)
+                .init(title: "Website", value: stockDetail?.website, enableDataDetection: true)
             ],
             // Contact Information Section
             [
-                .init(title: "Phone", value: stockDetail?.phone),
+                .init(title: "Phone", value: stockDetail?.phone, enableDataDetection: true),
                 .init(title: "Address", value: stockDetail?.address),
                 .init(title: "City", value: stockDetail?.city),
                 .init(title: "State", value: stockDetail?.state),
                 .init(title: "Zip", value: stockDetail?.zip)
             ]
         ]
+    }
+}
+
+private extension DefaultStockDetailViewModel {
+    enum ImageDownloadingState {
+        case notStarted
+        case inProgress
+        case done
     }
 }
 
@@ -135,10 +147,12 @@ struct StockDetailDataSource {
     let title: String
     let value: String?
     let cellType: StockDetailCellType
+    let enableDataDetection: Bool
     
-    init(title: String, value: String?, cellType: StockDetailCellType = .text) {
+    init(title: String, value: String?, cellType: StockDetailCellType = .text, enableDataDetection: Bool = false) {
         self.title = title
         self.value = value
         self.cellType = cellType
+        self.enableDataDetection = enableDataDetection
     }
 }

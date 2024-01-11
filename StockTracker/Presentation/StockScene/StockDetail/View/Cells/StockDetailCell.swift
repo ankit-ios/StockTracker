@@ -19,13 +19,16 @@ final class StockDetailCell: UITableViewCell {
         valueTextView.textContainer.maximumNumberOfLines = 2
         valueTextView.textAlignment = .left
         valueTextView.isEditable = false
-        valueTextView.isSelectable = true
-        valueTextView.dataDetectorTypes = [.link, .phoneNumber]
+        valueTextView.isSelectable = false
     }
     
-    func configure(title: String, value: String?) {
+    func configure(title: String, value: String?, enableDataDetection: Bool) {
         titleLabel.text = title
         valueTextView.text = value
+        if enableDataDetection {
+            valueTextView.isSelectable = true
+            valueTextView.dataDetectorTypes = [.link, .phoneNumber]
+        }
     }
     
     func heightForCell(width: CGFloat) -> CGFloat {

@@ -11,7 +11,6 @@
 		AD4AA3AD2B46D8E1005E3107 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD4AA3AC2B46D8E1005E3107 /* SceneDelegate.swift */; };
 		AD4AA3B42B46D8E3005E3107 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AD4AA3B32B46D8E3005E3107 /* Assets.xcassets */; };
 		AD4AA3B72B46D8E3005E3107 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AD4AA3B52B46D8E3005E3107 /* LaunchScreen.storyboard */; };
-		AD4AA3C22B46D8E3005E3107 /* StockTrackerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD4AA3C12B46D8E3005E3107 /* StockTrackerTests.swift */; };
 		AD4AA3CC2B46D8E3005E3107 /* StockTrackerUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD4AA3CB2B46D8E3005E3107 /* StockTrackerUITests.swift */; };
 		AD4AA3CE2B46D8E3005E3107 /* StockTrackerUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD4AA3CD2B46D8E3005E3107 /* StockTrackerUITestsLaunchTests.swift */; };
 		AD4AA3DB2B46F069005E3107 /* StockListCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = AD4AA3DA2B46F069005E3107 /* StockListCell.xib */; };
@@ -27,6 +26,8 @@
 		AD6A01092B4FEA9B008BD703 /* ImageDownloadUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD6A01082B4FEA9B008BD703 /* ImageDownloadUseCase.swift */; };
 		AD6A010C2B4FFC3C008BD703 /* ImageResponseStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD6A010B2B4FFC3C008BD703 /* ImageResponseStorage.swift */; };
 		AD6A010E2B4FFC81008BD703 /* DefaultImageResponseStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD6A010D2B4FFC81008BD703 /* DefaultImageResponseStorage.swift */; };
+		AD6A01272B5036D4008BD703 /* StockUseCaseTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD6A01262B5036D4008BD703 /* StockUseCaseTests.swift */; };
+		AD6A013D2B5044A2008BD703 /* Stock+Stub.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD6A013C2B5044A2008BD703 /* Stock+Stub.swift */; };
 		AD92C8592B4D905300849A65 /* DataTransferService.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD92C8582B4D905300849A65 /* DataTransferService.swift */; };
 		AD92C85B2B4D907100849A65 /* NetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD92C85A2B4D907100849A65 /* NetworkService.swift */; };
 		AD92C85D2B4D908400849A65 /* Endpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD92C85C2B4D908400849A65 /* Endpoint.swift */; };
@@ -67,14 +68,14 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		AD4AA3BE2B46D8E3005E3107 /* PBXContainerItemProxy */ = {
+		AD4AA3C82B46D8E3005E3107 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = AD4AA39F2B46D8E1005E3107 /* Project object */;
 			proxyType = 1;
 			remoteGlobalIDString = AD4AA3A62B46D8E1005E3107;
 			remoteInfo = StockTracker;
 		};
-		AD4AA3C82B46D8E3005E3107 /* PBXContainerItemProxy */ = {
+		AD6A01282B5036D4008BD703 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = AD4AA39F2B46D8E1005E3107 /* Project object */;
 			proxyType = 1;
@@ -90,8 +91,6 @@
 		AD4AA3B32B46D8E3005E3107 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		AD4AA3B62B46D8E3005E3107 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		AD4AA3B82B46D8E3005E3107 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		AD4AA3BD2B46D8E3005E3107 /* StockTrackerTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = StockTrackerTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		AD4AA3C12B46D8E3005E3107 /* StockTrackerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StockTrackerTests.swift; sourceTree = "<group>"; };
 		AD4AA3C72B46D8E3005E3107 /* StockTrackerUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = StockTrackerUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		AD4AA3CB2B46D8E3005E3107 /* StockTrackerUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StockTrackerUITests.swift; sourceTree = "<group>"; };
 		AD4AA3CD2B46D8E3005E3107 /* StockTrackerUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StockTrackerUITestsLaunchTests.swift; sourceTree = "<group>"; };
@@ -108,6 +107,11 @@
 		AD6A01082B4FEA9B008BD703 /* ImageDownloadUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageDownloadUseCase.swift; sourceTree = "<group>"; };
 		AD6A010B2B4FFC3C008BD703 /* ImageResponseStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageResponseStorage.swift; sourceTree = "<group>"; };
 		AD6A010D2B4FFC81008BD703 /* DefaultImageResponseStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultImageResponseStorage.swift; sourceTree = "<group>"; };
+		AD6A011C2B5017ED008BD703 /* Stock+Stub.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Stock+Stub.swift"; sourceTree = "<group>"; };
+		AD6A011E2B503669008BD703 /* StockUseCaseTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StockUseCaseTests.swift; sourceTree = "<group>"; };
+		AD6A01242B5036D4008BD703 /* StockTrackerTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = StockTrackerTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		AD6A01262B5036D4008BD703 /* StockUseCaseTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StockUseCaseTests.swift; sourceTree = "<group>"; };
+		AD6A013C2B5044A2008BD703 /* Stock+Stub.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Stock+Stub.swift"; sourceTree = "<group>"; };
 		AD92C8582B4D905300849A65 /* DataTransferService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataTransferService.swift; sourceTree = "<group>"; };
 		AD92C85A2B4D907100849A65 /* NetworkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkService.swift; sourceTree = "<group>"; };
 		AD92C85C2B4D908400849A65 /* Endpoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Endpoint.swift; sourceTree = "<group>"; };
@@ -155,14 +159,14 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		AD4AA3BA2B46D8E3005E3107 /* Frameworks */ = {
+		AD4AA3C42B46D8E3005E3107 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		AD4AA3C42B46D8E3005E3107 /* Frameworks */ = {
+		AD6A01212B5036D4008BD703 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -178,6 +182,7 @@
 				AD4AA3A92B46D8E1005E3107 /* StockTracker */,
 				AD4AA3C02B46D8E3005E3107 /* StockTrackerTests */,
 				AD4AA3CA2B46D8E3005E3107 /* StockTrackerUITests */,
+				AD6A01252B5036D4008BD703 /* StockTrackerTests */,
 				AD4AA3A82B46D8E1005E3107 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -186,8 +191,8 @@
 			isa = PBXGroup;
 			children = (
 				AD4AA3A72B46D8E1005E3107 /* StockTracker.app */,
-				AD4AA3BD2B46D8E3005E3107 /* StockTrackerTests.xctest */,
 				AD4AA3C72B46D8E3005E3107 /* StockTrackerUITests.xctest */,
+				AD6A01242B5036D4008BD703 /* StockTrackerTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -209,7 +214,11 @@
 		AD4AA3C02B46D8E3005E3107 /* StockTrackerTests */ = {
 			isa = PBXGroup;
 			children = (
-				AD4AA3C12B46D8E3005E3107 /* StockTrackerTests.swift */,
+				AD6A01132B5016C9008BD703 /* Domain */,
+				AD6A01122B5016C7008BD703 /* Presentation */,
+				AD6A01112B5016C0008BD703 /* Infrastructure */,
+				AD6A01102B5016BE008BD703 /* Stubs */,
+				AD6A010F2B5016BB008BD703 /* Mocks */,
 			);
 			path = StockTrackerTests;
 			sourceTree = "<group>";
@@ -230,6 +239,132 @@
 				AD6A010D2B4FFC81008BD703 /* DefaultImageResponseStorage.swift */,
 			);
 			path = ImageCache;
+			sourceTree = "<group>";
+		};
+		AD6A010F2B5016BB008BD703 /* Mocks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Mocks;
+			sourceTree = "<group>";
+		};
+		AD6A01102B5016BE008BD703 /* Stubs */ = {
+			isa = PBXGroup;
+			children = (
+				AD6A011C2B5017ED008BD703 /* Stock+Stub.swift */,
+			);
+			path = Stubs;
+			sourceTree = "<group>";
+		};
+		AD6A01112B5016C0008BD703 /* Infrastructure */ = {
+			isa = PBXGroup;
+			children = (
+				AD6A01172B501716008BD703 /* Network */,
+			);
+			path = Infrastructure;
+			sourceTree = "<group>";
+		};
+		AD6A01122B5016C7008BD703 /* Presentation */ = {
+			isa = PBXGroup;
+			children = (
+				AD6A01152B5016FD008BD703 /* StockScene */,
+			);
+			path = Presentation;
+			sourceTree = "<group>";
+		};
+		AD6A01132B5016C9008BD703 /* Domain */ = {
+			isa = PBXGroup;
+			children = (
+				AD6A01142B5016EB008BD703 /* UseCases */,
+			);
+			path = Domain;
+			sourceTree = "<group>";
+		};
+		AD6A01142B5016EB008BD703 /* UseCases */ = {
+			isa = PBXGroup;
+			children = (
+				AD6A011E2B503669008BD703 /* StockUseCaseTests.swift */,
+			);
+			path = UseCases;
+			sourceTree = "<group>";
+		};
+		AD6A01152B5016FD008BD703 /* StockScene */ = {
+			isa = PBXGroup;
+			children = (
+				AD6A01162B50170F008BD703 /* Mocks */,
+			);
+			path = StockScene;
+			sourceTree = "<group>";
+		};
+		AD6A01162B50170F008BD703 /* Mocks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Mocks;
+			sourceTree = "<group>";
+		};
+		AD6A01172B501716008BD703 /* Network */ = {
+			isa = PBXGroup;
+			children = (
+				AD6A01182B501721008BD703 /* Mocks */,
+			);
+			path = Network;
+			sourceTree = "<group>";
+		};
+		AD6A01182B501721008BD703 /* Mocks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Mocks;
+			sourceTree = "<group>";
+		};
+		AD6A01252B5036D4008BD703 /* StockTrackerTests */ = {
+			isa = PBXGroup;
+			children = (
+				AD6A013A2B504467008BD703 /* Domain */,
+				AD6A01392B504464008BD703 /* Infrastructure */,
+				AD6A01382B504461008BD703 /* Presentation */,
+				AD6A012D2B5043E7008BD703 /* Stubs */,
+			);
+			path = StockTrackerTests;
+			sourceTree = "<group>";
+		};
+		AD6A012D2B5043E7008BD703 /* Stubs */ = {
+			isa = PBXGroup;
+			children = (
+				AD6A013C2B5044A2008BD703 /* Stock+Stub.swift */,
+			);
+			path = Stubs;
+			sourceTree = "<group>";
+		};
+		AD6A01382B504461008BD703 /* Presentation */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Presentation;
+			sourceTree = "<group>";
+		};
+		AD6A01392B504464008BD703 /* Infrastructure */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Infrastructure;
+			sourceTree = "<group>";
+		};
+		AD6A013A2B504467008BD703 /* Domain */ = {
+			isa = PBXGroup;
+			children = (
+				AD6A013B2B50447C008BD703 /* UseCases */,
+			);
+			path = Domain;
+			sourceTree = "<group>";
+		};
+		AD6A013B2B50447C008BD703 /* UseCases */ = {
+			isa = PBXGroup;
+			children = (
+				AD6A01262B5036D4008BD703 /* StockUseCaseTests.swift */,
+			);
+			path = UseCases;
 			sourceTree = "<group>";
 		};
 		AD92C8382B4D8A9C00849A65 /* Presentation */ = {
@@ -523,24 +658,6 @@
 			productReference = AD4AA3A72B46D8E1005E3107 /* StockTracker.app */;
 			productType = "com.apple.product-type.application";
 		};
-		AD4AA3BC2B46D8E3005E3107 /* StockTrackerTests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = AD4AA3D42B46D8E3005E3107 /* Build configuration list for PBXNativeTarget "StockTrackerTests" */;
-			buildPhases = (
-				AD4AA3B92B46D8E3005E3107 /* Sources */,
-				AD4AA3BA2B46D8E3005E3107 /* Frameworks */,
-				AD4AA3BB2B46D8E3005E3107 /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				AD4AA3BF2B46D8E3005E3107 /* PBXTargetDependency */,
-			);
-			name = StockTrackerTests;
-			productName = StockTrackerTests;
-			productReference = AD4AA3BD2B46D8E3005E3107 /* StockTrackerTests.xctest */;
-			productType = "com.apple.product-type.bundle.unit-test";
-		};
 		AD4AA3C62B46D8E3005E3107 /* StockTrackerUITests */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = AD4AA3D72B46D8E3005E3107 /* Build configuration list for PBXNativeTarget "StockTrackerUITests" */;
@@ -559,6 +676,24 @@
 			productReference = AD4AA3C72B46D8E3005E3107 /* StockTrackerUITests.xctest */;
 			productType = "com.apple.product-type.bundle.ui-testing";
 		};
+		AD6A01232B5036D4008BD703 /* StockTrackerTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = AD6A012A2B5036D4008BD703 /* Build configuration list for PBXNativeTarget "StockTrackerTests" */;
+			buildPhases = (
+				AD6A01202B5036D4008BD703 /* Sources */,
+				AD6A01212B5036D4008BD703 /* Frameworks */,
+				AD6A01222B5036D4008BD703 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				AD6A01292B5036D4008BD703 /* PBXTargetDependency */,
+			);
+			name = StockTrackerTests;
+			productName = StockTrackerTests;
+			productReference = AD6A01242B5036D4008BD703 /* StockTrackerTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -572,11 +707,11 @@
 					AD4AA3A62B46D8E1005E3107 = {
 						CreatedOnToolsVersion = 15.0.1;
 					};
-					AD4AA3BC2B46D8E3005E3107 = {
+					AD4AA3C62B46D8E3005E3107 = {
 						CreatedOnToolsVersion = 15.0.1;
 						TestTargetID = AD4AA3A62B46D8E1005E3107;
 					};
-					AD4AA3C62B46D8E3005E3107 = {
+					AD6A01232B5036D4008BD703 = {
 						CreatedOnToolsVersion = 15.0.1;
 						TestTargetID = AD4AA3A62B46D8E1005E3107;
 					};
@@ -596,8 +731,8 @@
 			projectRoot = "";
 			targets = (
 				AD4AA3A62B46D8E1005E3107 /* StockTracker */,
-				AD4AA3BC2B46D8E3005E3107 /* StockTrackerTests */,
 				AD4AA3C62B46D8E3005E3107 /* StockTrackerUITests */,
+				AD6A01232B5036D4008BD703 /* StockTrackerTests */,
 			);
 		};
 /* End PBXProject section */
@@ -618,14 +753,14 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		AD4AA3BB2B46D8E3005E3107 /* Resources */ = {
+		AD4AA3C52B46D8E3005E3107 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		AD4AA3C52B46D8E3005E3107 /* Resources */ = {
+		AD6A01222B5036D4008BD703 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -688,14 +823,6 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		AD4AA3B92B46D8E3005E3107 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				AD4AA3C22B46D8E3005E3107 /* StockTrackerTests.swift in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		AD4AA3C32B46D8E3005E3107 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -705,18 +832,27 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		AD6A01202B5036D4008BD703 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				AD6A013D2B5044A2008BD703 /* Stock+Stub.swift in Sources */,
+				AD6A01272B5036D4008BD703 /* StockUseCaseTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		AD4AA3BF2B46D8E3005E3107 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = AD4AA3A62B46D8E1005E3107 /* StockTracker */;
-			targetProxy = AD4AA3BE2B46D8E3005E3107 /* PBXContainerItemProxy */;
-		};
 		AD4AA3C92B46D8E3005E3107 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = AD4AA3A62B46D8E1005E3107 /* StockTracker */;
 			targetProxy = AD4AA3C82B46D8E3005E3107 /* PBXContainerItemProxy */;
+		};
+		AD6A01292B5036D4008BD703 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = AD4AA3A62B46D8E1005E3107 /* StockTracker */;
+			targetProxy = AD6A01282B5036D4008BD703 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -867,6 +1003,7 @@
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -896,6 +1033,7 @@
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -906,46 +1044,6 @@
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
-			};
-			name = Release;
-		};
-		AD4AA3D52B46D8E3005E3107 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				BUNDLE_LOADER = "$(TEST_HOST)";
-				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = 5AUYB3KVDZ;
-				GENERATE_INFOPLIST_FILE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
-				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = SwiftUISample.StockTrackerTests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_EMIT_LOC_STRINGS = NO;
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/StockTracker.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/StockTracker";
-			};
-			name = Debug;
-		};
-		AD4AA3D62B46D8E3005E3107 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				BUNDLE_LOADER = "$(TEST_HOST)";
-				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = 5AUYB3KVDZ;
-				GENERATE_INFOPLIST_FILE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
-				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = SwiftUISample.StockTrackerTests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_EMIT_LOC_STRINGS = NO;
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/StockTracker.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/StockTracker";
 			};
 			name = Release;
 		};
@@ -985,6 +1083,42 @@
 			};
 			name = Release;
 		};
+		AD6A012B2B5036D4008BD703 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 5AUYB3KVDZ;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = SwiftUISample.StockTrackerTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/StockTracker.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/StockTracker";
+			};
+			name = Debug;
+		};
+		AD6A012C2B5036D4008BD703 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 5AUYB3KVDZ;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = SwiftUISample.StockTrackerTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/StockTracker.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/StockTracker";
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -1006,20 +1140,20 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		AD4AA3D42B46D8E3005E3107 /* Build configuration list for PBXNativeTarget "StockTrackerTests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				AD4AA3D52B46D8E3005E3107 /* Debug */,
-				AD4AA3D62B46D8E3005E3107 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
 		AD4AA3D72B46D8E3005E3107 /* Build configuration list for PBXNativeTarget "StockTrackerUITests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				AD4AA3D82B46D8E3005E3107 /* Debug */,
 				AD4AA3D92B46D8E3005E3107 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		AD6A012A2B5036D4008BD703 /* Build configuration list for PBXNativeTarget "StockTrackerTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				AD6A012B2B5036D4008BD703 /* Debug */,
+				AD6A012C2B5036D4008BD703 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

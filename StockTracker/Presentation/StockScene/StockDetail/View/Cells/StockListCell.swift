@@ -16,6 +16,11 @@ final class StockListCell: UITableViewCell {
     @IBOutlet private weak var stockExchangeLabel: UILabel!
     @IBOutlet private weak var exchangeShortNameLabel: UILabel!
     
+    override func awakeFromNib() {
+        super.awakeFromNib()
+        selectionStyle = .none
+    }
+    
     func configure(with stock: Stock) {
         stockSymbolLabel.text = stock.symbol
         stockNameLabel.text = stock.name

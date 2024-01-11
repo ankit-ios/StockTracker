@@ -10,6 +10,7 @@ import UIKit
 final class StockLogoCell: UITableViewCell {
     
     static let reuseIdentifier = String(describing: StockLogoCell.self)
+    static let cellHeight = 170.0
 
     @IBOutlet private weak var logoTitleLabel: UILabel!
     @IBOutlet private weak var logoImageView: UIImageView!
