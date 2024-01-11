@@ -12,22 +12,25 @@ enum HTTPMethodType: String {
     case post = "POST"
 }
 
-class Endpoint<R>: ResponseRequestable {
+final class Endpoint<R>: ResponseRequestable {
     
     typealias Response = R
     
     let path: String
+    let isFullPath: Bool
     let method: HTTPMethodType
     let queryParameters: [String: Any]
     let queryParametersEncodable: Encodable?
     let responseDecoder: ResponseDecoder
     
     init(path: String,
+         isFullPath: Bool = false,
          method: HTTPMethodType,
          queryParameters: [String: Any] = [:],
          queryParametersEncodable: Encodable? = nil,
          responseDecoder: ResponseDecoder = JSONResponseDecoder()) {
         self.path = path
+        self.isFullPath = isFullPath
         self.method = method
         self.queryParameters = queryParameters
         self.queryParametersEncodable = queryParametersEncodable
@@ -37,6 +40,7 @@ class Endpoint<R>: ResponseRequestable {
 
 protocol Requestable {
     var path: String { get }
+    var isFullPath: Bool { get }
     var method: HTTPMethodType { get }
     var queryParameters: [String: Any] { get }
     var queryParametersEncodable: Encodable? { get }
@@ -61,8 +65,8 @@ extension Requestable {
         let baseURL = config.baseURL.absoluteString.last != "/"
         ? config.baseURL.absoluteString + "/"
         : config.baseURL.absoluteString
-        let endpoint = baseURL.appending(path)
-        
+        let endpoint = isFullPath ? path : baseURL.appending(path)
+
         guard var urlComponents = URLComponents(
             string: endpoint
         ) else { throw RequestGenerationError.components }
@@ -81,7 +85,6 @@ extension Requestable {
     }
     
     func urlRequest(with config: NetworkConfigurable) throws -> URLRequest {
-        
         let url = try self.url(with: config)
         var urlRequest = URLRequest(url: url)
         urlRequest.httpMethod = method.rawValue

@@ -100,7 +100,13 @@ extension StockDetailViewController: UITableViewDataSource, UITableViewDelegate 
             guard let cell = tableView.dequeueReusableCell(withIdentifier: StockLogoCell.reuseIdentifier, for: indexPath) as? StockLogoCell else {
                 return UITableViewCell()
             }
-            cell.configure(with: data.title, logoUrl: data.value)
+            cell.configure(with: data.title)
+            viewModel.downloadStockLogo()
+            viewModel.stockLogo.observe(on: cell) { image in
+                DispatchQueue.main.async {
+                    cell.updateLogo(with: image)
+                }
+            }
             return cell
         case .readMore:
             guard let cell = tableView.dequeueReusableCell(withIdentifier: StockReadMoreCell.reuseIdentifier, for: indexPath) as? StockReadMoreCell else {
@@ -133,51 +139,5 @@ extension StockDetailViewController: UITableViewDataSource, UITableViewDelegate 
         case .readMore:
             return UITableView.automaticDimension
         }
-    }
-}
-
-class ImageDownloader {
-    static let shared = ImageDownloader()
-    
-    private let imageCache = NSCache<NSString, UIImage>()
-    private let session = URLSession.shared
-    
-    private init() {}
-    
-    func loadImage(from urlString: String, completion: @escaping (UIImage?) -> Void) {
-        // Check if the image is already cached
-        if let cachedImage = imageCache.object(forKey: urlString as NSString) {
-            completion(cachedImage)
-            return
-        }
-        
-        // If not cached, download the image
-        guard let url = URL(string: urlString) else {
-            completion(nil)
-            return
-        }
-        
-        let task = session.dataTask(with: url) { data, _, error in
-            if let error = error {
-                print("Image download error: \(error.localizedDescription)")
-                completion(nil)
-                return
-            }
-            
-            if let data = data, let downloadedImage = UIImage(data: data) {
-                // Cache the downloaded image
-                self.imageCache.setObject(downloadedImage, forKey: urlString as NSString)
-                completion(downloadedImage)
-            } else {
-                completion(nil)
-            }
-        }
-        
-        task.resume()
-    }
-    
-    // Optional: Clear the image cache
-    func clearCache() {
-        imageCache.removeAllObjects()
     }
 }

@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import UIKit
 
 struct StockDetailViewModelActions {
     let dismissStockDetailVC: () -> Void
@@ -13,6 +14,7 @@ struct StockDetailViewModelActions {
 
 protocol StockDetailViewModelInput {
     func fetchStockDetail()
+    func downloadStockLogo()
 }
 
 protocol StockDetailViewModelOutput {
@@ -23,6 +25,7 @@ protocol StockDetailViewModelOutput {
     var error: Observable<String> { get }
     var screenTitle: String { get }
     var errorTitle: String { get }
+    var stockLogo: Observable<UIImage?> { get }
 }
 
 typealias StockDetailViewModel = StockDetailViewModelInput & StockDetailViewModelOutput
@@ -34,6 +37,7 @@ final class DefaultStockDetailViewModel: StockDetailViewModel {
     let screenTitle: String
     let error: Observable<String> = .init("")
     let errorTitle: String = "Failed loading Stock details"
+    var stockLogo: Observable<UIImage?> = .init(.none)
     
     let sections: [String] = ["General Information", "Company Details", "Contact Information"]
     var dataSource: [[StockDetailDataSource]] { getDataSource() }
@@ -41,28 +45,47 @@ final class DefaultStockDetailViewModel: StockDetailViewModel {
     private let stockSymbol: String
     private let actions: StockDetailViewModelActions?
     private let fetchStockDetailUseCase: FetchStockDetailUseCase
+    private let imageDownloadUseCase: ImageDownloadUseCase
     private var stockDetailLoadTask: Cancellable? { willSet { stockDetailLoadTask?.cancel() } }
     
     init(symbol: String,
          fetchStockDetailUseCase: FetchStockDetailUseCase,
+         imageDownloadUseCase: ImageDownloadUseCase,
          actions: StockDetailViewModelActions? = nil) {
         self.stockSymbol = symbol
         self.screenTitle = symbol
         self.fetchStockDetailUseCase = fetchStockDetailUseCase
+        self.imageDownloadUseCase = imageDownloadUseCase
         self.actions = actions
     }
     
     func fetchStockDetail() {
         loading.value = true
-        stockDetailLoadTask = fetchStockDetailUseCase.fetchStockDetail(symbol: stockSymbol) { result in
+        stockDetailLoadTask = fetchStockDetailUseCase.fetchStockDetail(symbol: stockSymbol) { [weak self] result in
             switch result {
             case .success(let stockDetail):
-                self.stockDetail.value = stockDetail
+                self?.stockDetail.value = stockDetail
             case .failure(let error):
-                self.error.value = error.localizedDescription
+                self?.error.value = error.localizedDescription
             }
-            self.loading.value = false
+            self?.loading.value = false
         }
+    }
+    
+    func downloadStockLogo() {
+        guard let imageUrl = stockDetail.value?.image else { return }
+        
+        stockDetailLoadTask = imageDownloadUseCase.fetchImage(
+            with: imageUrl, completion: { [weak self] result in
+                switch result {
+                case .success(let imageData):
+                    if let imageData = imageData {
+                        self?.stockLogo.value = UIImage(data: imageData)
+                    }
+                case .failure(let error):
+                    self?.error.value = error.localizedDescription
+                }
+            })
     }
     
     private func getDataSource() -> [[StockDetailDataSource]] {

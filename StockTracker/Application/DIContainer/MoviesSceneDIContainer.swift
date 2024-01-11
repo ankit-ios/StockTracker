@@ -12,11 +12,12 @@ final class StockSceneDIContainer: StockFlowCoordinatorDependencies {
     
     struct Dependencies {
         let apiDataTransferService: DataTransferService
-        let imageDataTransferService: DataTransferService
     }
-    
+        
+    // Image caching handler
+    private lazy var imageResponseStorage: ImageResponseStorage = DefaultImageResponseStorage()
     private let dependencies: Dependencies
-    
+
     init(dependencies: Dependencies) {
         self.dependencies = dependencies
     }
@@ -30,6 +31,10 @@ final class StockSceneDIContainer: StockFlowCoordinatorDependencies {
         DefaultFetchStockDetailUseCase(respository: makeStockDetailRepository())
     }
     
+    func makeImageDownloadUseCase() -> ImageDownloadUseCase {
+        DefaultImageDownloadUseCase(respository: makeStockDetailRepository())
+    }
+    
     // MARK: - Repositories
     func makeStockListRepository() -> StockListRepository {
         DefaultStockListRepository(dataTransferService: dependencies.apiDataTransferService)
@@ -39,6 +44,9 @@ final class StockSceneDIContainer: StockFlowCoordinatorDependencies {
         DefaultStockDetailRepository(dataTransferService: dependencies.apiDataTransferService)
     }
     
+    func makeStockDetailRepository() -> ImageDownloadRepository {
+        DefaultImageDownloadRepository(dataTransferService: dependencies.apiDataTransferService, imageResponseStorage: imageResponseStorage)
+    }
     
     // MARK: - Stock List
     func makeStockListViewController(actions: StockListViewModelActions) -> StockListViewController {
@@ -55,7 +63,11 @@ final class StockSceneDIContainer: StockFlowCoordinatorDependencies {
     }
     
     func makeStockDetailViewModel(symbol: String, actions: StockDetailViewModelActions) -> StockDetailViewModel {
-        DefaultStockDetailViewModel(symbol: symbol, fetchStockDetailUseCase: makeStockDetailUseCase(), actions: actions)
+        DefaultStockDetailViewModel(
+            symbol: symbol,
+            fetchStockDetailUseCase: makeStockDetailUseCase(),
+            imageDownloadUseCase: makeImageDownloadUseCase(),
+            actions: actions)
     }
     
     // MARK: - Flow Coordinators

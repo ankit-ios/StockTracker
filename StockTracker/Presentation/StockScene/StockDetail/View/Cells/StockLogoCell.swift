@@ -14,14 +14,11 @@ final class StockLogoCell: UITableViewCell {
     @IBOutlet private weak var logoTitleLabel: UILabel!
     @IBOutlet private weak var logoImageView: UIImageView!
     
-    func configure(with title: String, logoUrl: String?) {
+    func configure(with title: String) {
         logoTitleLabel.text = title
-        if let logoUrl = logoUrl {
-            ImageDownloader.shared.loadImage(from: logoUrl, completion: { image in
-                DispatchQueue.main.async {
-                    self.logoImageView.image = image
-                }
-            })
-        }
+    }
+    
+    func updateLogo(with image: UIImage?) {
+        logoImageView.image = image
     }
 }
