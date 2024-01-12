@@ -20,6 +20,11 @@ extension Stock {
               stockExchange: stockExchange,
               exchangeShortName: exchangeShortName)
     }
+    
+    static let mockData: [Stock] = [
+        Stock.stub(symbol: "AY", name: "Atlantica Sustainable Infrastructure plc", currency: "USD", stockExchange: "NASDAQ Global Select", exchangeShortName: "NASDAQ"),
+        Stock.stub(symbol: "AU", name: "AngloGold Ashanti Limited", currency: "USD", stockExchange: "New York Stock Exchange", exchangeShortName: "NYSE")
+    ]
 }
 
 extension StockDetail {
