@@ -19,7 +19,6 @@ final class StockListCell: UITableViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         selectionStyle = .none
-        accessibilityIdentifier = StockListCell.reuseIdentifier
     }
     
     func configure(with stock: Stock) {

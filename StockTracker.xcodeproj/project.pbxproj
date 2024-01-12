@@ -7,6 +7,16 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		AD2045CC2B51649F0009AD7E /* Roboto-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = AD2045C92B51649F0009AD7E /* Roboto-Regular.ttf */; };
+		AD2045CD2B51649F0009AD7E /* Roboto-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = AD2045C92B51649F0009AD7E /* Roboto-Regular.ttf */; };
+		AD2045CE2B51649F0009AD7E /* Roboto-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = AD2045CA2B51649F0009AD7E /* Roboto-Light.ttf */; };
+		AD2045CF2B51649F0009AD7E /* Roboto-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = AD2045CA2B51649F0009AD7E /* Roboto-Light.ttf */; };
+		AD2045D02B51649F0009AD7E /* Roboto-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = AD2045CB2B51649F0009AD7E /* Roboto-Medium.ttf */; };
+		AD2045D12B51649F0009AD7E /* Roboto-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = AD2045CB2B51649F0009AD7E /* Roboto-Medium.ttf */; };
+		AD2045D32B5168D50009AD7E /* Roboto-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = AD2045D22B5168D50009AD7E /* Roboto-Bold.ttf */; };
+		AD2045D42B5168D50009AD7E /* Roboto-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = AD2045D22B5168D50009AD7E /* Roboto-Bold.ttf */; };
+		AD2045D62B5168EC0009AD7E /* Roboto-Black.ttf in Resources */ = {isa = PBXBuildFile; fileRef = AD2045D52B5168EC0009AD7E /* Roboto-Black.ttf */; };
+		AD2045D72B5168EC0009AD7E /* Roboto-Black.ttf in Resources */ = {isa = PBXBuildFile; fileRef = AD2045D52B5168EC0009AD7E /* Roboto-Black.ttf */; };
 		AD4AA3AB2B46D8E1005E3107 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD4AA3AA2B46D8E1005E3107 /* AppDelegate.swift */; };
 		AD4AA3AD2B46D8E1005E3107 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD4AA3AC2B46D8E1005E3107 /* SceneDelegate.swift */; };
 		AD4AA3B42B46D8E3005E3107 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AD4AA3B32B46D8E3005E3107 /* Assets.xcassets */; };
@@ -94,6 +104,11 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		AD2045C92B51649F0009AD7E /* Roboto-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Roboto-Regular.ttf"; sourceTree = "<group>"; };
+		AD2045CA2B51649F0009AD7E /* Roboto-Light.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Roboto-Light.ttf"; sourceTree = "<group>"; };
+		AD2045CB2B51649F0009AD7E /* Roboto-Medium.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Roboto-Medium.ttf"; sourceTree = "<group>"; };
+		AD2045D22B5168D50009AD7E /* Roboto-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Roboto-Bold.ttf"; sourceTree = "<group>"; };
+		AD2045D52B5168EC0009AD7E /* Roboto-Black.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Roboto-Black.ttf"; sourceTree = "<group>"; };
 		AD4AA3A72B46D8E1005E3107 /* StockTracker.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = StockTracker.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		AD4AA3AA2B46D8E1005E3107 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		AD4AA3AC2B46D8E1005E3107 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -194,6 +209,18 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		AD2045C82B5164730009AD7E /* Font */ = {
+			isa = PBXGroup;
+			children = (
+				AD2045D52B5168EC0009AD7E /* Roboto-Black.ttf */,
+				AD2045D22B5168D50009AD7E /* Roboto-Bold.ttf */,
+				AD2045CA2B51649F0009AD7E /* Roboto-Light.ttf */,
+				AD2045CB2B51649F0009AD7E /* Roboto-Medium.ttf */,
+				AD2045C92B51649F0009AD7E /* Roboto-Regular.ttf */,
+			);
+			path = Font;
+			sourceTree = "<group>";
+		};
 		AD4AA39E2B46D8E1005E3107 = {
 			isa = PBXGroup;
 			children = (
@@ -709,6 +736,7 @@
 		AD92C8A72B4F079C00849A65 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				AD2045C82B5164730009AD7E /* Font */,
 				AD4AA3B32B46D8E3005E3107 /* Assets.xcassets */,
 				AD4AA3B52B46D8E3005E3107 /* LaunchScreen.storyboard */,
 				AD4AA3B82B46D8E3005E3107 /* Info.plist */,
@@ -835,10 +863,15 @@
 			files = (
 				AD92C8AB2B4F085700849A65 /* StockListViewController.storyboard in Resources */,
 				AD4AA3B72B46D8E3005E3107 /* LaunchScreen.storyboard in Resources */,
+				AD2045D32B5168D50009AD7E /* Roboto-Bold.ttf in Resources */,
+				AD2045CE2B51649F0009AD7E /* Roboto-Light.ttf in Resources */,
 				AD4AA3B42B46D8E3005E3107 /* Assets.xcassets in Resources */,
 				AD4AA3E92B47FDA1005E3107 /* StockReadMoreCell.xib in Resources */,
 				AD4AA3DB2B46F069005E3107 /* StockListCell.xib in Resources */,
 				AD4AA3E12B46F5D8005E3107 /* StockDetailCell.xib in Resources */,
+				AD2045CC2B51649F0009AD7E /* Roboto-Regular.ttf in Resources */,
+				AD2045D62B5168EC0009AD7E /* Roboto-Black.ttf in Resources */,
+				AD2045D02B51649F0009AD7E /* Roboto-Medium.ttf in Resources */,
 				AD6A01032B4FE195008BD703 /* StockDetailViewController.storyboard in Resources */,
 				AD4AA3E72B47F78B005E3107 /* StockLogoCell.xib in Resources */,
 			);
@@ -855,6 +888,11 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AD2045CF2B51649F0009AD7E /* Roboto-Light.ttf in Resources */,
+				AD2045CD2B51649F0009AD7E /* Roboto-Regular.ttf in Resources */,
+				AD2045D72B5168EC0009AD7E /* Roboto-Black.ttf in Resources */,
+				AD2045D42B5168D50009AD7E /* Roboto-Bold.ttf in Resources */,
+				AD2045D12B51649F0009AD7E /* Roboto-Medium.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1091,7 +1129,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				API_BASE_URL = "https://financialmodelingprep.com/api/v3/";
-				API_KEY = aTu0U63IQ3Yv2jgv2gKyNaDqTHAKYAkP;
+				API_KEY = 3d2f98306a3605155507f04bd6511a09;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
@@ -1121,7 +1159,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				API_BASE_URL = "https://financialmodelingprep.com/api/v3/";
-				API_KEY = aTu0U63IQ3Yv2jgv2gKyNaDqTHAKYAkP;
+				API_KEY = 3d2f98306a3605155507f04bd6511a09;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
