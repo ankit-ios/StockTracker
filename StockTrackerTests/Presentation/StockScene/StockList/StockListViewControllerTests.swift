@@ -38,6 +38,12 @@ final class StockListViewControllerTests: XCTestCase {
         self.sut = self.makeSUT(with: viewModel)
         self.sut.viewDidLoad()
         _ = sut.view
+        
+        let expectation = XCTestExpectation(description: "Table view reloads")
+        DispatchQueue.main.asyncAfter(deadline: .now() + 2.0) {
+            expectation.fulfill()
+        }
+        wait(for: [expectation], timeout: 3.0)
     }
     
     func test_fetchStockList_failure() {
@@ -45,5 +51,15 @@ final class StockListViewControllerTests: XCTestCase {
         self.sut = self.makeSUT(with: viewModel)
         self.sut.viewDidLoad()
         _ = sut.view
+    }
+    
+    func test_fetchStockListCells_success() {
+        let stub = Stock.stub()
+        let tableView = UITableView()
+        let nib = UINib(nibName: StockListCell.reuseIdentifier, bundle: nil)
+        tableView.register(nib, forCellReuseIdentifier: StockListCell.reuseIdentifier)
+        
+        let stockListCell = tableView.dequeueReusableCell(withIdentifier: StockListCell.reuseIdentifier) as? StockListCell
+        stockListCell?.configure(with: stub)
     }
 }

@@ -39,11 +39,42 @@ final class StockDetailViewControllerTests: XCTestCase {
         viewModel = getViewModel(.init(result: .success(StockDetail.stub())))
         self.sut = self.makeSUT(with: viewModel)
         self.sut.viewDidLoad()
+        _ = sut.view
+        
+        let expectation = XCTestExpectation(description: "Table view reloads")
+        DispatchQueue.main.asyncAfter(deadline: .now() + 2.0) {
+            expectation.fulfill()
+        }
+        wait(for: [expectation], timeout: 3.0)
     }
     
     func test_fetchStockDetail_failure() {
         viewModel = getViewModel(.init(result: .failure(StockDetailRepositoryMockError.failedFetching)))
         self.sut = self.makeSUT(with: viewModel)
         self.sut.viewDidLoad()
+        _ = sut.view
+    }
+    
+    func test_fetchStockDetailCells_success() {
+        let stub = StockDetail.stub()
+        
+        let tableView = UITableView()
+        let cellIdentifiers = [StockDetailCell.reuseIdentifier, StockLogoCell.reuseIdentifier, StockReadMoreCell.reuseIdentifier]
+        cellIdentifiers.forEach {
+            let nib = UINib(nibName: $0, bundle: nil)
+            tableView.register(nib, forCellReuseIdentifier: $0)
+        }
+
+        let stockLogoCell = tableView.dequeueReusableCell(withIdentifier: StockLogoCell.reuseIdentifier) as? StockLogoCell
+        stockLogoCell?.configure(with: "Image")
+        stockLogoCell?.updateLogo(with: UIImage(systemName: "star.circle"))
+        
+        let stockReadMoreCell = tableView.dequeueReusableCell(withIdentifier: StockReadMoreCell.reuseIdentifier) as? StockReadMoreCell
+        stockReadMoreCell?.configure(title: "Description", value: stub.description)
+        stockReadMoreCell?.isExpanded = true
+        
+        let stockDetailCell = tableView.dequeueReusableCell(withIdentifier: StockDetailCell.reuseIdentifier) as? StockDetailCell
+        stockDetailCell?.configure(title: "Company Name", value: stub.companyName, enableDataDetection: false)
+        stockDetailCell?.configure(title: "Website", value: stub.website, enableDataDetection: true)
     }
 }

@@ -9,7 +9,6 @@ import UIKit
 
 final class StockDetailViewController: UIViewController, StoryboardInstantiable, Alertable {
     
-    var stockDetail: StockDetail?
     private var viewModel: StockDetailViewModel!
     @IBOutlet private weak var tableView: UITableView!
     
@@ -56,7 +55,6 @@ final class StockDetailViewController: UIViewController, StoryboardInstantiable,
     
     private func updateItems() {
         DispatchQueue.main.async {
-            self.stockDetail = self.viewModel.stockDetail.value
             self.tableView.reloadData()
         }
     }
