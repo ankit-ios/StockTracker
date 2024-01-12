@@ -1,7 +1,9 @@
 # StockTracker
 
-##API Details
+## API Details
+
 This is using public apis. Here is website detail.
+
 Website: https://site.financialmodelingprep.com/developer/docs
 
 ## Features
@@ -18,16 +20,16 @@ Website: https://site.financialmodelingprep.com/developer/docs
 
 | Stock List                                |
 | -------------------------------------- |
-| ![Stock List](StockTracker/Screenshot/1.jpg) |
+| ![Stock List](Screenshot/1.jpg) |
 
 
 | Stock Detail                                | Stock Detail                                |
 | -------------------------------------- | ------------------------------------------- |
-| ![Stock Detail](StockTracker/Screenshot/2.jpg) | ![Stock Detail](StockTracker/Screenshot/3.jpg) |
+| ![Stock Detail](Screenshot/2.jpg) | ![Stock Detail](Screenshot/3.jpg) |
 
 
 ## Code Coverage Screenshot
 
 | Code Coverage                                |
 | -------------------------------------- |
-| ![Code Coverage](StockTracker/Screenshot/4.jpg) |
+| ![Code Coverage](Screenshot/4.jpg) |
