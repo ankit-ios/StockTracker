@@ -2,7 +2,7 @@
 
 ## API Details
 
-This is using public apis. Here is website detail.
+This App is using public stock apis. Find the api details by following link:
 
 Website: https://site.financialmodelingprep.com/developer/docs
 
