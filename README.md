@@ -12,24 +12,36 @@ Website: https://site.financialmodelingprep.com/developer/docs
 
 ## Technologies Used
 - Clean Architecture with MVVM, DI and Coordinator pattern
+- SwiftUI/Combine
 - Scalable Apis 
-- Unit Test cases (84% Code-Coverage)
+- Unit Test cases (86% Code-Coverage)
 - Modular code.
 
 ## App Screenshots
 
-| Stock List                                |
-| -------------------------------------- |
-| ![Stock List](Screenshot/1.jpg) |
+
+| Stock Detail                                | Stock Detail                                |
+| -------------------------------------- | ------------------------------------------- |
+| ![Stock Detail](Screenshot/2.png) | ![Stock Detail](Screenshot/3.png) |
 
 
 | Stock Detail                                | Stock Detail                                |
 | -------------------------------------- | ------------------------------------------- |
-| ![Stock Detail](Screenshot/2.jpg) | ![Stock Detail](Screenshot/3.jpg) |
+| ![Stock Detail](Screenshot/4.png) | ![Stock Detail](Screenshot/5.png) |
+
+
+| Stock Detail(Read more)                                |
+| -------------------------------------- |
+| ![Stock List](Screenshot/6.png) |
+
+
+| Loading screen                                | Error popup                                |
+| -------------------------------------- | ------------------------------------------- |
+| ![Stock Detail](Screenshot/1.png) | ![Stock Detail](Screenshot/7.png) |
 
 
 ## Code Coverage Screenshot
 
 | Code Coverage                                |
 | -------------------------------------- |
-| ![Code Coverage](Screenshot/4.jpg) |
+| ![Code Coverage](Screenshot/8.png) |
