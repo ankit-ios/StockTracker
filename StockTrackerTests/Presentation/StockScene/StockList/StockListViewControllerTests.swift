@@ -6,11 +6,12 @@
 //
 
 import XCTest
+import SwiftUI
 @testable import StockTracker
 
-final class StockListViewControllerTests: XCTestCase {
+final class StockListViewTests: XCTestCase {
     
-    private var sut: StockListViewController!
+    private var sut: StockListView!
     private var viewModel: StockListViewModel!
     
     override func setUpWithError() throws {
@@ -23,43 +24,31 @@ final class StockListViewControllerTests: XCTestCase {
     
     func getViewModel(_ repository: StockListRepositoryMock) -> StockListViewModel {
         let useCase = DefaultFetchStockListUseCase(respository: repository)
-        let viewModel = DefaultStockListViewModel(fetchStockListUseCase: useCase)
+        let viewModel = StockListViewModel(fetchStockListUseCase: useCase)
         return viewModel
     }
     
-    func makeSUT(with viewModel: StockListViewModel) -> StockListViewController {
-        let destination = StockListViewController.create(with: viewModel)
-        destination.loadViewIfNeeded()
-        return destination
+    func makeSUT(with viewModel: StockListViewModel) -> StockListView {
+        return StockListView(viewModel: viewModel)
     }
     
     func test_fetchStockList_success() {
         viewModel = getViewModel(.init(result: .success(Stock.mockData)))
         self.sut = self.makeSUT(with: viewModel)
-        self.sut.viewDidLoad()
-        _ = sut.view
-        
-        let expectation = XCTestExpectation(description: "Table view reloads")
-        DispatchQueue.main.asyncAfter(deadline: .now() + 2.0) {
-            expectation.fulfill()
-        }
-        wait(for: [expectation], timeout: 3.0)
+        XCTAssertNotNil(sut.body)
     }
     
     func test_fetchStockList_failure() {
         viewModel = getViewModel(.init(result: .failure(StockListRepositoryMockError.failedFetching)))
         self.sut = self.makeSUT(with: viewModel)
-        self.sut.viewDidLoad()
-        _ = sut.view
+        XCTAssertNotNil(sut.body)
     }
     
-    func test_fetchStockListCells_success() {
+    func test_fetchStockListCells_success() throws {
         let stub = Stock.stub()
-        let tableView = UITableView()
-        let nib = UINib(nibName: StockListCell.reuseIdentifier, bundle: nil)
-        tableView.register(nib, forCellReuseIdentifier: StockListCell.reuseIdentifier)
         
-        let stockListCell = tableView.dequeueReusableCell(withIdentifier: StockListCell.reuseIdentifier) as? StockListCell
-        stockListCell?.configure(with: stub)
+        let listItem = StockListItem(stock: stub)
+        let cellView = try XCTUnwrap(listItem)
+        XCTAssertNotNil(cellView.body)
     }
 }

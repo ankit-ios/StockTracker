@@ -7,6 +7,7 @@
 
 import Foundation
 import UIKit
+import Combine
 
 struct StockDetailViewModelActions {
     let dismissStockDetailVC: () -> Void
@@ -14,38 +15,35 @@ struct StockDetailViewModelActions {
 
 protocol StockDetailViewModelInput {
     func fetchStockDetail()
-    func downloadStockLogo()
+    func downloadImage(for url: String?)
 }
 
 protocol StockDetailViewModelOutput {
-    var sections: [String] { get }
-    var dataSource: [[StockDetailDataSource]] { get }
-    var loading: Observable<Bool> { get }
-    var stockDetail: Observable<StockDetail?> { get }
-    var error: Observable<String> { get }
     var screenTitle: String { get }
-    var errorTitle: String { get }
-    var stockLogo: Observable<UIImage?> { get }
+    var loadingTitle: String { get }
+    var dataSource: [StockDetailSectionModel] { get }
+    var loadingData: Bool { get }
+    var showError: Bool { get }
+    var errorModel: AlertModel { get }
+    var stockLogoImage: UIImage? { get }
 }
 
-typealias StockDetailViewModel = StockDetailViewModelInput & StockDetailViewModelOutput
-
-final class DefaultStockDetailViewModel: StockDetailViewModel {
+final class StockDetailViewModel: ObservableObject, StockDetailViewModelOutput {
     
-    let loading: Observable<Bool> = .init(false)
-    let stockDetail: Observable<StockDetail?> = .init(nil)
     let screenTitle: String
-    let error: Observable<String> = .init("")
-    let errorTitle: String = "Failed loading Stock details"
-    var stockLogo: Observable<UIImage?> = .init(.none)
+    let loadingTitle: String = "Fetching Stock Details..."
     
-    let sections: [String] = ["General Information", "Company Details", "Contact Information"]
-    var dataSource: [[StockDetailDataSource]] { getDataSource() }
+    @Published var loadingData: Bool = false
+    @Published var showError: Bool = false
+    @Published var errorModel: AlertModel = .init(title: "", message: .constant(""))
+    @Published var stockLogoImage: UIImage?
+    @Published var dataSource: [StockDetailSectionModel] = []
     
     private let stockSymbol: String
     private let actions: StockDetailViewModelActions?
     private let fetchStockDetailUseCase: FetchStockDetailUseCase
     private let imageDownloadUseCase: ImageDownloadUseCase
+    private let errorTitle: String = "Failed loading Stock details"
     private var stockDetailLoadTask: Cancellable? { willSet { stockDetailLoadTask?.cancel() } }
     private var imageDownloadingState: ImageDownloadingState = .notStarted
     
@@ -60,99 +58,85 @@ final class DefaultStockDetailViewModel: StockDetailViewModel {
         self.actions = actions
     }
     
-    func fetchStockDetail() {
-        loading.value = true
-        stockDetailLoadTask = fetchStockDetailUseCase.fetchStockDetail(symbol: stockSymbol) { [weak self] result in
-            switch result {
-            case .success(let stockDetail):
-                self?.stockDetail.value = stockDetail
-            case .failure(let error):
-                self?.error.value = error.localizedDescription
-            }
-            self?.loading.value = false
-        }
-    }
-    
-    func downloadStockLogo() {
-        guard imageDownloadingState == .notStarted else { return }
-        guard let imageUrl = stockDetail.value?.image else { return }
-        
-        imageDownloadingState = .inProgress
-        stockDetailLoadTask = imageDownloadUseCase.fetchImage(
-            with: imageUrl, completion: { [weak self] result in
-                switch result {
-                case .success(let imageData):
-                    if let imageData = imageData {
-                        self?.stockLogo.value = UIImage(data: imageData)
-                    }
-                case .failure(let error):
-                    self?.error.value = error.localizedDescription
-                }
-                self?.imageDownloadingState = .done
-            })
-    }
-    
-    private func getDataSource() -> [[StockDetailDataSource]] {
-        let stockDetail = stockDetail.value
+    private func getDataSource(from stockDetail: StockDetail) -> [StockDetailSectionModel] {
         return [
             // General Information Section
-            [
-                .init(title: "Company Name", value: stockDetail?.companyName),
-                .init(title: "Company Logo", value: stockDetail?.image, cellType: .image),
-                .init(title: "Currency", value: stockDetail?.currency),
-                .init(title: "Stock Exchange", value: stockDetail?.stockExchange),
-                .init(title: "Exchange Short Name", value: stockDetail?.exchangeShortName),
-                .init(title: "Price", value: stockDetail?.price.map { String($0) })
-            ],
+            .init(title: "General Information", items: [
+                .init(title: "Company Name", description: stockDetail.companyName),
+                .init(title: "Company Logo", description: stockDetail.image, cellType: .imageCell),
+                .init(title: "Currency", description: stockDetail.currency),
+                .init(title: "Stock Exchange", description: stockDetail.stockExchange),
+                .init(title: "Exchange Short Name", description: stockDetail.exchangeShortName),
+                .init(title: "Price", description: stockDetail.price.map { String($0) })
+            ]),
             // Company Details Section
-            [
-                .init(title: "Description", value: stockDetail?.description, cellType: .readMore),
-                .init(title: "Industry", value: stockDetail?.industry),
-                .init(title: "CEO", value: stockDetail?.ceo),
-                .init(title: "Sector", value: stockDetail?.sector),
-                .init(title: "Country", value: stockDetail?.country),
-                .init(title: "Full-Time Employees", value: stockDetail?.fullTimeEmployees),
-                .init(title: "Website", value: stockDetail?.website, enableDataDetection: true)
-            ],
+            .init(title: "Company Details", items: [
+                .init(title: "Description", description: stockDetail.description, cellType: .readMoreCell),
+                .init(title: "Industry", description: stockDetail.industry),
+                .init(title: "CEO", description: stockDetail.ceo),
+                .init(title: "Sector", description: stockDetail.sector),
+                .init(title: "Country", description: stockDetail.country),
+                .init(title: "Full-Time Employees", description: stockDetail.fullTimeEmployees),
+                .init(title: "Website", description: stockDetail.website, enableDataDetection: true)
+            ]),
             // Contact Information Section
-            [
-                .init(title: "Phone", value: stockDetail?.phone, enableDataDetection: true),
-                .init(title: "Address", value: stockDetail?.address),
-                .init(title: "City", value: stockDetail?.city),
-                .init(title: "State", value: stockDetail?.state),
-                .init(title: "Zip", value: stockDetail?.zip)
-            ]
+            .init(title: "Contact Information", items: [
+                .init(title: "Phone", description: stockDetail.phone, enableDataDetection: true),
+                .init(title: "Address", description: stockDetail.address),
+                .init(title: "City", description: stockDetail.city),
+                .init(title: "State", description: stockDetail.state),
+                .init(title: "Zip", description: stockDetail.zip)
+            ])
         ]
     }
 }
 
-private extension DefaultStockDetailViewModel {
+extension StockDetailViewModel: StockDetailViewModelInput {
+    
+    func fetchStockDetail() {
+        loadingData = true
+        stockDetailLoadTask = fetchStockDetailUseCase.fetchStockDetail(symbol: stockSymbol) { [weak self] result in
+            DispatchQueue.main.async {
+                switch result {
+                case .success(let stockDetail):
+                    self?.dataSource = self?.getDataSource(from: stockDetail) ?? []
+                case .failure(let error):
+                    self?.errorModel = .init(title: self?.errorTitle ?? "Error", message: .constant(error.localizedDescription))
+                    self?.showError = true
+                }
+                self?.loadingData = false
+            }
+        }
+    }
+    
+    func downloadImage(for url: String?) {
+        guard imageDownloadingState == .notStarted else { return }
+        guard let imageUrl = url else { return }
+        
+        imageDownloadingState = .inProgress
+        stockDetailLoadTask = imageDownloadUseCase.fetchImage(
+            with: imageUrl, completion: { [weak self] result in
+                DispatchQueue.main.async {
+                    
+                    switch result {
+                    case .success(let imageData):
+                        if let imageData = imageData {
+                            self?.stockLogoImage = UIImage(data: imageData)
+                        }
+                    case .failure(let error):
+                        self?.errorModel = .init(title: self?.errorTitle ?? "Error", message: .constant(error.localizedDescription))
+                        self?.showError = true
+                    }
+                    self?.imageDownloadingState = .done
+                }
+            })
+    }
+}
+
+private extension StockDetailViewModel {
     enum ImageDownloadingState {
         case notStarted
         case inProgress
         case done
-    }
-}
-
-// MARK: - StockDetailDataSource
-
-enum StockDetailCellType {
-    case text
-    case image
-    case readMore
-}
-
-struct StockDetailDataSource {
-    let id = UUID().uuidString
-    let title: String
-    let value: String?
-    let cellType: StockDetailCellType
-    let enableDataDetection: Bool
-    
-    init(title: String, value: String?, cellType: StockDetailCellType = .text, enableDataDetection: Bool = false) {
-        self.title = title
-        self.value = value
-        self.cellType = cellType
-        self.enableDataDetection = enableDataDetection
     }
 }

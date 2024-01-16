@@ -16,16 +16,22 @@ final class StockDetailViewModelTests: XCTestCase {
         let imageDownloadRepository = ImageDownloadRepositoryMock(result: .success(UIImage(systemName: "star.circle")?.pngData()))
         let imageDownloadUseCase = DefaultImageDownloadUseCase(respository: imageDownloadRepository)
         
-        let viewModel = DefaultStockDetailViewModel(symbol: StockDetail.stub().symbol, fetchStockDetailUseCase: useCase, imageDownloadUseCase: imageDownloadUseCase)
+        let viewModel = StockDetailViewModel(symbol: StockDetail.stub().symbol, fetchStockDetailUseCase: useCase, imageDownloadUseCase: imageDownloadUseCase)
         
         viewModel.fetchStockDetail()
-        viewModel.downloadStockLogo()
+        viewModel.downloadImage(for: "https://financialmodelingprep.com/image-stock/AXL.png")
         
-        XCTAssertNotNil(viewModel.stockDetail.value)
-        XCTAssertNotNil(viewModel.stockLogo.value)
-        XCTAssertFalse(viewModel.sections.isEmpty)
-        XCTAssertFalse(viewModel.dataSource.isEmpty)
-        XCTAssertTrue(viewModel.error.value.isEmpty)
+        let expectation = XCTestExpectation(description: "delay")
+        
+        DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
+            XCTAssertNotNil(viewModel.stockLogoImage)
+            XCTAssertFalse(viewModel.dataSource.isEmpty)
+            XCTAssertFalse(viewModel.showError)
+            XCTAssertTrue(viewModel.errorModel.message.isEmpty)
+            expectation.fulfill()
+        }
+        wait(for: [expectation], timeout: 3)
+        addTeardownBlock { [weak viewModel] in XCTAssertNil(viewModel) }
     }
     
     func test_fetchStockDetail_failure() {
@@ -34,15 +40,42 @@ final class StockDetailViewModelTests: XCTestCase {
         let imageDownloadRepository = ImageDownloadRepositoryMock(result: .success(Data()))
         let imageDownloadUseCase = DefaultImageDownloadUseCase(respository: imageDownloadRepository)
         
-        let viewModel = DefaultStockDetailViewModel(symbol: "", fetchStockDetailUseCase: useCase, imageDownloadUseCase: imageDownloadUseCase)
+        let viewModel = StockDetailViewModel(symbol: "", fetchStockDetailUseCase: useCase, imageDownloadUseCase: imageDownloadUseCase)
         
         viewModel.fetchStockDetail()
-        viewModel.downloadStockLogo()
+        viewModel.downloadImage(for: "https://financialmodelingprep.com/image-stock/AXL.png")
         
-        XCTAssertNil(viewModel.stockDetail.value)
-        XCTAssertNil(viewModel.stockLogo.value)
-        XCTAssertFalse(viewModel.sections.isEmpty)
-        XCTAssertFalse(viewModel.dataSource.isEmpty)
-        XCTAssertFalse(viewModel.error.value.isEmpty)
+        let expectation = XCTestExpectation(description: "delay")
+        
+        DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
+            XCTAssertNil(viewModel.stockLogoImage)
+            XCTAssertTrue(viewModel.dataSource.isEmpty)
+            XCTAssertTrue(viewModel.showError)
+            XCTAssertFalse(viewModel.errorModel.message.isEmpty)
+            expectation.fulfill()
+        }
+        wait(for: [expectation], timeout: 3)
+        addTeardownBlock { [weak viewModel] in XCTAssertNil(viewModel) }
+        
+        
+        
+        
+        
+        
+        let readMoreAttribute = ReadMoreAttribute.readMore
+        XCTAssertEqual(readMoreAttribute.title, "Read more")
+        XCTAssertEqual(readMoreAttribute.numberOfLines, 3)
+
+        let readLessAttribute = ReadMoreAttribute.readLess
+        XCTAssertEqual(readLessAttribute.title, "Read less")
+        XCTAssertNil(readLessAttribute.numberOfLines)
+        
+        
+        let isPhoneNumber = "9977900010".isPhoneNumber()
+        let isPhoneNumber1 = "asdfdsaf".isPhoneNumber()
+        XCTAssertTrue(isPhoneNumber)
+
+        let str = "Read less Read more "
+        XCTAssertEqual(str.removeSpaces(), "ReadlessReadmore")
     }
 }

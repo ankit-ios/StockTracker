@@ -5,19 +5,30 @@
 //  Created by Ankit Sharma on 10/01/24.
 //
 
-import UIKit
+import SwiftUI
 
-protocol Alertable {}
-extension Alertable where Self: UIViewController {
-    
-    func showAlert(
-        title: String = "",
-        message: String,
-        preferredStyle: UIAlertController.Style = .alert,
-        completion: (() -> Void)? = nil
-    ) {
-        let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
-        alert.addAction(UIAlertAction(title: "OK", style: UIAlertAction.Style.default, handler: nil))
-        self.present(alert, animated: true, completion: completion)
+struct AlertModel {
+    let title: String
+    @Binding var message: String
+}
+
+extension View {
+    func showAlert(isPresented: Binding<Bool>, model: AlertModel, completion: (() -> Void)? = nil) -> some View {
+        modifier(AlertModifier(isPresented: isPresented, model: model, completion: completion))
     }
 }
+
+struct AlertModifier: ViewModifier {
+    @Binding var isPresented: Bool
+    let model: AlertModel
+    let completion: (() -> Void)?
+    
+    func body(content: Content) -> some View {
+        content.alert(isPresented: $isPresented) {
+            Alert(title: Text(model.title), message: Text(model.message), dismissButton: .default(Text("OK"), action: {
+                completion?()
+            }))
+        }
+    }
+}
+

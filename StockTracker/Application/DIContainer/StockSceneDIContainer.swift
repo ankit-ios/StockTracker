@@ -49,21 +49,21 @@ final class StockSceneDIContainer: StockFlowCoordinatorDependencies {
     }
     
     // MARK: - Stock List
-    func makeStockListViewController(actions: StockListViewModelActions) -> StockListViewController {
-        StockListViewController.create(with: makeStockListViewModel(actions: actions))
+    func makeStockListViewController(actions: StockListViewModelActions) -> UIViewController {
+        UIHostingController(rootView: StockListView(viewModel: makeStockListViewModel(actions: actions)))
     }
     
     func makeStockListViewModel(actions: StockListViewModelActions) -> StockListViewModel {
-        DefaultStockListViewModel(fetchStockListUseCase: makeStockListUseCase(), actions: actions)
+        StockListViewModel(fetchStockListUseCase: makeStockListUseCase(), actions: actions)
     }
     
     // MARK: - Stock Detail
-    func makeStockDetailViewController(symbol: String, actions: StockDetailViewModelActions) -> StockDetailViewController {
-        StockDetailViewController.create(with: makeStockDetailViewModel(symbol: symbol, actions: actions))
+    func makeStockDetailViewController(symbol: String, actions: StockDetailViewModelActions) -> UIViewController {
+        UIHostingController(rootView: StockDetailView(viewModel: makeStockDetailViewModel(symbol: symbol, actions: actions)))
     }
     
     func makeStockDetailViewModel(symbol: String, actions: StockDetailViewModelActions) -> StockDetailViewModel {
-        DefaultStockDetailViewModel(
+        StockDetailViewModel(
             symbol: symbol,
             fetchStockDetailUseCase: makeStockDetailUseCase(),
             imageDownloadUseCase: makeImageDownloadUseCase(),

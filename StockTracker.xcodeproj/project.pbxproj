@@ -7,6 +7,12 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		AD1A62652B565C3F00CBA29E /* StockDetailSectionModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD1A62642B565C3F00CBA29E /* StockDetailSectionModel.swift */; };
+		AD1A62672B56688F00CBA29E /* ReadMoreAttribute.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD1A62662B56688F00CBA29E /* ReadMoreAttribute.swift */; };
+		AD1A62692B5668A500CBA29E /* StockDetailItemViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD1A62682B5668A500CBA29E /* StockDetailItemViewModel.swift */; };
+		AD1A626B2B5668CD00CBA29E /* String+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD1A626A2B5668CD00CBA29E /* String+Extensions.swift */; };
+		AD1A626E2B5683E600CBA29E /* DTOModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD1A626D2B5683E600CBA29E /* DTOModelTests.swift */; };
+		AD1A62702B56849B00CBA29E /* AppFont.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD1A626F2B56849B00CBA29E /* AppFont.swift */; };
 		AD2045CC2B51649F0009AD7E /* Roboto-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = AD2045C92B51649F0009AD7E /* Roboto-Regular.ttf */; };
 		AD2045CD2B51649F0009AD7E /* Roboto-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = AD2045C92B51649F0009AD7E /* Roboto-Regular.ttf */; };
 		AD2045CE2B51649F0009AD7E /* Roboto-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = AD2045CA2B51649F0009AD7E /* Roboto-Light.ttf */; };
@@ -17,22 +23,18 @@
 		AD2045D42B5168D50009AD7E /* Roboto-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = AD2045D22B5168D50009AD7E /* Roboto-Bold.ttf */; };
 		AD2045D62B5168EC0009AD7E /* Roboto-Black.ttf in Resources */ = {isa = PBXBuildFile; fileRef = AD2045D52B5168EC0009AD7E /* Roboto-Black.ttf */; };
 		AD2045D72B5168EC0009AD7E /* Roboto-Black.ttf in Resources */ = {isa = PBXBuildFile; fileRef = AD2045D52B5168EC0009AD7E /* Roboto-Black.ttf */; };
+		AD2649342B55346E00EEF701 /* StockListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD2649332B55346E00EEF701 /* StockListView.swift */; };
+		AD2649362B55645B00EEF701 /* StockDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD2649352B55645B00EEF701 /* StockDetailView.swift */; };
+		AD2649382B5569E700EEF701 /* StockListItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD2649372B5569E700EEF701 /* StockListItem.swift */; };
+		AD26493C2B556D2300EEF701 /* StockLogoItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD26493B2B556D2300EEF701 /* StockLogoItem.swift */; };
+		AD26493E2B556EBC00EEF701 /* StockDetailItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD26493D2B556EBC00EEF701 /* StockDetailItem.swift */; };
+		AD2649402B5595D700EEF701 /* StockDetailReadMoreItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD26493F2B5595D700EEF701 /* StockDetailReadMoreItem.swift */; };
 		AD4AA3AB2B46D8E1005E3107 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD4AA3AA2B46D8E1005E3107 /* AppDelegate.swift */; };
 		AD4AA3AD2B46D8E1005E3107 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD4AA3AC2B46D8E1005E3107 /* SceneDelegate.swift */; };
 		AD4AA3B42B46D8E3005E3107 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AD4AA3B32B46D8E3005E3107 /* Assets.xcassets */; };
 		AD4AA3B72B46D8E3005E3107 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AD4AA3B52B46D8E3005E3107 /* LaunchScreen.storyboard */; };
 		AD4AA3CC2B46D8E3005E3107 /* StockTrackerUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD4AA3CB2B46D8E3005E3107 /* StockTrackerUITests.swift */; };
 		AD4AA3CE2B46D8E3005E3107 /* StockTrackerUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD4AA3CD2B46D8E3005E3107 /* StockTrackerUITestsLaunchTests.swift */; };
-		AD4AA3DB2B46F069005E3107 /* StockListCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = AD4AA3DA2B46F069005E3107 /* StockListCell.xib */; };
-		AD4AA3DD2B46F076005E3107 /* StockListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD4AA3DC2B46F076005E3107 /* StockListCell.swift */; };
-		AD4AA3DF2B46F5C3005E3107 /* StockDetailCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD4AA3DE2B46F5C3005E3107 /* StockDetailCell.swift */; };
-		AD4AA3E12B46F5D8005E3107 /* StockDetailCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = AD4AA3E02B46F5D8005E3107 /* StockDetailCell.xib */; };
-		AD4AA3E32B46F77D005E3107 /* StockDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD4AA3E22B46F77D005E3107 /* StockDetailViewController.swift */; };
-		AD4AA3E52B47F785005E3107 /* StockLogoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD4AA3E42B47F785005E3107 /* StockLogoCell.swift */; };
-		AD4AA3E72B47F78B005E3107 /* StockLogoCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = AD4AA3E62B47F78B005E3107 /* StockLogoCell.xib */; };
-		AD4AA3E92B47FDA1005E3107 /* StockReadMoreCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = AD4AA3E82B47FDA1005E3107 /* StockReadMoreCell.xib */; };
-		AD4AA3EB2B47FDA7005E3107 /* StockReadMoreCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD4AA3EA2B47FDA7005E3107 /* StockReadMoreCell.swift */; };
-		AD6A01032B4FE195008BD703 /* StockDetailViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AD6A01022B4FE195008BD703 /* StockDetailViewController.storyboard */; };
 		AD6A01092B4FEA9B008BD703 /* ImageDownloadUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD6A01082B4FEA9B008BD703 /* ImageDownloadUseCase.swift */; };
 		AD6A010C2B4FFC3C008BD703 /* ImageResponseStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD6A010B2B4FFC3C008BD703 /* ImageResponseStorage.swift */; };
 		AD6A010E2B4FFC81008BD703 /* DefaultImageResponseStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD6A010D2B4FFC81008BD703 /* DefaultImageResponseStorage.swift */; };
@@ -59,9 +61,6 @@
 		AD92C86C2B4EF77700849A65 /* StockSceneDIContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD92C86B2B4EF77700849A65 /* StockSceneDIContainer.swift */; };
 		AD92C8702B4EF8F100849A65 /* StockFlowCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD92C86F2B4EF8F100849A65 /* StockFlowCoordinator.swift */; };
 		AD92C8732B4EF96E00849A65 /* Alertable.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD92C8722B4EF96E00849A65 /* Alertable.swift */; };
-		AD92C8752B4EF97A00849A65 /* StoryboardInstantiable.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD92C8742B4EF97900849A65 /* StoryboardInstantiable.swift */; };
-		AD92C8772B4EF98600849A65 /* Observable.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD92C8762B4EF98600849A65 /* Observable.swift */; };
-		AD92C87B2B4EF9A400849A65 /* LoadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD92C87A2B4EF9A400849A65 /* LoadingView.swift */; };
 		AD92C87D2B4EF9F200849A65 /* StockDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD92C87C2B4EF9F200849A65 /* StockDetail.swift */; };
 		AD92C87F2B4EFA0700849A65 /* Stock.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD92C87E2B4EFA0700849A65 /* Stock.swift */; };
 		AD92C8822B4EFA5000849A65 /* UseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD92C8812B4EFA5000849A65 /* UseCase.swift */; };
@@ -80,8 +79,6 @@
 		AD92C8A22B4F045C00849A65 /* StockListResponseDTO+Mapping.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD92C8A12B4F045C00849A65 /* StockListResponseDTO+Mapping.swift */; };
 		AD92C8A42B4F046D00849A65 /* StockDetailRequestDTO+Mapping.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD92C8A32B4F046D00849A65 /* StockDetailRequestDTO+Mapping.swift */; };
 		AD92C8A62B4F047500849A65 /* StockDetailResponseDTO+Mapping.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD92C8A52B4F047500849A65 /* StockDetailResponseDTO+Mapping.swift */; };
-		AD92C8A92B4F082B00849A65 /* StockListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD92C8A82B4F082B00849A65 /* StockListViewController.swift */; };
-		AD92C8AB2B4F085700849A65 /* StockListViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AD92C8AA2B4F085700849A65 /* StockListViewController.storyboard */; };
 		AD92C8B22B4F1E7B00849A65 /* StockListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD92C8B12B4F1E7B00849A65 /* StockListViewModel.swift */; };
 		AD92C8B42B4F1E8700849A65 /* StockDetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD92C8B32B4F1E8700849A65 /* StockDetailViewModel.swift */; };
 /* End PBXBuildFile section */
@@ -104,11 +101,23 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		AD1A62642B565C3F00CBA29E /* StockDetailSectionModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StockDetailSectionModel.swift; sourceTree = "<group>"; };
+		AD1A62662B56688F00CBA29E /* ReadMoreAttribute.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReadMoreAttribute.swift; sourceTree = "<group>"; };
+		AD1A62682B5668A500CBA29E /* StockDetailItemViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StockDetailItemViewModel.swift; sourceTree = "<group>"; };
+		AD1A626A2B5668CD00CBA29E /* String+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Extensions.swift"; sourceTree = "<group>"; };
+		AD1A626D2B5683E600CBA29E /* DTOModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DTOModelTests.swift; sourceTree = "<group>"; };
+		AD1A626F2B56849B00CBA29E /* AppFont.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppFont.swift; sourceTree = "<group>"; };
 		AD2045C92B51649F0009AD7E /* Roboto-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Roboto-Regular.ttf"; sourceTree = "<group>"; };
 		AD2045CA2B51649F0009AD7E /* Roboto-Light.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Roboto-Light.ttf"; sourceTree = "<group>"; };
 		AD2045CB2B51649F0009AD7E /* Roboto-Medium.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Roboto-Medium.ttf"; sourceTree = "<group>"; };
 		AD2045D22B5168D50009AD7E /* Roboto-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Roboto-Bold.ttf"; sourceTree = "<group>"; };
 		AD2045D52B5168EC0009AD7E /* Roboto-Black.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Roboto-Black.ttf"; sourceTree = "<group>"; };
+		AD2649332B55346E00EEF701 /* StockListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StockListView.swift; sourceTree = "<group>"; };
+		AD2649352B55645B00EEF701 /* StockDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StockDetailView.swift; sourceTree = "<group>"; };
+		AD2649372B5569E700EEF701 /* StockListItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StockListItem.swift; sourceTree = "<group>"; };
+		AD26493B2B556D2300EEF701 /* StockLogoItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StockLogoItem.swift; sourceTree = "<group>"; };
+		AD26493D2B556EBC00EEF701 /* StockDetailItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StockDetailItem.swift; sourceTree = "<group>"; };
+		AD26493F2B5595D700EEF701 /* StockDetailReadMoreItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StockDetailReadMoreItem.swift; sourceTree = "<group>"; };
 		AD4AA3A72B46D8E1005E3107 /* StockTracker.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = StockTracker.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		AD4AA3AA2B46D8E1005E3107 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		AD4AA3AC2B46D8E1005E3107 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -118,16 +127,6 @@
 		AD4AA3C72B46D8E3005E3107 /* StockTrackerUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = StockTrackerUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		AD4AA3CB2B46D8E3005E3107 /* StockTrackerUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StockTrackerUITests.swift; sourceTree = "<group>"; };
 		AD4AA3CD2B46D8E3005E3107 /* StockTrackerUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StockTrackerUITestsLaunchTests.swift; sourceTree = "<group>"; };
-		AD4AA3DA2B46F069005E3107 /* StockListCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = StockListCell.xib; sourceTree = "<group>"; };
-		AD4AA3DC2B46F076005E3107 /* StockListCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StockListCell.swift; sourceTree = "<group>"; };
-		AD4AA3DE2B46F5C3005E3107 /* StockDetailCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StockDetailCell.swift; sourceTree = "<group>"; };
-		AD4AA3E02B46F5D8005E3107 /* StockDetailCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = StockDetailCell.xib; sourceTree = "<group>"; };
-		AD4AA3E22B46F77D005E3107 /* StockDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StockDetailViewController.swift; sourceTree = "<group>"; };
-		AD4AA3E42B47F785005E3107 /* StockLogoCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StockLogoCell.swift; sourceTree = "<group>"; };
-		AD4AA3E62B47F78B005E3107 /* StockLogoCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = StockLogoCell.xib; sourceTree = "<group>"; };
-		AD4AA3E82B47FDA1005E3107 /* StockReadMoreCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = StockReadMoreCell.xib; sourceTree = "<group>"; };
-		AD4AA3EA2B47FDA7005E3107 /* StockReadMoreCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StockReadMoreCell.swift; sourceTree = "<group>"; };
-		AD6A01022B4FE195008BD703 /* StockDetailViewController.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = StockDetailViewController.storyboard; sourceTree = "<group>"; };
 		AD6A01082B4FEA9B008BD703 /* ImageDownloadUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageDownloadUseCase.swift; sourceTree = "<group>"; };
 		AD6A010B2B4FFC3C008BD703 /* ImageResponseStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageResponseStorage.swift; sourceTree = "<group>"; };
 		AD6A010D2B4FFC81008BD703 /* DefaultImageResponseStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultImageResponseStorage.swift; sourceTree = "<group>"; };
@@ -157,9 +156,6 @@
 		AD92C86B2B4EF77700849A65 /* StockSceneDIContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StockSceneDIContainer.swift; sourceTree = "<group>"; };
 		AD92C86F2B4EF8F100849A65 /* StockFlowCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StockFlowCoordinator.swift; sourceTree = "<group>"; };
 		AD92C8722B4EF96E00849A65 /* Alertable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Alertable.swift; sourceTree = "<group>"; };
-		AD92C8742B4EF97900849A65 /* StoryboardInstantiable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoryboardInstantiable.swift; sourceTree = "<group>"; };
-		AD92C8762B4EF98600849A65 /* Observable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Observable.swift; sourceTree = "<group>"; };
-		AD92C87A2B4EF9A400849A65 /* LoadingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingView.swift; sourceTree = "<group>"; };
 		AD92C87C2B4EF9F200849A65 /* StockDetail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StockDetail.swift; sourceTree = "<group>"; };
 		AD92C87E2B4EFA0700849A65 /* Stock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Stock.swift; sourceTree = "<group>"; };
 		AD92C8812B4EFA5000849A65 /* UseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UseCase.swift; sourceTree = "<group>"; };
@@ -178,8 +174,6 @@
 		AD92C8A12B4F045C00849A65 /* StockListResponseDTO+Mapping.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "StockListResponseDTO+Mapping.swift"; sourceTree = "<group>"; };
 		AD92C8A32B4F046D00849A65 /* StockDetailRequestDTO+Mapping.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "StockDetailRequestDTO+Mapping.swift"; sourceTree = "<group>"; };
 		AD92C8A52B4F047500849A65 /* StockDetailResponseDTO+Mapping.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "StockDetailResponseDTO+Mapping.swift"; sourceTree = "<group>"; };
-		AD92C8A82B4F082B00849A65 /* StockListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StockListViewController.swift; sourceTree = "<group>"; };
-		AD92C8AA2B4F085700849A65 /* StockListViewController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = StockListViewController.storyboard; sourceTree = "<group>"; };
 		AD92C8B12B4F1E7B00849A65 /* StockListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StockListViewModel.swift; sourceTree = "<group>"; };
 		AD92C8B32B4F1E8700849A65 /* StockDetailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StockDetailViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -209,6 +203,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		AD1A626C2B5683CC00CBA29E /* DataMapping */ = {
+			isa = PBXGroup;
+			children = (
+				AD1A626D2B5683E600CBA29E /* DTOModelTests.swift */,
+			);
+			path = DataMapping;
+			sourceTree = "<group>";
+		};
 		AD2045C82B5164730009AD7E /* Font */ = {
 			isa = PBXGroup;
 			children = (
@@ -385,7 +387,6 @@
 		AD6A01382B504461008BD703 /* Presentation */ = {
 			isa = PBXGroup;
 			children = (
-				AD6A01462B5125D2008BD703 /* Mocks */,
 				AD6A01532B514418008BD703 /* StockScene */,
 			);
 			path = Presentation;
@@ -419,6 +420,7 @@
 		AD6A013E2B510991008BD703 /* Network */ = {
 			isa = PBXGroup;
 			children = (
+				AD1A626C2B5683CC00CBA29E /* DataMapping */,
 				AD6A01412B510A1E008BD703 /* Mocks */,
 				AD6A013F2B5109C6008BD703 /* NetworkServiceTests.swift */,
 			);
@@ -430,13 +432,6 @@
 			children = (
 				AD6A01422B510AE6008BD703 /* NetworkConfigurableMock.swift */,
 				AD6A01442B510B47008BD703 /* NetworkSessionManagerMock.swift */,
-			);
-			path = Mocks;
-			sourceTree = "<group>";
-		};
-		AD6A01462B5125D2008BD703 /* Mocks */ = {
-			isa = PBXGroup;
-			children = (
 			);
 			path = Mocks;
 			sourceTree = "<group>";
@@ -454,8 +449,7 @@
 		AD6A014E2B51343D008BD703 /* Cell */ = {
 			isa = PBXGroup;
 			children = (
-				AD4AA3DA2B46F069005E3107 /* StockListCell.xib */,
-				AD4AA3DC2B46F076005E3107 /* StockListCell.swift */,
+				AD2649372B5569E700EEF701 /* StockListItem.swift */,
 			);
 			path = Cell;
 			sourceTree = "<group>";
@@ -577,8 +571,7 @@
 			isa = PBXGroup;
 			children = (
 				AD92C8B02B4F09FB00849A65 /* Cells */,
-				AD4AA3E22B46F77D005E3107 /* StockDetailViewController.swift */,
-				AD6A01022B4FE195008BD703 /* StockDetailViewController.storyboard */,
+				AD2649352B55645B00EEF701 /* StockDetailView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -587,6 +580,8 @@
 			isa = PBXGroup;
 			children = (
 				AD92C8B32B4F1E8700849A65 /* StockDetailViewModel.swift */,
+				AD1A62642B565C3F00CBA29E /* StockDetailSectionModel.swift */,
+				AD1A62682B5668A500CBA29E /* StockDetailItemViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -604,8 +599,7 @@
 			isa = PBXGroup;
 			children = (
 				AD6A014E2B51343D008BD703 /* Cell */,
-				AD92C8A82B4F082B00849A65 /* StockListViewController.swift */,
-				AD92C8AA2B4F085700849A65 /* StockListViewController.storyboard */,
+				AD2649332B55346E00EEF701 /* StockListView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -642,6 +636,7 @@
 			children = (
 				AD4AA3AA2B46D8E1005E3107 /* AppDelegate.swift */,
 				AD4AA3AC2B46D8E1005E3107 /* SceneDelegate.swift */,
+				AD1A626F2B56849B00CBA29E /* AppFont.swift */,
 				AD92C8622B4EF70900849A65 /* AppAppearance.swift */,
 				AD92C8642B4EF71A00849A65 /* AppConfigurations.swift */,
 				AD92C8662B4EF72C00849A65 /* AppFlowCoordinator.swift */,
@@ -681,9 +676,8 @@
 			isa = PBXGroup;
 			children = (
 				AD92C8722B4EF96E00849A65 /* Alertable.swift */,
-				AD92C8742B4EF97900849A65 /* StoryboardInstantiable.swift */,
-				AD92C8762B4EF98600849A65 /* Observable.swift */,
-				AD92C87A2B4EF9A400849A65 /* LoadingView.swift */,
+				AD1A62662B56688F00CBA29E /* ReadMoreAttribute.swift */,
+				AD1A626A2B5668CD00CBA29E /* String+Extensions.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -747,12 +741,9 @@
 		AD92C8B02B4F09FB00849A65 /* Cells */ = {
 			isa = PBXGroup;
 			children = (
-				AD4AA3E62B47F78B005E3107 /* StockLogoCell.xib */,
-				AD4AA3E42B47F785005E3107 /* StockLogoCell.swift */,
-				AD4AA3E82B47FDA1005E3107 /* StockReadMoreCell.xib */,
-				AD4AA3EA2B47FDA7005E3107 /* StockReadMoreCell.swift */,
-				AD4AA3E02B46F5D8005E3107 /* StockDetailCell.xib */,
-				AD4AA3DE2B46F5C3005E3107 /* StockDetailCell.swift */,
+				AD26493B2B556D2300EEF701 /* StockLogoItem.swift */,
+				AD26493D2B556EBC00EEF701 /* StockDetailItem.swift */,
+				AD26493F2B5595D700EEF701 /* StockDetailReadMoreItem.swift */,
 			);
 			path = Cells;
 			sourceTree = "<group>";
@@ -861,19 +852,13 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				AD92C8AB2B4F085700849A65 /* StockListViewController.storyboard in Resources */,
 				AD4AA3B72B46D8E3005E3107 /* LaunchScreen.storyboard in Resources */,
 				AD2045D32B5168D50009AD7E /* Roboto-Bold.ttf in Resources */,
 				AD2045CE2B51649F0009AD7E /* Roboto-Light.ttf in Resources */,
 				AD4AA3B42B46D8E3005E3107 /* Assets.xcassets in Resources */,
-				AD4AA3E92B47FDA1005E3107 /* StockReadMoreCell.xib in Resources */,
-				AD4AA3DB2B46F069005E3107 /* StockListCell.xib in Resources */,
-				AD4AA3E12B46F5D8005E3107 /* StockDetailCell.xib in Resources */,
 				AD2045CC2B51649F0009AD7E /* Roboto-Regular.ttf in Resources */,
 				AD2045D62B5168EC0009AD7E /* Roboto-Black.ttf in Resources */,
 				AD2045D02B51649F0009AD7E /* Roboto-Medium.ttf in Resources */,
-				AD6A01032B4FE195008BD703 /* StockDetailViewController.storyboard in Resources */,
-				AD4AA3E72B47F78B005E3107 /* StockLogoCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -903,51 +888,53 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				AD4AA3E32B46F77D005E3107 /* StockDetailViewController.swift in Sources */,
 				AD92C87D2B4EF9F200849A65 /* StockDetail.swift in Sources */,
+				AD1A62692B5668A500CBA29E /* StockDetailItemViewModel.swift in Sources */,
 				AD92C8992B4EFC6500849A65 /* DefaultStockDetailRepository.swift in Sources */,
 				AD92C8A42B4F046D00849A65 /* StockDetailRequestDTO+Mapping.swift in Sources */,
 				AD92C85D2B4D908400849A65 /* Endpoint.swift in Sources */,
 				AD6A01092B4FEA9B008BD703 /* ImageDownloadUseCase.swift in Sources */,
 				AD92C8632B4EF70900849A65 /* AppAppearance.swift in Sources */,
 				AD92C8592B4D905300849A65 /* DataTransferService.swift in Sources */,
-				AD4AA3DF2B46F5C3005E3107 /* StockDetailCell.swift in Sources */,
+				AD2649362B55645B00EEF701 /* StockDetailView.swift in Sources */,
 				AD92C8A22B4F045C00849A65 /* StockListResponseDTO+Mapping.swift in Sources */,
-				AD92C8A92B4F082B00849A65 /* StockListViewController.swift in Sources */,
 				AD92C8892B4EFAD600849A65 /* FetchStockListUseCase.swift in Sources */,
-				AD92C87B2B4EF9A400849A65 /* LoadingView.swift in Sources */,
+				AD1A62652B565C3F00CBA29E /* StockDetailSectionModel.swift in Sources */,
 				AD92C8922B4EFB8E00849A65 /* ImageDownloadRepository.swift in Sources */,
 				AD92C8732B4EF96E00849A65 /* Alertable.swift in Sources */,
 				AD92C85B2B4D907100849A65 /* NetworkService.swift in Sources */,
+				AD2649382B5569E700EEF701 /* StockListItem.swift in Sources */,
 				AD92C89D2B4EFCF600849A65 /* APIEndpoints.swift in Sources */,
 				AD92C8902B4EFB7C00849A65 /* StockDetailRepository.swift in Sources */,
+				AD1A62672B56688F00CBA29E /* ReadMoreAttribute.swift in Sources */,
+				AD2649402B5595D700EEF701 /* StockDetailReadMoreItem.swift in Sources */,
 				AD92C89B2B4EFC7000849A65 /* DefaultImageDownloadRepository.swift in Sources */,
 				AD4AA3AB2B46D8E1005E3107 /* AppDelegate.swift in Sources */,
-				AD92C8772B4EF98600849A65 /* Observable.swift in Sources */,
-				AD4AA3E52B47F785005E3107 /* StockLogoCell.swift in Sources */,
 				AD92C8A62B4F047500849A65 /* StockDetailResponseDTO+Mapping.swift in Sources */,
 				AD92C8952B4EFC3600849A65 /* RepositoryTask.swift in Sources */,
 				AD92C8822B4EFA5000849A65 /* UseCase.swift in Sources */,
 				AD92C88B2B4EFB0200849A65 /* FetchStockDetailUseCase.swift in Sources */,
-				AD4AA3EB2B47FDA7005E3107 /* StockReadMoreCell.swift in Sources */,
 				AD92C8A02B4F044B00849A65 /* StockListRequestDTO+Mapping.swift in Sources */,
+				AD26493E2B556EBC00EEF701 /* StockDetailItem.swift in Sources */,
 				AD92C8B22B4F1E7B00849A65 /* StockListViewModel.swift in Sources */,
 				AD92C8872B4EFA9300849A65 /* Cancellable.swift in Sources */,
 				AD6A010E2B4FFC81008BD703 /* DefaultImageResponseStorage.swift in Sources */,
 				AD92C86A2B4EF76E00849A65 /* AppDIContainer.swift in Sources */,
-				AD4AA3DD2B46F076005E3107 /* StockListCell.swift in Sources */,
+				AD26493C2B556D2300EEF701 /* StockLogoItem.swift in Sources */,
 				AD4AA3AD2B46D8E1005E3107 /* SceneDelegate.swift in Sources */,
 				AD92C86C2B4EF77700849A65 /* StockSceneDIContainer.swift in Sources */,
+				AD1A62702B56849B00CBA29E /* AppFont.swift in Sources */,
 				AD92C85F2B4D909E00849A65 /* NetworkConfig.swift in Sources */,
 				AD92C8972B4EFC5800849A65 /* DefaultStockListRepository.swift in Sources */,
 				AD92C8652B4EF71A00849A65 /* AppConfigurations.swift in Sources */,
 				AD92C8B42B4F1E8700849A65 /* StockDetailViewModel.swift in Sources */,
 				AD92C87F2B4EFA0700849A65 /* Stock.swift in Sources */,
 				AD92C8672B4EF72C00849A65 /* AppFlowCoordinator.swift in Sources */,
-				AD92C8752B4EF97A00849A65 /* StoryboardInstantiable.swift in Sources */,
 				AD6A010C2B4FFC3C008BD703 /* ImageResponseStorage.swift in Sources */,
+				AD1A626B2B5668CD00CBA29E /* String+Extensions.swift in Sources */,
 				AD92C8702B4EF8F100849A65 /* StockFlowCoordinator.swift in Sources */,
 				AD92C88E2B4EFB6900849A65 /* StockListRepository.swift in Sources */,
+				AD2649342B55346E00EEF701 /* StockListView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -964,6 +951,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AD1A626E2B5683E600CBA29E /* DTOModelTests.swift in Sources */,
 				AD6A013D2B5044A2008BD703 /* Stock+Stub.swift in Sources */,
 				AD6A01502B513B7D008BD703 /* StockDetailViewModelTests.swift in Sources */,
 				AD6A01432B510AE6008BD703 /* NetworkConfigurableMock.swift in Sources */,

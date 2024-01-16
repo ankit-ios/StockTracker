@@ -8,44 +8,63 @@
 import XCTest
 @testable import StockTracker
 
-final class StockListViewModelTests: XCTestCase {    
+final class StockListViewModelTests: XCTestCase {
     
     func test_fetchStockList_success() {
         let repository = StockListRepositoryMock(result: .success(Stock.mockData))
         let useCase = DefaultFetchStockListUseCase(respository: repository)
-        let viewModel = DefaultStockListViewModel(fetchStockListUseCase: useCase)
-
+        let viewModel = StockListViewModel(fetchStockListUseCase: useCase)
+        
         viewModel.fetchStockList()
         
-        XCTAssertEqual(viewModel.items.value.count, 2)
-        XCTAssertEqual(viewModel.items.value.first?.symbol, "AY")
-        XCTAssertTrue(viewModel.error.value.isEmpty)
-        XCTAssertFalse(viewModel.errorTitle.isEmpty)
+        let expectation = XCTestExpectation(description: "delay")
+        DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
+            XCTAssertEqual(viewModel.items.count, 2)
+            XCTAssertEqual(viewModel.items.first?.symbol, "AY")
+            XCTAssertFalse(viewModel.showError)
+            expectation.fulfill()
+        }
+        wait(for: [expectation], timeout: 3)
         addTeardownBlock { [weak viewModel] in XCTAssertNil(viewModel) }
     }
     
     func test_fetchStockList_failure() {
         let repository = StockListRepositoryMock(result: .failure(StockListRepositoryMockError.failedFetching))
         let useCase = DefaultFetchStockListUseCase(respository: repository)
-        let viewModel = DefaultStockListViewModel(fetchStockListUseCase: useCase)
-
+        let viewModel = StockListViewModel(fetchStockListUseCase: useCase)
+        
         viewModel.fetchStockList()
         
-        XCTAssertEqual(viewModel.items.value.count, 0)
-        XCTAssertTrue(viewModel.items.value.isEmpty)
-        XCTAssertFalse(viewModel.error.value.isEmpty)
+        let expectation = XCTestExpectation(description: "delay")
+        DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
+            XCTAssertEqual(viewModel.items.count, 0)
+            XCTAssertTrue(viewModel.items.isEmpty)
+            XCTAssertTrue(viewModel.showError)
+            XCTAssertFalse(viewModel.errorModel.message.isEmpty)
+            expectation.fulfill()
+        }
+        wait(for: [expectation], timeout: 3)
         addTeardownBlock { [weak viewModel] in XCTAssertNil(viewModel) }
     }
     
     func test_didSelectItem_stockList() {
         let repository = StockListRepositoryMock(result: .success(Stock.mockData))
         let useCase = DefaultFetchStockListUseCase(respository: repository)
-        let viewModel = DefaultStockListViewModel(fetchStockListUseCase: useCase, actions: StockListViewModelActions(showStockDetail: showStockDetail))
-
-        viewModel.fetchStockList()
-        viewModel.didSelectItem(at: 0)
+        let viewModel = StockListViewModel(fetchStockListUseCase: useCase, actions: StockListViewModelActions(showStockDetail: showStockDetail))
         
-        XCTAssertFalse(viewModel.items.value.isEmpty)
+        viewModel.fetchStockList()
+        
+        let expectation = XCTestExpectation(description: "delay")
+        DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
+            do {
+                let stock = try XCTUnwrap(viewModel.items.first)
+                viewModel.didSelectItem(stock.symbol)
+            } catch {
+                print(error)
+            }
+            expectation.fulfill()
+        }
+        wait(for: [expectation], timeout: 3)
         addTeardownBlock { [weak viewModel] in XCTAssertNil(viewModel) }
     }
     

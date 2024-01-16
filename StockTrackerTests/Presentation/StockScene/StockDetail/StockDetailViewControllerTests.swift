@@ -6,11 +6,12 @@
 //
 
 import XCTest
+import SwiftUI
 @testable import StockTracker
 
 final class StockDetailViewControllerTests: XCTestCase {
     
-    private var sut: StockDetailViewController!
+    private var sut: StockDetailView!
     private var viewModel: StockDetailViewModel!
     
     override func setUpWithError() throws {
@@ -25,56 +26,40 @@ final class StockDetailViewControllerTests: XCTestCase {
         let useCase = DefaultFetchStockDetailUseCase(respository: repository)
         let imageDownloadRepository = ImageDownloadRepositoryMock(result: .success(UIImage(systemName: "star.circle")?.pngData()))
         let imageDownloadUseCase = DefaultImageDownloadUseCase(respository: imageDownloadRepository)
-        let viewModel = DefaultStockDetailViewModel(symbol: StockDetail.stub().symbol, fetchStockDetailUseCase: useCase, imageDownloadUseCase: imageDownloadUseCase)
+        let viewModel = StockDetailViewModel(symbol: StockDetail.stub().symbol, fetchStockDetailUseCase: useCase, imageDownloadUseCase: imageDownloadUseCase)
         return viewModel
     }
     
-    func makeSUT(with viewModel: StockDetailViewModel) -> StockDetailViewController {
-        let destination = StockDetailViewController.create(with: viewModel)
-        destination.loadViewIfNeeded()
-        return destination
+    func makeSUT(with viewModel: StockDetailViewModel) -> StockDetailView {
+        return StockDetailView(viewModel: viewModel)
     }
     
     func test_fetchStockDetail_success() {
         viewModel = getViewModel(.init(result: .success(StockDetail.stub())))
         self.sut = self.makeSUT(with: viewModel)
-        self.sut.viewDidLoad()
-        _ = sut.view
-        
-        let expectation = XCTestExpectation(description: "Table view reloads")
-        DispatchQueue.main.asyncAfter(deadline: .now() + 2.0) {
-            expectation.fulfill()
-        }
-        wait(for: [expectation], timeout: 3.0)
+        XCTAssertNotNil(sut.body)
     }
     
     func test_fetchStockDetail_failure() {
         viewModel = getViewModel(.init(result: .failure(StockDetailRepositoryMockError.failedFetching)))
         self.sut = self.makeSUT(with: viewModel)
-        self.sut.viewDidLoad()
-        _ = sut.view
+        XCTAssertNotNil(sut.body)
     }
     
-    func test_fetchStockDetailCells_success() {
-        let stub = StockDetail.stub()
+    func test_fetchStockDetailCells_success() throws {
+        let mockImage = UIImage(systemName: "star.circle")!
         
-        let tableView = UITableView()
-        let cellIdentifiers = [StockDetailCell.reuseIdentifier, StockLogoCell.reuseIdentifier, StockReadMoreCell.reuseIdentifier]
-        cellIdentifiers.forEach {
-            let nib = UINib(nibName: $0, bundle: nil)
-            tableView.register(nib, forCellReuseIdentifier: $0)
-        }
-
-        let stockLogoCell = tableView.dequeueReusableCell(withIdentifier: StockLogoCell.reuseIdentifier) as? StockLogoCell
-        stockLogoCell?.configure(with: "Image")
-        stockLogoCell?.updateLogo(with: UIImage(systemName: "star.circle"))
+        let logoItem = StockLogoItem(title: "Test Logo", image: .constant(mockImage))
+        let detailItem1 = StockDetailItem(vm: .init(title: "Company Name", description: "American Axle & Manufacturing Holdings, Inc.", enableDataDetection: false))
+        let detailItem2 = StockDetailItem(vm: .init(title: "Website", description: "https://www.aam.com", enableDataDetection: true))
+        let detailItem3 = StockDetailItem(vm: .init(title: "Mobile", description: "313 758 2000", enableDataDetection: true))
         
-        let stockReadMoreCell = tableView.dequeueReusableCell(withIdentifier: StockReadMoreCell.reuseIdentifier) as? StockReadMoreCell
-        stockReadMoreCell?.configure(title: "Description", value: stub.description)
-        stockReadMoreCell?.isExpanded = true
+        let readMoreItem = StockDetailReadMoreItem.init(vm: .init(title: "Description", description: "American Axle & Manufacturing Holdings, Inc., together with its subsidiaries, designs, engineers, and manufactures driveline and metal forming technologies that supports electric, hybrid, and internal combustion vehicles in the United States, Mexico, South America, China, other Asian countries, and Europe.", enableDataDetection: false))
         
-        let stockDetailCell = tableView.dequeueReusableCell(withIdentifier: StockDetailCell.reuseIdentifier) as? StockDetailCell
-        stockDetailCell?.configure(title: "Company Name", value: stub.companyName, enableDataDetection: false)
-        stockDetailCell?.configure(title: "Website", value: stub.website, enableDataDetection: true)
+        try ([logoItem, detailItem1, detailItem2, detailItem3, readMoreItem] as? [any View])?
+            .forEach { cell in
+                let cellView = try XCTUnwrap(cell)
+                XCTAssertNotNil(cellView.body)
+            }
     }
 }

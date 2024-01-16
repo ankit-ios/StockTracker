@@ -8,16 +8,15 @@
 import UIKit
 
 protocol StockFlowCoordinatorDependencies  {
-    func makeStockListViewController(actions: StockListViewModelActions) -> StockListViewController
-    func makeStockDetailViewController(symbol: String, actions: StockDetailViewModelActions) -> StockDetailViewController
+    func makeStockListViewController(actions: StockListViewModelActions) -> UIViewController
+    func makeStockDetailViewController(symbol: String, actions: StockDetailViewModelActions) -> UIViewController
 }
 
 final class StockFlowCoordinator {
     
     private weak var navigationController: UINavigationController?
     private let dependencies: StockFlowCoordinatorDependencies
-    
-    private weak var stockListVC: StockListViewController?
+    private weak var stockListVC: UIViewController?
     
     init(navigationController: UINavigationController,
          dependencies: StockFlowCoordinatorDependencies) {
