@@ -20,7 +20,7 @@ Website: https://site.financialmodelingprep.com/developer/docs
 ## App Screenshots
 
 
-| Stock Detail                                | Stock Detail                                |
+| Stock List                                | Stock List                                |
 | -------------------------------------- | ------------------------------------------- |
 | ![Stock Detail](Screenshot/2.png) | ![Stock Detail](Screenshot/3.png) |
 
