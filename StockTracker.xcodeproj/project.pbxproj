@@ -130,8 +130,6 @@
 		AD6A01082B4FEA9B008BD703 /* ImageDownloadUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageDownloadUseCase.swift; sourceTree = "<group>"; };
 		AD6A010B2B4FFC3C008BD703 /* ImageResponseStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageResponseStorage.swift; sourceTree = "<group>"; };
 		AD6A010D2B4FFC81008BD703 /* DefaultImageResponseStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultImageResponseStorage.swift; sourceTree = "<group>"; };
-		AD6A011C2B5017ED008BD703 /* Stock+Stub.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Stock+Stub.swift"; sourceTree = "<group>"; };
-		AD6A011E2B503669008BD703 /* StockUseCaseTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StockUseCaseTests.swift; sourceTree = "<group>"; };
 		AD6A01242B5036D4008BD703 /* StockTrackerTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = StockTrackerTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		AD6A01262B5036D4008BD703 /* StockUseCaseTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StockUseCaseTests.swift; sourceTree = "<group>"; };
 		AD6A013C2B5044A2008BD703 /* Stock+Stub.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Stock+Stub.swift"; sourceTree = "<group>"; };
@@ -227,7 +225,6 @@
 			isa = PBXGroup;
 			children = (
 				AD4AA3A92B46D8E1005E3107 /* StockTracker */,
-				AD4AA3C02B46D8E3005E3107 /* StockTrackerTests */,
 				AD4AA3CA2B46D8E3005E3107 /* StockTrackerUITests */,
 				AD6A01252B5036D4008BD703 /* StockTrackerTests */,
 				AD4AA3A82B46D8E1005E3107 /* Products */,
@@ -258,18 +255,6 @@
 			path = StockTracker;
 			sourceTree = "<group>";
 		};
-		AD4AA3C02B46D8E3005E3107 /* StockTrackerTests */ = {
-			isa = PBXGroup;
-			children = (
-				AD6A01132B5016C9008BD703 /* Domain */,
-				AD6A01122B5016C7008BD703 /* Presentation */,
-				AD6A01112B5016C0008BD703 /* Infrastructure */,
-				AD6A01102B5016BE008BD703 /* Stubs */,
-				AD6A010F2B5016BB008BD703 /* Mocks */,
-			);
-			path = StockTrackerTests;
-			sourceTree = "<group>";
-		};
 		AD4AA3CA2B46D8E3005E3107 /* StockTrackerUITests */ = {
 			isa = PBXGroup;
 			children = (
@@ -286,83 +271,6 @@
 				AD6A010D2B4FFC81008BD703 /* DefaultImageResponseStorage.swift */,
 			);
 			path = ImageCache;
-			sourceTree = "<group>";
-		};
-		AD6A010F2B5016BB008BD703 /* Mocks */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Mocks;
-			sourceTree = "<group>";
-		};
-		AD6A01102B5016BE008BD703 /* Stubs */ = {
-			isa = PBXGroup;
-			children = (
-				AD6A011C2B5017ED008BD703 /* Stock+Stub.swift */,
-			);
-			path = Stubs;
-			sourceTree = "<group>";
-		};
-		AD6A01112B5016C0008BD703 /* Infrastructure */ = {
-			isa = PBXGroup;
-			children = (
-				AD6A01172B501716008BD703 /* Network */,
-			);
-			path = Infrastructure;
-			sourceTree = "<group>";
-		};
-		AD6A01122B5016C7008BD703 /* Presentation */ = {
-			isa = PBXGroup;
-			children = (
-				AD6A01152B5016FD008BD703 /* StockScene */,
-			);
-			path = Presentation;
-			sourceTree = "<group>";
-		};
-		AD6A01132B5016C9008BD703 /* Domain */ = {
-			isa = PBXGroup;
-			children = (
-				AD6A01142B5016EB008BD703 /* UseCases */,
-			);
-			path = Domain;
-			sourceTree = "<group>";
-		};
-		AD6A01142B5016EB008BD703 /* UseCases */ = {
-			isa = PBXGroup;
-			children = (
-				AD6A011E2B503669008BD703 /* StockUseCaseTests.swift */,
-			);
-			path = UseCases;
-			sourceTree = "<group>";
-		};
-		AD6A01152B5016FD008BD703 /* StockScene */ = {
-			isa = PBXGroup;
-			children = (
-				AD6A01162B50170F008BD703 /* Mocks */,
-			);
-			path = StockScene;
-			sourceTree = "<group>";
-		};
-		AD6A01162B50170F008BD703 /* Mocks */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Mocks;
-			sourceTree = "<group>";
-		};
-		AD6A01172B501716008BD703 /* Network */ = {
-			isa = PBXGroup;
-			children = (
-				AD6A01182B501721008BD703 /* Mocks */,
-			);
-			path = Network;
-			sourceTree = "<group>";
-		};
-		AD6A01182B501721008BD703 /* Mocks */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Mocks;
 			sourceTree = "<group>";
 		};
 		AD6A01252B5036D4008BD703 /* StockTrackerTests */ = {
