@@ -1,4 +1,4 @@
-# StockTracker
+# StockTracker App
 
 ## API Details
 
@@ -6,38 +6,42 @@ This App is using public stock apis. Find the api details by following link:
 
 Website: https://site.financialmodelingprep.com/developer/docs
 
-## Features
+## Screens
 - **Stock List**: Showing US based stocks in list screen.
 - **Stock Detail**: Showing details of the selected Stock e.g. symbol, logo, companyName, currency, price etc.
 
-## Technologies Used
+## Key features
 - Clean Architecture with MVVM, DI and Coordinator pattern
-- SwiftUI/Combine
-- Scalable Apis 
+- SwiftUI + Combine
 - Unit Test cases (86% Code-Coverage)
-- Modular code.
+- Designed for scalability 
+- Modular code
 
 ## App Screenshots
 
+<p align="center"><strong>Stock List Screen</strong></p>
 
-| Stock List                                | Stock List                                |
-| -------------------------------------- | ------------------------------------------- |
-| ![Stock Detail](Screenshot/2.png) | ![Stock Detail](Screenshot/3.png) |
-
-
-| Stock Detail                                | Stock Detail                                |
-| -------------------------------------- | ------------------------------------------- |
-| ![Stock Detail](Screenshot/4.png) | ![Stock Detail](Screenshot/5.png) |
+<p align="center">
+  <img src="Screenshot/2.png" alt="Stock List1" width="25%">
+  <img src="Screenshot/3.png" alt="Stock List2" width="25%">
+</p>
 
 
-| Stock Detail(Read more)                                |
-| -------------------------------------- |
-| ![Stock List](Screenshot/6.png) |
+<p align="center"><strong>Stock Detail Screen</strong></p>
+
+<p align="center">
+  <img src="Screenshot/4.png" alt="Stock Detail1" width="25%">
+  <img src="Screenshot/5.png" alt="Stock Detail2" width="25%">
+  <img src="Screenshot/6.png" alt="Stock Detail Read More" width="25%">
+</p>
 
 
-| Loading screen                                | Error popup                                |
-| -------------------------------------- | ------------------------------------------- |
-| ![Stock Detail](Screenshot/1.png) | ![Stock Detail](Screenshot/7.png) |
+<p align="center"><strong>Loading Screen and Error Popup</strong></p>
+
+<p align="center">
+  <img src="Screenshot/1.png" alt="Stock List" width="25%">
+  <img src="Screenshot/7.png" alt="RecipeDetail" width="25%">
+</p>
 
 
 ## Code Coverage Screenshot
