@@ -56,21 +56,20 @@ final class StockDetailViewModelTests: XCTestCase {
         }
         wait(for: [expectation], timeout: 3)
         addTeardownBlock { [weak viewModel] in XCTAssertNil(viewModel) }
-        
-        
-        
-        
-        
+    }
+    
+    func test_readMoreLess_attribute() {
         
         let readMoreAttribute = ReadMoreAttribute.readMore
         XCTAssertEqual(readMoreAttribute.title, "Read more")
         XCTAssertEqual(readMoreAttribute.numberOfLines, 3)
-
+        
         let readLessAttribute = ReadMoreAttribute.readLess
         XCTAssertEqual(readLessAttribute.title, "Read less")
         XCTAssertNil(readLessAttribute.numberOfLines)
-        
-        
+    }
+    
+    func test_stringExtensions() {
         let isPhoneNumber = "9977900010".isPhoneNumber()
         let isPhoneNumber1 = "asdfdsaf".isPhoneNumber()
         XCTAssertTrue(isPhoneNumber)
