@@ -12,7 +12,7 @@ enum StockListRepositoryMockError: Error {
     case failedFetching
 }
 
-class StockListRepositoryMock: StockListRepository {
+final class StockListRepositoryMock: StockListRepository {
     
     let result: Result<[Stock], Error>
     init(result: Result<[Stock], Error>) {

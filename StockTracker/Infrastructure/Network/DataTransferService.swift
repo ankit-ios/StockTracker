@@ -132,7 +132,7 @@ final class DefaultDataTransferErrorLogger: DataTransferErrorLogger {
 }
 
 // MARK: - Error Resolver
-class DefaultDataTransferErrorResolver: DataTransferErrorResolver {
+final class DefaultDataTransferErrorResolver: DataTransferErrorResolver {
     init() { }
     func resolve(error: NetworkError) -> Error {
         return error
@@ -140,7 +140,7 @@ class DefaultDataTransferErrorResolver: DataTransferErrorResolver {
 }
 
 // MARK: - Response Decoders
-class JSONResponseDecoder: ResponseDecoder {
+final class JSONResponseDecoder: ResponseDecoder {
     private let jsonDecoder = JSONDecoder()
     init() { }
     func decode<T: Decodable>(_ data: Data) throws -> T {
@@ -148,7 +148,7 @@ class JSONResponseDecoder: ResponseDecoder {
     }
 }
 
-class RawDataResponseDecoder: ResponseDecoder {
+final class RawDataResponseDecoder: ResponseDecoder {
     init() { }
     
     enum CodingKeys: String, CodingKey {

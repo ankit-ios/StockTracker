@@ -25,17 +25,7 @@ struct StockDetailView: View {
                     ForEach(viewModel.dataSource) { section in
                         Section(header: Text(section.title).font(AppFont.subtitle)) {
                             ForEach(section.items, id: \.title) { item in
-                                switch(item.cellType) {
-                                case .textCell:
-                                    StockDetailItem(vm: .init(title: item.title, description: item.description, enableDataDetection: item.enableDataDetection))
-                                case .readMoreCell:
-                                    StockDetailReadMoreItem(vm: .init(title: item.title, description: item.description))
-                                case .imageCell:
-                                    StockLogoItem(title: item.title, image: $viewModel.stockLogoImage)
-                                        .onAppear {
-                                            viewModel.downloadImage(for: item.description)
-                                        }
-                                }
+                                AnyView(createCellItem(item))
                             }
                         }
                     }
@@ -54,6 +44,21 @@ struct StockDetailView: View {
                         .background(Color(.systemBackground))
                 }
             }
+        }
+    }
+    
+    @ViewBuilder
+    func createCellItem(_ item: StockDetailItemDataSource) -> any View {
+        switch(item.cellType) {
+        case .textCell:
+            StockDetailItem(vm: .init(title: item.title, description: item.description, enableDataDetection: item.enableDataDetection))
+        case .readMoreCell:
+            StockDetailReadMoreItem(vm: .init(title: item.title, description: item.description))
+        case .imageCell:
+            StockLogoItem(title: item.title, image: $viewModel.stockLogoImage)
+                .onAppear {
+                    viewModel.downloadImage(for: item.description)
+                }
         }
     }
 }

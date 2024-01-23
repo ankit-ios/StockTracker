@@ -12,7 +12,7 @@ enum ImageDownloadRepositoryMockError: Error {
     case failedDownloading
 }
 
-class ImageDownloadRepositoryMock: ImageDownloadRepository {
+final class ImageDownloadRepositoryMock: ImageDownloadRepository {
     let result: Result<Data?, Error>
     init(result: Result<Data?, Error>) {
         self.result = result

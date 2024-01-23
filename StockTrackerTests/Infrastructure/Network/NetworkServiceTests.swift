@@ -34,7 +34,7 @@ final class NetworkServiceTests: XCTestCase {
         }
     }
     
-    class NetworkErrorLoggerMock: NetworkErrorLogger {
+    final class NetworkErrorLoggerMock: NetworkErrorLogger {
         var loggedErrors: [Error] = []
         func log(request: URLRequest) { }
         func log(responseData data: Data?, response: URLResponse?) { }
@@ -51,7 +51,7 @@ final class NetworkServiceTests: XCTestCase {
         let config = NetworkConfigurableMock()
         var completionCallsCount = 0
         
-        let expectedResponseData = "Response data".data(using: .utf8)!
+        let expectedResponseData = "Response data".data(using: .utf8) ?? Data()
         let sut = DefaultNetworkService(
             config: config,
             sessionManager: NetworkSessionManagerMock(
