@@ -7,7 +7,7 @@
 
 import Foundation
 
-final class DefaultImageResponseStorage: ImageResponseStorage {
+final class DefaultImageResponseStorage: ImageStorageService {
     
     private let imageCache = NSCache<NSString, NSData>()
 

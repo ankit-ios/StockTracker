@@ -7,9 +7,20 @@
 
 import Foundation
 
-final class AppDIContainer {
+protocol AppDIContainer {
+    var apiDataTransferService: DataTransferService { get }
+    var imageStorageService: ImageStorageService { get }
+
+    func makeStockSceneDIContainer() -> StockSceneDIContainer
+}
+
+final class DefaultAppDIContainer: AppDIContainer {
     
-    lazy var appConfiguration = AppConfiguration()
+    private var appConfiguration: AppConfiguration
+    
+    init(appConfiguration: AppConfiguration = DefaultAppConfiguration()) {
+        self.appConfiguration = appConfiguration
+    }
     
     // MARK: - Network
     lazy var apiDataTransferService: DataTransferService = {
@@ -24,11 +35,15 @@ final class AppDIContainer {
         return DefaultDataTransferService(with: apiDataNetwork)
     }()
     
+    lazy var imageStorageService: ImageStorageService = {
+        DefaultImageResponseStorage()
+    }()
+    
     // MARK: - DIContainers of scenes
     func makeStockSceneDIContainer() -> StockSceneDIContainer {
-        let dependencies = StockSceneDIContainer.Dependencies(
-            apiDataTransferService: apiDataTransferService
+        DefaultStockSceneDIContainer(
+            apiDataTransferService: apiDataTransferService,
+            imageStorageService: imageStorageService
         )
-        return StockSceneDIContainer(dependencies: dependencies)
     }
 }

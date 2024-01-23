@@ -64,12 +64,16 @@ struct StockDetailView: View {
 }
 
 #Preview {
-    StockDetailView(
+    let container = DefaultStockSceneDIContainer(
+        apiDataTransferService: DefaultAppDIContainer().apiDataTransferService,
+        imageStorageService: DefaultImageResponseStorage()
+    )
+    
+    return StockDetailView(
         viewModel:
-            (UIApplication.shared.delegate as! AppDelegate)
-            .appDIContainer
-            .makeStockSceneDIContainer()
-            .makeStockDetailViewModel(symbol: "A",
-                                      actions: .init(dismissStockDetailVC: { }))
+            container.makeStockDetailViewModel(
+                symbol: "A",
+                actions: .init(dismissStockDetailVC: {})
+            )
     )
 }

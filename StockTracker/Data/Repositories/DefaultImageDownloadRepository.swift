@@ -12,11 +12,11 @@ import Foundation
 final class DefaultImageDownloadRepository {
     
     private let dataTransferService: DataTransferService
-    private let imageResponseStorage: ImageResponseStorage
+    private let imageStorageService: ImageStorageService
     
-    init(dataTransferService: DataTransferService, imageResponseStorage: ImageResponseStorage) {
+    init(dataTransferService: DataTransferService, imageStorageService: ImageStorageService) {
         self.dataTransferService = dataTransferService
-        self.imageResponseStorage = imageResponseStorage
+        self.imageStorageService = imageStorageService
     }
 }
 
@@ -29,7 +29,7 @@ extension DefaultImageDownloadRepository: ImageDownloadRepository {
         let task = RepositoryTask()
 
         //Checking image in local Cache
-        imageResponseStorage.loadImage(from: imagePath) { [weak self] imageData in
+        imageStorageService.loadImage(from: imagePath) { [weak self] imageData in
             if let imageData = imageData {
                 completion(.success(imageData))
             } else {
@@ -40,7 +40,7 @@ extension DefaultImageDownloadRepository: ImageDownloadRepository {
                 ) { result in
                     switch result {
                     case .success(let responseDTO):
-                        self?.imageResponseStorage.cacheImage(responseDTO, forKey: imagePath)
+                        self?.imageStorageService.cacheImage(responseDTO, forKey: imagePath)
                         completion(.success(responseDTO))
                     case .failure(let error):
                         completion(.failure(error))

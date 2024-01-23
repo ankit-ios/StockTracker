@@ -8,19 +8,61 @@
 import UIKit
 import SwiftUI
 
-final class StockSceneDIContainer: StockFlowCoordinatorDependencies {
+protocol StockSceneDIContainer {
+    var apiDataTransferService: DataTransferService { get }
+    var imageStorageService: ImageStorageService { get }
     
-    struct Dependencies {
-        let apiDataTransferService: DataTransferService
-    }
-        
-    // Image caching handler
-    private lazy var imageResponseStorage: ImageResponseStorage = DefaultImageResponseStorage()
-    private let dependencies: Dependencies
+    func makeStokeFlowCoordinator(navigationController: UINavigationController) -> StockFlowCoordinator
+}
 
-    init(dependencies: Dependencies) {
-        self.dependencies = dependencies
+protocol StockSceneDIContainerViewModel {
+    func makeStockListViewModel(actions: StockListViewModelActions) -> StockListViewModel
+    func makeStockDetailViewModel(symbol: String, actions: StockDetailViewModelActions) -> StockDetailViewModel
+}
+
+final class DefaultStockSceneDIContainer: StockSceneDIContainer {
+ 
+    var apiDataTransferService: DataTransferService
+    var imageStorageService: ImageStorageService
+    
+    init(apiDataTransferService: DataTransferService, imageStorageService: ImageStorageService) {
+        self.apiDataTransferService = apiDataTransferService
+        self.imageStorageService = imageStorageService
     }
+    
+    // Flow Coordinators
+    func makeStokeFlowCoordinator(navigationController: UINavigationController) -> StockFlowCoordinator {
+        StockFlowCoordinator(navigationController: navigationController, dependencies: self)
+    }
+}
+
+extension DefaultStockSceneDIContainer: StockFlowCoordinatorDependencies {
+  
+    func makeStockListViewController(actions: StockListViewModelActions) -> UIViewController {
+        UIHostingController(rootView: StockListView(viewModel: makeStockListViewModel(actions: actions)))
+    }
+    
+    func makeStockDetailViewController(symbol: String, actions: StockDetailViewModelActions) -> UIViewController {
+        UIHostingController(rootView: StockDetailView(viewModel: makeStockDetailViewModel(symbol: symbol, actions: actions)))
+    }
+}
+
+extension DefaultStockSceneDIContainer: StockSceneDIContainerViewModel {
+
+    func makeStockListViewModel(actions: StockListViewModelActions) -> StockListViewModel {
+        StockListViewModel(fetchStockListUseCase: makeStockListUseCase(), actions: actions)
+    }
+    
+    func makeStockDetailViewModel(symbol: String, actions: StockDetailViewModelActions) -> StockDetailViewModel {
+        StockDetailViewModel(
+            symbol: symbol,
+            fetchStockDetailUseCase: makeStockDetailUseCase(),
+            imageDownloadUseCase: makeImageDownloadUseCase(),
+            actions: actions)
+    }
+}
+
+private extension DefaultStockSceneDIContainer {
     
     // MARK: - Use Cases
     func makeStockListUseCase() -> FetchStockListUseCase {
@@ -37,41 +79,14 @@ final class StockSceneDIContainer: StockFlowCoordinatorDependencies {
     
     // MARK: - Repositories
     func makeStockListRepository() -> StockListRepository {
-        DefaultStockListRepository(dataTransferService: dependencies.apiDataTransferService)
+        DefaultStockListRepository(dataTransferService: apiDataTransferService)
     }
     
     func makeStockDetailRepository() -> StockDetailRepository {
-        DefaultStockDetailRepository(dataTransferService: dependencies.apiDataTransferService)
+        DefaultStockDetailRepository(dataTransferService: apiDataTransferService)
     }
     
     func makeStockDetailRepository() -> ImageDownloadRepository {
-        DefaultImageDownloadRepository(dataTransferService: dependencies.apiDataTransferService, imageResponseStorage: imageResponseStorage)
-    }
-    
-    // MARK: - Stock List
-    func makeStockListViewController(actions: StockListViewModelActions) -> UIViewController {
-        UIHostingController(rootView: StockListView(viewModel: makeStockListViewModel(actions: actions)))
-    }
-    
-    func makeStockListViewModel(actions: StockListViewModelActions) -> StockListViewModel {
-        StockListViewModel(fetchStockListUseCase: makeStockListUseCase(), actions: actions)
-    }
-    
-    // MARK: - Stock Detail
-    func makeStockDetailViewController(symbol: String, actions: StockDetailViewModelActions) -> UIViewController {
-        UIHostingController(rootView: StockDetailView(viewModel: makeStockDetailViewModel(symbol: symbol, actions: actions)))
-    }
-    
-    func makeStockDetailViewModel(symbol: String, actions: StockDetailViewModelActions) -> StockDetailViewModel {
-        StockDetailViewModel(
-            symbol: symbol,
-            fetchStockDetailUseCase: makeStockDetailUseCase(),
-            imageDownloadUseCase: makeImageDownloadUseCase(),
-            actions: actions)
-    }
-    
-    // MARK: - Flow Coordinators
-    func makeStokeFlowCoordinator(navigationController: UINavigationController) -> StockFlowCoordinator {
-        StockFlowCoordinator(navigationController: navigationController, dependencies: self)
+        DefaultImageDownloadRepository(dataTransferService: apiDataTransferService, imageStorageService: imageStorageService)
     }
 }

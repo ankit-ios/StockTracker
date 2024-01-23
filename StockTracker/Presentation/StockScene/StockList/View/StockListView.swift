@@ -49,7 +49,11 @@ struct StockListView: View {
 }
 
 #Preview {
-    StockListView(viewModel: (UIApplication.shared.delegate as! AppDelegate).appDIContainer.makeStockSceneDIContainer().makeStockListViewModel(actions: .init(showStockDetail: { symbol in
+    let container = DefaultStockSceneDIContainer(
+        apiDataTransferService: DefaultAppDIContainer().apiDataTransferService,
+        imageStorageService: DefaultImageResponseStorage()
+    )
+    return StockListView(viewModel: container.makeStockListViewModel(actions: .init(showStockDetail: { symbol in
         print(symbol)
     })))
 }

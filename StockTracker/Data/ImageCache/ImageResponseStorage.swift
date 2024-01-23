@@ -7,7 +7,7 @@
 
 import Foundation
 
-protocol ImageResponseStorage {
+protocol ImageStorageService {
     func loadImage(from urlString: String, completion: @escaping (Data?) -> Void)
     func cacheImage(_ data: Data, forKey key: String)
     func clearCache()

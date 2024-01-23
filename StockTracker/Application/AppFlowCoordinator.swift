@@ -7,10 +7,16 @@
 
 import UIKit
 
-final class AppFlowCoordinator {
+protocol Coordinator {
+    var navigationController: UINavigationController { get }
+    var appDIContainer: AppDIContainer { get }
+    func start()
+}
+
+final class AppFlowCoordinator: Coordinator {
     
     var navigationController: UINavigationController
-    private let appDIContainer: AppDIContainer
+    var appDIContainer: AppDIContainer
     
     init(
         navigationController: UINavigationController,
