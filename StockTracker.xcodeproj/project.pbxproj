@@ -35,6 +35,7 @@
 		AD4AA3B72B46D8E3005E3107 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AD4AA3B52B46D8E3005E3107 /* LaunchScreen.storyboard */; };
 		AD4AA3CC2B46D8E3005E3107 /* StockTrackerUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD4AA3CB2B46D8E3005E3107 /* StockTrackerUITests.swift */; };
 		AD4AA3CE2B46D8E3005E3107 /* StockTrackerUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD4AA3CD2B46D8E3005E3107 /* StockTrackerUITestsLaunchTests.swift */; };
+		AD50030D2B5FEB85005F60D2 /* TextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD50030C2B5FEB85005F60D2 /* TextView.swift */; };
 		AD6A01092B4FEA9B008BD703 /* ImageDownloadUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD6A01082B4FEA9B008BD703 /* ImageDownloadUseCase.swift */; };
 		AD6A010C2B4FFC3C008BD703 /* ImageResponseStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD6A010B2B4FFC3C008BD703 /* ImageResponseStorage.swift */; };
 		AD6A010E2B4FFC81008BD703 /* DefaultImageResponseStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD6A010D2B4FFC81008BD703 /* DefaultImageResponseStorage.swift */; };
@@ -127,6 +128,7 @@
 		AD4AA3C72B46D8E3005E3107 /* StockTrackerUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = StockTrackerUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		AD4AA3CB2B46D8E3005E3107 /* StockTrackerUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StockTrackerUITests.swift; sourceTree = "<group>"; };
 		AD4AA3CD2B46D8E3005E3107 /* StockTrackerUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StockTrackerUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		AD50030C2B5FEB85005F60D2 /* TextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextView.swift; sourceTree = "<group>"; };
 		AD6A01082B4FEA9B008BD703 /* ImageDownloadUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageDownloadUseCase.swift; sourceTree = "<group>"; };
 		AD6A010B2B4FFC3C008BD703 /* ImageResponseStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageResponseStorage.swift; sourceTree = "<group>"; };
 		AD6A010D2B4FFC81008BD703 /* DefaultImageResponseStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultImageResponseStorage.swift; sourceTree = "<group>"; };
@@ -586,6 +588,7 @@
 				AD92C8722B4EF96E00849A65 /* Alertable.swift */,
 				AD1A62662B56688F00CBA29E /* ReadMoreAttribute.swift */,
 				AD1A626A2B5668CD00CBA29E /* String+Extensions.swift */,
+				AD50030C2B5FEB85005F60D2 /* TextView.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -805,6 +808,7 @@
 				AD92C8632B4EF70900849A65 /* AppAppearance.swift in Sources */,
 				AD92C8592B4D905300849A65 /* DataTransferService.swift in Sources */,
 				AD2649362B55645B00EEF701 /* StockDetailView.swift in Sources */,
+				AD50030D2B5FEB85005F60D2 /* TextView.swift in Sources */,
 				AD92C8A22B4F045C00849A65 /* StockListResponseDTO+Mapping.swift in Sources */,
 				AD92C8892B4EFAD600849A65 /* FetchStockListUseCase.swift in Sources */,
 				AD1A62652B565C3F00CBA29E /* StockDetailSectionModel.swift in Sources */,

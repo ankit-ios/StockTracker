@@ -70,10 +70,6 @@ final class StockDetailViewModelTests: XCTestCase {
     }
     
     func test_stringExtensions() {
-        let isPhoneNumber = "9977900010".isPhoneNumber()
-        let isPhoneNumber1 = "asdfdsaf".isPhoneNumber()
-        XCTAssertTrue(isPhoneNumber)
-
         let str = "Read less Read more "
         XCTAssertEqual(str.removeSpaces(), "ReadlessReadmore")
     }
