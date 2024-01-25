@@ -9,6 +9,7 @@ import Foundation
 import Combine
 import SwiftUI
 
+// MARK: - StockListViewModel Actions and Input/Output protocols
 struct StockListViewModelActions {
     let showStockDetail: (String) -> Void
 }
@@ -19,49 +20,50 @@ protocol StockListViewModelInput {
 }
 
 protocol StockListViewModelOutput {
-    var screenTitle: String { get }
-    var loadingTitle: String { get }
-    var loadingData: Bool { get }
+    var titles: StockListScreenTitle { get }
     var items: [Stock] { get }
-    var showError: Bool { get }
     var errorModel: AlertModel { get }
 }
 
-final class StockListViewModel: ObservableObject, StockListViewModelInput, StockListViewModelOutput {
+// MARK: - StockListViewModel
+final class StockListViewModel: ObservableObject, StockListViewModelOutput {
     
-    let screenTitle: String = "Stock List"
-    let loadingTitle: String = "Fetching Stock List..."
-    private let errorTitle: String = "Failed loading stocks"
-    
-    @Published var loadingData: Bool = false
-    @Published var showError: Bool = false
-    @Published var errorModel: AlertModel = .init(title: "", message: .constant(""))
-    @Published var items: [Stock] = []
+    let titles = StockListScreenTitle()
+    @Published private(set) var errorModel: AlertModel = .init(title: "", message: .constant(""))
+    @Published private(set) var items: [Stock] = []
+    @Published private(set) var loadingState: LoadingState = .idle
     
     private let actions: StockListViewModelActions?
     private let fetchStockListUseCase: FetchStockListUseCase
     private var stockListLoadTask: Cancellable? { willSet { stockListLoadTask?.cancel() } }
+    private let errorTitle: String = "Failed loading stocks"
     
     init(fetchStockListUseCase: FetchStockListUseCase,
          actions: StockListViewModelActions? = nil) {
         self.fetchStockListUseCase = fetchStockListUseCase
         self.actions = actions
     }
+}
+
+extension StockListViewModel: StockListViewModelInput {
     
     func fetchStockList() {
-        loadingData = true
-        stockListLoadTask = fetchStockListUseCase.fetchStockList(completion: { result in
-            DispatchQueue.main.async { [weak self] in
-                switch result {
-                case .success(let stockList):
-                    self?.items = stockList
-                case .failure(let error):
-                    self?.errorModel = .init(title: self?.errorTitle ?? "Error", message: .constant(error.localizedDescription))
-                    self?.showError = true
+        loadingState = .loading
+        Task {
+            stockListLoadTask = fetchStockListUseCase.fetchStockList(completion: { result in
+                DispatchQueue.main.async { [weak self] in
+                    guard let self else { return }
+                    switch result {
+                    case .success(let stockList):
+                        self.items = stockList
+                        self.loadingState = .loaded
+                    case .failure(let error):
+                        self.errorModel = .init(title: self.errorTitle, message: .constant(error.localizedDescription))
+                        self.loadingState = .error
+                    }
                 }
-                self?.loadingData = false
-            }
-        })
+            })
+        }
     }
     
     func didSelectItem(_ symbol: String) {

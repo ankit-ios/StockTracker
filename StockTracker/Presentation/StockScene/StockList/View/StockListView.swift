@@ -11,7 +11,15 @@ import Combine
 struct StockListView: View {
     
     @ObservedObject private var viewModel: StockListViewModel
-    @State private var dataLoaded = false
+    @State private var hasAppeared = false
+    
+    private let unavailableViewImage = "chart.bar.xaxis.ascending"
+    private var showError: Binding<Bool> {
+        Binding(
+            get: { viewModel.loadingState == .error },
+            set: { _ in }
+        )
+    }
     
     init(viewModel: StockListViewModel) {
         self.viewModel = viewModel
@@ -20,31 +28,40 @@ struct StockListView: View {
     var body: some View {
         NavigationView {
             ZStack {
-                //List
-                List {
-                    ForEach(viewModel.items, id: \.symbol) { item in
-                        StockListItem(stock: item)
-                            .onTapGesture { viewModel.didSelectItem(item.symbol) }
-                    }
-                }
-                .listStyle(.inset)
-                
-                //Loading View
-                if viewModel.loadingData {
-                    ProgressView(viewModel.loadingTitle)
-                        .frame(maxWidth: .infinity, maxHeight: .infinity)
-                        .background(Color(.systemBackground))
-                }
+                getBody(for: viewModel.loadingState)
             }
         }
-        .showAlert(isPresented: $viewModel.showError, model: .init(title: viewModel.errorModel.title, message: $viewModel.errorModel.message))
-        .navigationTitle(viewModel.screenTitle)
-        .onAppear(perform: {
-            if !dataLoaded {
-                viewModel.fetchStockList()
-                dataLoaded = true
+        .showAlert(isPresented: showError, model: viewModel.errorModel)
+        .navigationTitle(viewModel.titles.screenTitle)
+        .task {
+            guard !hasAppeared else { return }
+            viewModel.fetchStockList()
+            hasAppeared.toggle()
+        }
+    }
+    
+    ///Returing body based on LoadingState
+    @ViewBuilder
+    func getBody(for loadingState: LoadingState) -> some View {
+        switch loadingState {
+        case .idle: Spacer()
+        case .loading:
+            ProgressView(viewModel.titles.loadingTitle)
+                .frame(maxWidth: .infinity, maxHeight: .infinity)
+                .background(Color(.systemBackground))
+        case .loaded:
+            List(viewModel.items, id: \.symbol) { item in
+                StockListItem(stock: item)
+                    .onTapGesture { viewModel.didSelectItem(item.symbol) }
             }
-        })
+            .listStyle(.inset)
+        case .error:
+            ContentUnavailableView {
+                Label(viewModel.titles.unavailableViewTitle, systemImage: unavailableViewImage)
+            } description: {
+                Text(viewModel.titles.unavailableViewDesc)
+            }
+        }
     }
 }
 
