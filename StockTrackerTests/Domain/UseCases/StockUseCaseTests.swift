@@ -207,7 +207,7 @@ final class StockUseCaseTests: XCTestCase {
     func test_saveImage_returnImage() {
         var fetchedData: Data?
         let imageData = UIImage(systemName: "star.circle")?.pngData() ?? Data()
-        let imageResponseStorage: ImageResponseStorage = DefaultImageResponseStorage()
+        let imageResponseStorage: ImageStorageService = DefaultImageResponseStorage()
         imageResponseStorage.cacheImage(imageData, forKey: "starCircle")
         
         imageResponseStorage.loadImage(from: "starCircle") { loadedImageData in
@@ -220,7 +220,7 @@ final class StockUseCaseTests: XCTestCase {
     
     func test_loadImageWithoutSaving_returnNil() {
         var fetchedData: Data?
-        let imageResponseStorage: ImageResponseStorage = DefaultImageResponseStorage()
+        let imageResponseStorage: ImageStorageService = DefaultImageResponseStorage()
         
         imageResponseStorage.loadImage(from: "heart.fill") { loadedImageData in
             fetchedData = loadedImageData
@@ -238,7 +238,7 @@ final class StockUseCaseTests: XCTestCase {
         let imageData2 = UIImage(systemName: "star.circle")?.pngData() ?? Data()
         let imageData3 = UIImage(systemName: "camera")?.pngData() ?? Data()
 
-        let imageResponseStorage: ImageResponseStorage = DefaultImageResponseStorage()
+        let imageResponseStorage: ImageStorageService = DefaultImageResponseStorage()
         imageResponseStorage.cacheImage(imageData1, forKey: "heartFill")
         imageResponseStorage.cacheImage(imageData2, forKey: "starCircle")
         imageResponseStorage.cacheImage(imageData3, forKey: "camera")
