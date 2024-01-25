@@ -112,18 +112,6 @@ extension DefaultNetworkService: NetworkService {
     }
 }
 
-// MARK: - Default Network Session Manager
-
-final class DefaultNetworkSessionManager: NetworkSessionManager {
-    func request(
-        _ request: URLRequest,
-        completion: @escaping CompletionHandler
-    ) -> NetworkCancellable {
-        let task = URLSession.shared.dataTask(with: request, completionHandler: completion)
-        task.resume()
-        return task
-    }
-}
 
 // MARK: - Logger
 
