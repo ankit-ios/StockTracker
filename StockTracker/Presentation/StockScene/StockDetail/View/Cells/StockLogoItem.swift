@@ -16,8 +16,7 @@ struct StockLogoItem: View {
             Text(title)
                 .font(AppFont.subtitle)
             Spacer()
-            Image(uiImage: image ?? UIImage())
-                .resizable()
+            ImageView(image: $image)
                 .frame(width: 100, height: 100)
         }
     }

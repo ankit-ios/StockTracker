@@ -27,7 +27,7 @@ struct StockListView: View {
     
     var body: some View {
         NavigationView {
-            ZStack {
+            VStack {
                 getBody(for: viewModel.loadingState)
             }
         }
@@ -44,7 +44,7 @@ struct StockListView: View {
     @ViewBuilder
     func getBody(for loadingState: LoadingState) -> some View {
         switch loadingState {
-        case .idle: Spacer()
+        case .idle: EmptyView()
         case .loading:
             ProgressView(viewModel.titles.loadingTitle)
                 .frame(maxWidth: .infinity, maxHeight: .infinity)
@@ -52,6 +52,8 @@ struct StockListView: View {
         case .loaded:
             List(viewModel.items, id: \.symbol) { item in
                 StockListItem(stock: item)
+                    .frame(maxWidth: .infinity, alignment: .leading)
+                    .background(.background)
                     .onTapGesture { viewModel.didSelectItem(item.symbol) }
             }
             .listStyle(.inset)

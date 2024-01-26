@@ -39,7 +39,7 @@ struct StockDetailView: View {
     @ViewBuilder
     func getBody(for loadingState: LoadingState) -> some View {
         switch loadingState {
-        case .idle: Spacer()
+        case .idle: EmptyView()
         case .loading:
             ProgressView(viewModel.titles.loadingTitle)
                 .frame(maxWidth: .infinity, maxHeight: .infinity)
