@@ -12,6 +12,7 @@ struct StockListView: View {
     
     @ObservedObject private var viewModel: StockListViewModel
     @State private var hasAppeared = false
+    @State private var selectedStockID: Stock.ID?
     
     private let unavailableViewImage = "chart.bar.xaxis.ascending"
     private var showError: Binding<Bool> {
@@ -38,6 +39,13 @@ struct StockListView: View {
             viewModel.fetchStockList()
             hasAppeared.toggle()
         }
+        .onChange(of: selectedStockID, { _, _ in
+            guard
+                let selectedStockID = selectedStockID,
+                let symbol = viewModel.items.first(where: { $0.id == selectedStockID })?.symbol else { return }
+            viewModel.didSelectItem(symbol)
+            self.selectedStockID = nil //This is removing background color for last selected ID
+        })
     }
     
     ///Returing body based on LoadingState
@@ -50,13 +58,12 @@ struct StockListView: View {
                 .frame(maxWidth: .infinity, maxHeight: .infinity)
                 .background(Color(.systemBackground))
         case .loaded:
-            List(viewModel.items, id: \.symbol) { item in
-                StockListItem(stock: item)
-                    .frame(maxWidth: .infinity, alignment: .leading)
-                    .background(.background)
-                    .onTapGesture { viewModel.didSelectItem(item.symbol) }
+            Table(viewModel.items, selection: $selectedStockID) {
+                TableColumn("Stock") { stock in
+                    StockListItem(stock: stock)
+                        .frame(maxWidth: .infinity, alignment: .leading)
+                }
             }
-            .listStyle(.inset)
         case .error:
             ContentUnavailableView {
                 Label(viewModel.titles.unavailableViewTitle, systemImage: unavailableViewImage)
