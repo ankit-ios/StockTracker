@@ -16,18 +16,15 @@ struct StockDetailItem: View {
     }
     
     var body: some View {
-        GeometryReader(content: { geometry in
-            HStack(spacing: 8) {
-                Text(vm.title)
-                    .font(AppFont.subtitle)
-                
-                Spacer()
-                
-                TextView(text: vm.description ?? "", config: DefaultTextViewConfig(vm.enableDataDetection))
-                    .frame(width: geometry.size.width * 0.5, alignment: .leading)
-                    .font(AppFont.caption)
-            }
-        })
+        HStack(spacing: 8) {
+            Text(vm.title)
+                .font(AppFont.subtitle)
+            
+            Spacer()
+            
+            TextView(text: vm.description ?? "", config: DefaultTextViewConfig(vm.enableDataDetection))
+                .font(AppFont.caption)
+        }
     }
 }
 
