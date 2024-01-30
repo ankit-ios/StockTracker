@@ -22,6 +22,7 @@ struct StockListView: View {
         )
     }
     
+    //We may also use the environment variable for data injection
     init(viewModel: StockListViewModel) {
         self.viewModel = viewModel
     }
@@ -36,7 +37,7 @@ struct StockListView: View {
         .navigationTitle(viewModel.titles.screenTitle)
         .task {
             guard !hasAppeared else { return }
-            viewModel.fetchStockList()
+            viewModel.fetchStockList() //Could use the async-await for fetching StockList
             hasAppeared.toggle()
         }
         .onChange(of: selectedStockID, { _, _ in
@@ -58,6 +59,7 @@ struct StockListView: View {
                 .frame(maxWidth: .infinity, maxHeight: .infinity)
                 .background(Color(.systemBackground))
         case .loaded:
+            //We may also use List here
             Table(viewModel.items, selection: $selectedStockID) {
                 TableColumn("Stock") { stock in
                     StockListItem(stock: stock)

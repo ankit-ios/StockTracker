@@ -13,14 +13,15 @@ struct StockListItem: View {
     
     var body: some View {
         VStack(alignment: .leading, spacing: 8) {
-            Text(stock.symbol)
-                .font(AppFont.title)
-            Text(stock.name)
-                .font(AppFont.caption)
-            Text(stock.exchangeShortName ?? "")
-                .font(AppFont.subtitle)
-            Text(stock.stockExchange ?? "")
-                .font(AppFont.caption)
+            ForEach([
+                (stock.symbol, AppFont.title),
+                (stock.name, AppFont.caption),
+                (stock.exchangeShortName ?? "", AppFont.subtitle),
+                (stock.stockExchange ?? "", AppFont.caption)
+            ], id: \.0) { text, font in
+                Text(text)
+                    .font(font)
+            }
         }
     }
 }

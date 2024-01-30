@@ -19,6 +19,7 @@ struct StockDetailView: View {
         )
     }
     
+    //We may also use the environment variable for data injection
     init(viewModel: StockDetailViewModel) {
         self.viewModel = viewModel
     }

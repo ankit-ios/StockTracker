@@ -7,6 +7,7 @@
 
 import SwiftUI
 
+//We can also use the AsyncImage here
 struct ImageView<P>: View where P : View {
     @Binding var image: UIImage?
     let placeholder: () -> P
