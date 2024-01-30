@@ -18,6 +18,7 @@ final class StockDetailViewModelTests: XCTestCase {
         
         let viewModel = StockDetailViewModel(symbol: StockDetail.stub().symbol, fetchStockDetailUseCase: useCase, imageDownloadUseCase: imageDownloadUseCase)
         
+        XCTAssertTrue(viewModel.loadingState == .idle)
         viewModel.fetchStockDetail()
         viewModel.downloadImage(for: "https://financialmodelingprep.com/image-stock/AXL.png")
         
@@ -26,7 +27,7 @@ final class StockDetailViewModelTests: XCTestCase {
         DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
             XCTAssertNotNil(viewModel.stockLogoImage)
             XCTAssertFalse(viewModel.dataSource.isEmpty)
-            XCTAssertFalse(viewModel.showError)
+            XCTAssertTrue(viewModel.loadingState == .loaded)
             XCTAssertTrue(viewModel.errorModel.message.isEmpty)
             expectation.fulfill()
         }
@@ -50,7 +51,7 @@ final class StockDetailViewModelTests: XCTestCase {
         DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
             XCTAssertNil(viewModel.stockLogoImage)
             XCTAssertTrue(viewModel.dataSource.isEmpty)
-            XCTAssertTrue(viewModel.showError)
+            XCTAssertTrue(viewModel.loadingState == .error)
             XCTAssertFalse(viewModel.errorModel.message.isEmpty)
             expectation.fulfill()
         }
