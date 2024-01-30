@@ -12,6 +12,8 @@ protocol StockFlowCoordinatorDependencies  {
     func makeStockDetailViewController(symbol: String, actions: StockDetailViewModelActions) -> UIViewController
 }
 
+
+/// Consider utilizing NavigationStack and NavigationPath instead of UINavigationController for improved navigation management.
 final class StockFlowCoordinator {
     
     private weak var navigationController: UINavigationController?
