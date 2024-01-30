@@ -9,21 +9,20 @@ import SwiftUI
 
 struct StockLogoItem: View {
     let title: String
-    @Binding var image: UIImage?
+    var imageUrl: String?
     
     var body: some View {
         HStack(spacing: 8) {
             Text(title)
                 .font(AppFont.subtitle)
             Spacer()
-            ImageView(
-                image: $image,
-                placeholder: { ProgressView() } )
-            .frame(width: 100, height: 100)
+           
+            AsyncImageView(imageUrl: imageUrl)
+                .frame(width: 100, height: 100)
         }
     }
 }
 
 #Preview {
-    StockLogoItem(title: "Company Image", image: .constant(UIImage(systemName: "star.circle")))
+    StockLogoItem(title: "Company Image", imageUrl: "https://financialmodelingprep.com/image-stock/AXL.png")
 }

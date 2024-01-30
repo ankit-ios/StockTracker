@@ -24,13 +24,4 @@ struct APIEndpoints {
             queryParametersEncodable: stockDetailDTO
         )
     }
-    
-    static func getImage(with path: String) -> Endpoint<Data> {
-        return Endpoint(
-            path: path,
-            isFullPath: true,
-            method: .get,
-            responseDecoder: RawDataResponseDecoder()
-        )
-    }
 }

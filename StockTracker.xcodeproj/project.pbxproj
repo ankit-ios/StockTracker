@@ -41,9 +41,6 @@
 		AD5ED5DD2B628CCD00D00507 /* URLSessionPinningDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD5ED5DC2B628CCD00D00507 /* URLSessionPinningDelegate.swift */; };
 		AD5ED5DF2B62AEB900D00507 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD5ED5DE2B62AEB900D00507 /* Constants.swift */; };
 		AD5ED5E12B63A1F100D00507 /* ImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD5ED5E02B63A1F100D00507 /* ImageView.swift */; };
-		AD6A01092B4FEA9B008BD703 /* ImageDownloadUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD6A01082B4FEA9B008BD703 /* ImageDownloadUseCase.swift */; };
-		AD6A010C2B4FFC3C008BD703 /* ImageResponseStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD6A010B2B4FFC3C008BD703 /* ImageResponseStorage.swift */; };
-		AD6A010E2B4FFC81008BD703 /* DefaultImageResponseStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD6A010D2B4FFC81008BD703 /* DefaultImageResponseStorage.swift */; };
 		AD6A01272B5036D4008BD703 /* StockUseCaseTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD6A01262B5036D4008BD703 /* StockUseCaseTests.swift */; };
 		AD6A013D2B5044A2008BD703 /* Stock+Stub.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD6A013C2B5044A2008BD703 /* Stock+Stub.swift */; };
 		AD6A01402B5109C6008BD703 /* NetworkServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD6A013F2B5109C6008BD703 /* NetworkServiceTests.swift */; };
@@ -53,7 +50,6 @@
 		AD6A014B2B5130AD008BD703 /* StockListRepositoryMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD6A014A2B5130AD008BD703 /* StockListRepositoryMock.swift */; };
 		AD6A014D2B5130D1008BD703 /* StockDetailRepositoryMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD6A014C2B5130D1008BD703 /* StockDetailRepositoryMock.swift */; };
 		AD6A01502B513B7D008BD703 /* StockDetailViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD6A014F2B513B7D008BD703 /* StockDetailViewModelTests.swift */; };
-		AD6A01522B513C29008BD703 /* ImageDownloadRepositoryMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD6A01512B513C29008BD703 /* ImageDownloadRepositoryMock.swift */; };
 		AD6A01572B514449008BD703 /* StockListViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD6A01562B514449008BD703 /* StockListViewControllerTests.swift */; };
 		AD6A01592B514644008BD703 /* StockDetailViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD6A01582B514644008BD703 /* StockDetailViewControllerTests.swift */; };
 		AD92C8592B4D905300849A65 /* DataTransferService.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD92C8582B4D905300849A65 /* DataTransferService.swift */; };
@@ -75,11 +71,9 @@
 		AD92C88B2B4EFB0200849A65 /* FetchStockDetailUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD92C88A2B4EFB0200849A65 /* FetchStockDetailUseCase.swift */; };
 		AD92C88E2B4EFB6900849A65 /* StockListRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD92C88D2B4EFB6900849A65 /* StockListRepository.swift */; };
 		AD92C8902B4EFB7C00849A65 /* StockDetailRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD92C88F2B4EFB7C00849A65 /* StockDetailRepository.swift */; };
-		AD92C8922B4EFB8E00849A65 /* ImageDownloadRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD92C8912B4EFB8E00849A65 /* ImageDownloadRepository.swift */; };
 		AD92C8952B4EFC3600849A65 /* RepositoryTask.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD92C8942B4EFC3600849A65 /* RepositoryTask.swift */; };
 		AD92C8972B4EFC5800849A65 /* DefaultStockListRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD92C8962B4EFC5800849A65 /* DefaultStockListRepository.swift */; };
 		AD92C8992B4EFC6500849A65 /* DefaultStockDetailRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD92C8982B4EFC6500849A65 /* DefaultStockDetailRepository.swift */; };
-		AD92C89B2B4EFC7000849A65 /* DefaultImageDownloadRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD92C89A2B4EFC7000849A65 /* DefaultImageDownloadRepository.swift */; };
 		AD92C89D2B4EFCF600849A65 /* APIEndpoints.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD92C89C2B4EFCF600849A65 /* APIEndpoints.swift */; };
 		AD92C8A02B4F044B00849A65 /* StockListRequestDTO+Mapping.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD92C89F2B4F044B00849A65 /* StockListRequestDTO+Mapping.swift */; };
 		AD92C8A22B4F045C00849A65 /* StockListResponseDTO+Mapping.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD92C8A12B4F045C00849A65 /* StockListResponseDTO+Mapping.swift */; };
@@ -139,9 +133,6 @@
 		AD5ED5DC2B628CCD00D00507 /* URLSessionPinningDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLSessionPinningDelegate.swift; sourceTree = "<group>"; };
 		AD5ED5DE2B62AEB900D00507 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		AD5ED5E02B63A1F100D00507 /* ImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageView.swift; sourceTree = "<group>"; };
-		AD6A01082B4FEA9B008BD703 /* ImageDownloadUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageDownloadUseCase.swift; sourceTree = "<group>"; };
-		AD6A010B2B4FFC3C008BD703 /* ImageResponseStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageResponseStorage.swift; sourceTree = "<group>"; };
-		AD6A010D2B4FFC81008BD703 /* DefaultImageResponseStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultImageResponseStorage.swift; sourceTree = "<group>"; };
 		AD6A01242B5036D4008BD703 /* StockTrackerTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = StockTrackerTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		AD6A01262B5036D4008BD703 /* StockUseCaseTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StockUseCaseTests.swift; sourceTree = "<group>"; };
 		AD6A013C2B5044A2008BD703 /* Stock+Stub.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Stock+Stub.swift"; sourceTree = "<group>"; };
@@ -152,7 +143,6 @@
 		AD6A014A2B5130AD008BD703 /* StockListRepositoryMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StockListRepositoryMock.swift; sourceTree = "<group>"; };
 		AD6A014C2B5130D1008BD703 /* StockDetailRepositoryMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StockDetailRepositoryMock.swift; sourceTree = "<group>"; };
 		AD6A014F2B513B7D008BD703 /* StockDetailViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StockDetailViewModelTests.swift; sourceTree = "<group>"; };
-		AD6A01512B513C29008BD703 /* ImageDownloadRepositoryMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageDownloadRepositoryMock.swift; sourceTree = "<group>"; };
 		AD6A01562B514449008BD703 /* StockListViewControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StockListViewControllerTests.swift; sourceTree = "<group>"; };
 		AD6A01582B514644008BD703 /* StockDetailViewControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StockDetailViewControllerTests.swift; sourceTree = "<group>"; };
 		AD92C8582B4D905300849A65 /* DataTransferService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataTransferService.swift; sourceTree = "<group>"; };
@@ -174,11 +164,9 @@
 		AD92C88A2B4EFB0200849A65 /* FetchStockDetailUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FetchStockDetailUseCase.swift; sourceTree = "<group>"; };
 		AD92C88D2B4EFB6900849A65 /* StockListRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StockListRepository.swift; sourceTree = "<group>"; };
 		AD92C88F2B4EFB7C00849A65 /* StockDetailRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StockDetailRepository.swift; sourceTree = "<group>"; };
-		AD92C8912B4EFB8E00849A65 /* ImageDownloadRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageDownloadRepository.swift; sourceTree = "<group>"; };
 		AD92C8942B4EFC3600849A65 /* RepositoryTask.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RepositoryTask.swift; sourceTree = "<group>"; };
 		AD92C8962B4EFC5800849A65 /* DefaultStockListRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultStockListRepository.swift; sourceTree = "<group>"; };
 		AD92C8982B4EFC6500849A65 /* DefaultStockDetailRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultStockDetailRepository.swift; sourceTree = "<group>"; };
-		AD92C89A2B4EFC7000849A65 /* DefaultImageDownloadRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultImageDownloadRepository.swift; sourceTree = "<group>"; };
 		AD92C89C2B4EFCF600849A65 /* APIEndpoints.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIEndpoints.swift; sourceTree = "<group>"; };
 		AD92C89F2B4F044B00849A65 /* StockListRequestDTO+Mapping.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "StockListRequestDTO+Mapping.swift"; sourceTree = "<group>"; };
 		AD92C8A12B4F045C00849A65 /* StockListResponseDTO+Mapping.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "StockListResponseDTO+Mapping.swift"; sourceTree = "<group>"; };
@@ -284,15 +272,6 @@
 			path = Certificate;
 			sourceTree = "<group>";
 		};
-		AD6A010A2B4FFBF1008BD703 /* ImageCache */ = {
-			isa = PBXGroup;
-			children = (
-				AD6A010B2B4FFC3C008BD703 /* ImageResponseStorage.swift */,
-				AD6A010D2B4FFC81008BD703 /* DefaultImageResponseStorage.swift */,
-			);
-			path = ImageCache;
-			sourceTree = "<group>";
-		};
 		AD6A01252B5036D4008BD703 /* StockTrackerTests */ = {
 			isa = PBXGroup;
 			children = (
@@ -369,7 +348,6 @@
 			children = (
 				AD6A014A2B5130AD008BD703 /* StockListRepositoryMock.swift */,
 				AD6A014C2B5130D1008BD703 /* StockDetailRepositoryMock.swift */,
-				AD6A01512B513C29008BD703 /* ImageDownloadRepositoryMock.swift */,
 			);
 			path = Mocks;
 			sourceTree = "<group>";
@@ -433,7 +411,6 @@
 			children = (
 				AD92C8402B4D8D1000849A65 /* Repositories */,
 				AD92C83F2B4D8D0D00849A65 /* Network */,
-				AD6A010A2B4FFBF1008BD703 /* ImageCache */,
 			);
 			path = Data;
 			sourceTree = "<group>";
@@ -452,7 +429,6 @@
 			children = (
 				AD92C8962B4EFC5800849A65 /* DefaultStockListRepository.swift */,
 				AD92C8982B4EFC6500849A65 /* DefaultStockDetailRepository.swift */,
-				AD92C89A2B4EFC7000849A65 /* DefaultImageDownloadRepository.swift */,
 				AD92C8932B4EFC2000849A65 /* Utils */,
 			);
 			path = Repositories;
@@ -472,7 +448,6 @@
 				AD92C8802B4EFA4700849A65 /* Protocol */,
 				AD92C8882B4EFAD600849A65 /* FetchStockListUseCase.swift */,
 				AD92C88A2B4EFB0200849A65 /* FetchStockDetailUseCase.swift */,
-				AD6A01082B4FEA9B008BD703 /* ImageDownloadUseCase.swift */,
 			);
 			path = UseCases;
 			sourceTree = "<group>";
@@ -636,7 +611,6 @@
 			children = (
 				AD92C88D2B4EFB6900849A65 /* StockListRepository.swift */,
 				AD92C88F2B4EFB7C00849A65 /* StockDetailRepository.swift */,
-				AD92C8912B4EFB8E00849A65 /* ImageDownloadRepository.swift */,
 			);
 			path = Repositories;
 			sourceTree = "<group>";
@@ -829,7 +803,6 @@
 				AD92C8A42B4F046D00849A65 /* StockDetailRequestDTO+Mapping.swift in Sources */,
 				AD5ED5E12B63A1F100D00507 /* ImageView.swift in Sources */,
 				AD92C85D2B4D908400849A65 /* Endpoint.swift in Sources */,
-				AD6A01092B4FEA9B008BD703 /* ImageDownloadUseCase.swift in Sources */,
 				AD92C8632B4EF70900849A65 /* AppAppearance.swift in Sources */,
 				AD92C8592B4D905300849A65 /* DataTransferService.swift in Sources */,
 				AD2649362B55645B00EEF701 /* StockDetailView.swift in Sources */,
@@ -837,7 +810,6 @@
 				AD92C8A22B4F045C00849A65 /* StockListResponseDTO+Mapping.swift in Sources */,
 				AD92C8892B4EFAD600849A65 /* FetchStockListUseCase.swift in Sources */,
 				AD1A62652B565C3F00CBA29E /* StockDetailSectionModel.swift in Sources */,
-				AD92C8922B4EFB8E00849A65 /* ImageDownloadRepository.swift in Sources */,
 				AD92C8732B4EF96E00849A65 /* Alertable.swift in Sources */,
 				AD92C85B2B4D907100849A65 /* NetworkService.swift in Sources */,
 				AD2649382B5569E700EEF701 /* StockListItem.swift in Sources */,
@@ -845,7 +817,6 @@
 				AD92C8902B4EFB7C00849A65 /* StockDetailRepository.swift in Sources */,
 				AD1A62672B56688F00CBA29E /* ReadMoreAttribute.swift in Sources */,
 				AD2649402B5595D700EEF701 /* StockDetailReadMoreItem.swift in Sources */,
-				AD92C89B2B4EFC7000849A65 /* DefaultImageDownloadRepository.swift in Sources */,
 				AD4AA3AB2B46D8E1005E3107 /* AppDelegate.swift in Sources */,
 				AD92C8A62B4F047500849A65 /* StockDetailResponseDTO+Mapping.swift in Sources */,
 				AD92C8952B4EFC3600849A65 /* RepositoryTask.swift in Sources */,
@@ -856,7 +827,6 @@
 				AD92C8B22B4F1E7B00849A65 /* StockListViewModel.swift in Sources */,
 				AD5ED5DA2B62896A00D00507 /* DefaultNetworkSessionManager.swift in Sources */,
 				AD92C8872B4EFA9300849A65 /* Cancellable.swift in Sources */,
-				AD6A010E2B4FFC81008BD703 /* DefaultImageResponseStorage.swift in Sources */,
 				AD92C86A2B4EF76E00849A65 /* AppDIContainer.swift in Sources */,
 				AD26493C2B556D2300EEF701 /* StockLogoItem.swift in Sources */,
 				AD5ED5DF2B62AEB900D00507 /* Constants.swift in Sources */,
@@ -869,7 +839,6 @@
 				AD92C8B42B4F1E8700849A65 /* StockDetailViewModel.swift in Sources */,
 				AD92C87F2B4EFA0700849A65 /* Stock.swift in Sources */,
 				AD92C8672B4EF72C00849A65 /* AppFlowCoordinator.swift in Sources */,
-				AD6A010C2B4FFC3C008BD703 /* ImageResponseStorage.swift in Sources */,
 				AD1A626B2B5668CD00CBA29E /* String+Extensions.swift in Sources */,
 				AD92C8702B4EF8F100849A65 /* StockFlowCoordinator.swift in Sources */,
 				AD92C88E2B4EFB6900849A65 /* StockListRepository.swift in Sources */,
@@ -895,7 +864,6 @@
 				AD6A013D2B5044A2008BD703 /* Stock+Stub.swift in Sources */,
 				AD6A01502B513B7D008BD703 /* StockDetailViewModelTests.swift in Sources */,
 				AD6A01432B510AE6008BD703 /* NetworkConfigurableMock.swift in Sources */,
-				AD6A01522B513C29008BD703 /* ImageDownloadRepositoryMock.swift in Sources */,
 				AD6A014B2B5130AD008BD703 /* StockListRepositoryMock.swift in Sources */,
 				AD6A014D2B5130D1008BD703 /* StockDetailRepositoryMock.swift in Sources */,
 				AD6A01452B510B47008BD703 /* NetworkSessionManagerMock.swift in Sources */,

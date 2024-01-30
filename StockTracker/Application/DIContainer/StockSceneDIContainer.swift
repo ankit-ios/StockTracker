@@ -10,8 +10,7 @@ import SwiftUI
 
 protocol StockSceneDIContainer {
     var apiDataTransferService: DataTransferService { get }
-    var imageStorageService: ImageStorageService { get }
-    
+
     func makeStokeFlowCoordinator(navigationController: UINavigationController) -> StockFlowCoordinator
 }
 
@@ -23,11 +22,9 @@ protocol StockSceneDIContainerViewModel {
 final class DefaultStockSceneDIContainer: StockSceneDIContainer {
  
     var apiDataTransferService: DataTransferService
-    var imageStorageService: ImageStorageService
     
-    init(apiDataTransferService: DataTransferService, imageStorageService: ImageStorageService) {
+    init(apiDataTransferService: DataTransferService) {
         self.apiDataTransferService = apiDataTransferService
-        self.imageStorageService = imageStorageService
     }
     
     // Flow Coordinators
@@ -57,7 +54,6 @@ extension DefaultStockSceneDIContainer: StockSceneDIContainerViewModel {
         StockDetailViewModel(
             symbol: symbol,
             fetchStockDetailUseCase: makeStockDetailUseCase(),
-            imageDownloadUseCase: makeImageDownloadUseCase(),
             actions: actions)
     }
 }
@@ -73,10 +69,6 @@ private extension DefaultStockSceneDIContainer {
         DefaultFetchStockDetailUseCase(respository: makeStockDetailRepository())
     }
     
-    func makeImageDownloadUseCase() -> ImageDownloadUseCase {
-        DefaultImageDownloadUseCase(respository: makeStockDetailRepository())
-    }
-    
     // MARK: - Repositories
     func makeStockListRepository() -> StockListRepository {
         DefaultStockListRepository(dataTransferService: apiDataTransferService)
@@ -84,9 +76,5 @@ private extension DefaultStockSceneDIContainer {
     
     func makeStockDetailRepository() -> StockDetailRepository {
         DefaultStockDetailRepository(dataTransferService: apiDataTransferService)
-    }
-    
-    func makeStockDetailRepository() -> ImageDownloadRepository {
-        DefaultImageDownloadRepository(dataTransferService: apiDataTransferService, imageStorageService: imageStorageService)
     }
 }

@@ -13,19 +13,15 @@ final class StockDetailViewModelTests: XCTestCase {
     func test_fetchStockDetail_success() {
         let repository = StockDetailRepositoryMock(result: .success(StockDetail.stub()))
         let useCase = DefaultFetchStockDetailUseCase(respository: repository)
-        let imageDownloadRepository = ImageDownloadRepositoryMock(result: .success(UIImage(systemName: "star.circle")?.pngData()))
-        let imageDownloadUseCase = DefaultImageDownloadUseCase(respository: imageDownloadRepository)
         
-        let viewModel = StockDetailViewModel(symbol: StockDetail.stub().symbol, fetchStockDetailUseCase: useCase, imageDownloadUseCase: imageDownloadUseCase)
+        let viewModel = StockDetailViewModel(symbol: StockDetail.stub().symbol, fetchStockDetailUseCase: useCase)
         
         XCTAssertTrue(viewModel.loadingState == .idle)
         viewModel.fetchStockDetail()
-        viewModel.downloadImage(for: "https://financialmodelingprep.com/image-stock/AXL.png")
         
         let expectation = XCTestExpectation(description: "delay")
         
         DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
-            XCTAssertNotNil(viewModel.stockLogoImage)
             XCTAssertFalse(viewModel.dataSource.isEmpty)
             XCTAssertTrue(viewModel.loadingState == .loaded)
             XCTAssertTrue(viewModel.errorModel.message.isEmpty)
@@ -38,18 +34,13 @@ final class StockDetailViewModelTests: XCTestCase {
     func test_fetchStockDetail_failure() {
         let repository = StockDetailRepositoryMock(result: .failure(StockDetailRepositoryMockError.failedFetching))
         let useCase = DefaultFetchStockDetailUseCase(respository: repository)
-        let imageDownloadRepository = ImageDownloadRepositoryMock(result: .success(Data()))
-        let imageDownloadUseCase = DefaultImageDownloadUseCase(respository: imageDownloadRepository)
-        
-        let viewModel = StockDetailViewModel(symbol: "", fetchStockDetailUseCase: useCase, imageDownloadUseCase: imageDownloadUseCase)
+        let viewModel = StockDetailViewModel(symbol: "", fetchStockDetailUseCase: useCase)
         
         viewModel.fetchStockDetail()
-        viewModel.downloadImage(for: "https://financialmodelingprep.com/image-stock/AXL.png")
         
         let expectation = XCTestExpectation(description: "delay")
         
         DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
-            XCTAssertNil(viewModel.stockLogoImage)
             XCTAssertTrue(viewModel.dataSource.isEmpty)
             XCTAssertTrue(viewModel.loadingState == .error)
             XCTAssertFalse(viewModel.errorModel.message.isEmpty)

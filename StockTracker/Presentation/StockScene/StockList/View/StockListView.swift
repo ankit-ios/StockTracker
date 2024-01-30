@@ -78,8 +78,7 @@ struct StockListView: View {
 
 #Preview {
     let container = DefaultStockSceneDIContainer(
-        apiDataTransferService: DefaultAppDIContainer().apiDataTransferService,
-        imageStorageService: DefaultImageResponseStorage()
+        apiDataTransferService: DefaultAppDIContainer().apiDataTransferService
     )
     return StockListView(viewModel: container.makeStockListViewModel(actions: .init(showStockDetail: { symbol in
         print(symbol)

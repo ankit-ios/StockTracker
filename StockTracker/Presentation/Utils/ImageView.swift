@@ -7,17 +7,34 @@
 
 import SwiftUI
 
-//We can also use the AsyncImage here
-struct ImageView<P>: View where P : View {
-    @Binding var image: UIImage?
-    let placeholder: () -> P
+struct AsyncImageView: View {
+    var imageUrl: String?
 
     var body: some View {
-        if let image {
-            Image(uiImage: image)
-                .resizable()
-        } else {
-            placeholder()
+        Group {
+            if let imageUrl = imageUrl,
+                let url = URL(string: imageUrl) {
+                AsyncImage(url: url) { phase in
+                    switch phase {
+                    case .empty:
+                        ProgressView()
+                    case .success(let loadedImage):
+                        loadedImage
+                            .resizable()
+                    default:
+                        errorView()
+                    }
+                }
+            } else {
+                errorView()
+            }
         }
+    }
+
+    @ViewBuilder private func errorView() -> some View {
+        Image(systemName: "exclamationmark.triangle.fill")
+            .resizable()
+            .foregroundColor(.red)
+            .padding()
     }
 }

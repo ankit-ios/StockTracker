@@ -16,14 +16,12 @@ struct StockDetailViewModelActions {
 
 protocol StockDetailViewModelInput {
     func fetchStockDetail()
-    func downloadImage(for url: String?)
 }
 
 protocol StockDetailViewModelOutput {
     var titles: StockDetailScreenTitle { get }
     var dataSource: [StockDetailSectionModel] { get }
     var errorModel: AlertModel { get }
-    var stockLogoImage: UIImage? { get }
 }
 
 // MARK: - StockDetailViewModel Actions and Input/Output protocols
@@ -34,23 +32,18 @@ final class StockDetailViewModel: ObservableObject, StockDetailViewModelOutput {
     @Published private(set) var errorModel: AlertModel = .init(title: "", message: .constant(""))
     @Published private(set) var dataSource: [StockDetailSectionModel] = []
     @Published private(set) var loadingState: LoadingState = .idle
-    @Published var stockLogoImage: UIImage?
     
     private let stockSymbol: String
     private let actions: StockDetailViewModelActions?
     private let fetchStockDetailUseCase: FetchStockDetailUseCase
-    private let imageDownloadUseCase: ImageDownloadUseCase
     private var stockDetailLoadTask: Cancellable? { willSet { stockDetailLoadTask?.cancel() } }
-    private var imageDownloadingState: ImageDownloadingState = .notStarted
     
     init(symbol: String,
          fetchStockDetailUseCase: FetchStockDetailUseCase,
-         imageDownloadUseCase: ImageDownloadUseCase,
          actions: StockDetailViewModelActions? = nil) {
         self.stockSymbol = symbol
         self.screenTitle = symbol
         self.fetchStockDetailUseCase = fetchStockDetailUseCase
-        self.imageDownloadUseCase = imageDownloadUseCase
         self.actions = actions
     }
     
@@ -107,32 +100,6 @@ extension StockDetailViewModel: StockDetailViewModelInput {
                         }
                     }
                 }
-        }
-    }
-    
-    func downloadImage(for url: String?) {
-        guard imageDownloadingState == .notStarted else { return }
-        guard let imageUrl = url else { return }
-        
-        imageDownloadingState = .inProgress
-        Task {
-            stockDetailLoadTask = imageDownloadUseCase
-                .fetchImage(with: imageUrl, completion: { [weak self] result in
-                    guard let self else { return }
-                    
-                    DispatchQueue.main.async {
-                        switch result {
-                        case .success(let imageData):
-                            if let imageData {
-                                self.stockLogoImage = UIImage(data: imageData)
-                            }
-                        case .failure(let error):
-                            self.errorModel = .init(title: self.titles.errorTitle, message: .constant(error.localizedDescription))
-                            self.loadingState = .error
-                        }
-                        self.imageDownloadingState = .done
-                    }
-                })
         }
     }
 }

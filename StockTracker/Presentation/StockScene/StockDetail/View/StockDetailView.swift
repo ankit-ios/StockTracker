@@ -73,18 +73,14 @@ struct StockDetailView: View {
         case .readMoreCell:
             StockDetailReadMoreItem(vm: .init(title: item.title, description: item.description))
         case .imageCell:
-            StockLogoItem(title: item.title, image: $viewModel.stockLogoImage)
-                .onAppear {
-                    viewModel.downloadImage(for: item.description)
-                }
+            StockLogoItem(title: item.title, imageUrl: item.description)
         }
     }
 }
 
 #Preview {
     let container = DefaultStockSceneDIContainer(
-        apiDataTransferService: DefaultAppDIContainer().apiDataTransferService,
-        imageStorageService: DefaultImageResponseStorage()
+        apiDataTransferService: DefaultAppDIContainer().apiDataTransferService        
     )
     
     return StockDetailView(

@@ -9,7 +9,6 @@ import Foundation
 
 protocol AppDIContainer {
     var apiDataTransferService: DataTransferService { get }
-    var imageStorageService: ImageStorageService { get }
 
     func makeStockSceneDIContainer() -> StockSceneDIContainer
 }
@@ -33,17 +32,12 @@ final class DefaultAppDIContainer: AppDIContainer {
         
         let apiDataNetwork = DefaultNetworkService(config: config)
         return DefaultDataTransferService(with: apiDataNetwork)
-    }()
-    
-    lazy var imageStorageService: ImageStorageService = {
-        DefaultImageResponseStorage()
-    }()
+    }()    
     
     // MARK: - DIContainers of scenes
     func makeStockSceneDIContainer() -> StockSceneDIContainer {
         DefaultStockSceneDIContainer(
-            apiDataTransferService: apiDataTransferService,
-            imageStorageService: imageStorageService
+            apiDataTransferService: apiDataTransferService
         )
     }
 }

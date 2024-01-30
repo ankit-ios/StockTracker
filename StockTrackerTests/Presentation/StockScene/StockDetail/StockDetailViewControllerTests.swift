@@ -24,9 +24,7 @@ final class StockDetailViewControllerTests: XCTestCase {
     
     func getViewModel(_ repository: StockDetailRepositoryMock) -> StockDetailViewModel {
         let useCase = DefaultFetchStockDetailUseCase(respository: repository)
-        let imageDownloadRepository = ImageDownloadRepositoryMock(result: .success(UIImage(systemName: "star.circle")?.pngData()))
-        let imageDownloadUseCase = DefaultImageDownloadUseCase(respository: imageDownloadRepository)
-        let viewModel = StockDetailViewModel(symbol: StockDetail.stub().symbol, fetchStockDetailUseCase: useCase, imageDownloadUseCase: imageDownloadUseCase)
+        let viewModel = StockDetailViewModel(symbol: StockDetail.stub().symbol, fetchStockDetailUseCase: useCase)
         return viewModel
     }
     
@@ -47,9 +45,7 @@ final class StockDetailViewControllerTests: XCTestCase {
     }
     
     func test_fetchStockDetailCells_success() throws {
-        let mockImage = UIImage(systemName: "star.circle")!
-        
-        let logoItem = StockLogoItem(title: "Test Logo", image: .constant(mockImage))
+        let logoItem = StockLogoItem(title: "Test Logo", imageUrl: "https://financialmodelingprep.com/image-stock/AXL.png")
         let detailItem1 = StockDetailItem(vm: .init(title: "Company Name", description: "American Axle & Manufacturing Holdings, Inc.", enableDataDetection: false))
         let detailItem2 = StockDetailItem(vm: .init(title: "Website", description: "https://www.aam.com", enableDataDetection: true))
         let detailItem3 = StockDetailItem(vm: .init(title: "Mobile", description: "313 758 2000", enableDataDetection: true))
