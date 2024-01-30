@@ -157,7 +157,7 @@ final class StockUseCaseTests: XCTestCase {
         _ = useCase.fetchImage(with: "", completion: { result in
             if case let .success(data) = result {
                 imageData = data
-                if let data = data {
+                if let data {
                     image = UIImage(data: data)
                 }
             }
@@ -175,7 +175,7 @@ final class StockUseCaseTests: XCTestCase {
         _ = useCase.fetchImage(with: "", completion: { result in
             if case let .success(data) = result {
                 imageData = data
-                if let data = data {
+                if let data {
                     image = UIImage(data: data)
                 }
             }

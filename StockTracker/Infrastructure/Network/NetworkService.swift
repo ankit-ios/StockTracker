@@ -65,7 +65,7 @@ final class DefaultNetworkService {
         
         let sessionDataTask = sessionManager.request(request) { data, response, requestError in
             
-            if let requestError = requestError {
+            if let requestError {
                 var error: NetworkError
                 if let response = response as? HTTPURLResponse {
                     error = .error(statusCode: response.statusCode, data: data)

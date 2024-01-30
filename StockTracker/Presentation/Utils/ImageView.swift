@@ -7,15 +7,16 @@
 
 import SwiftUI
 
-struct ImageView: View {
+struct ImageView<P>: View where P : View {
     @Binding var image: UIImage?
+    let placeholder: () -> P
 
     var body: some View {
-        if let loadedImage = image {
-            Image(uiImage: loadedImage)
+        if let image {
+            Image(uiImage: image)
                 .resizable()
         } else {
-            ProgressView()
+            placeholder()
         }
     }
 }

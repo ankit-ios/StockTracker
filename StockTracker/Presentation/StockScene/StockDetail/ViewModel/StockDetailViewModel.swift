@@ -123,7 +123,7 @@ extension StockDetailViewModel: StockDetailViewModelInput {
                     DispatchQueue.main.async {
                         switch result {
                         case .success(let imageData):
-                            if let imageData = imageData {
+                            if let imageData {
                                 self.stockLogoImage = UIImage(data: imageData)
                             }
                         case .failure(let error):

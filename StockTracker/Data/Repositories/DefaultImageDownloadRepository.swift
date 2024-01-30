@@ -30,7 +30,7 @@ extension DefaultImageDownloadRepository: ImageDownloadRepository {
 
         //Checking image in local Cache
         imageStorageService.loadImage(from: imagePath) { [weak self] imageData in
-            if let imageData = imageData {
+            if let imageData {
                 completion(.success(imageData))
             } else {
 

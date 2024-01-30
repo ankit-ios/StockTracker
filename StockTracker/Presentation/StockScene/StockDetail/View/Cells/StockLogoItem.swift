@@ -16,8 +16,10 @@ struct StockLogoItem: View {
             Text(title)
                 .font(AppFont.subtitle)
             Spacer()
-            ImageView(image: $image)
-                .frame(width: 100, height: 100)
+            ImageView(
+                image: $image,
+                placeholder: { ProgressView() } )
+            .frame(width: 100, height: 100)
         }
     }
 }
