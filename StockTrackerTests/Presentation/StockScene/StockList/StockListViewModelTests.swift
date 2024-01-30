@@ -21,7 +21,7 @@ final class StockListViewModelTests: XCTestCase {
         DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
             XCTAssertEqual(viewModel.items.count, 2)
             XCTAssertEqual(viewModel.items.first?.symbol, "AY")
-            XCTAssertFalse(viewModel.showError)
+            XCTAssertFalse(viewModel.loadingState == .loaded)
             expectation.fulfill()
         }
         wait(for: [expectation], timeout: 3)
@@ -33,13 +33,14 @@ final class StockListViewModelTests: XCTestCase {
         let useCase = DefaultFetchStockListUseCase(respository: repository)
         let viewModel = StockListViewModel(fetchStockListUseCase: useCase)
         
+        XCTAssertTrue(viewModel.loadingState == .idle)
         viewModel.fetchStockList()
         
         let expectation = XCTestExpectation(description: "delay")
         DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
             XCTAssertEqual(viewModel.items.count, 0)
             XCTAssertTrue(viewModel.items.isEmpty)
-            XCTAssertTrue(viewModel.showError)
+            XCTAssertFalse(viewModel.loadingState == .error)
             XCTAssertFalse(viewModel.errorModel.message.isEmpty)
             expectation.fulfill()
         }
