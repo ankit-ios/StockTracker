@@ -1,3 +1,7 @@
+<p align="left">
+  <img src="Screenshot/appstore.png" width="25%">
+</p>
+
 # StockTracker App
 
 ## Overview
@@ -26,6 +30,13 @@ Website: https://site.financialmodelingprep.com/developer/docs
 
 ## App Screenshots
 
+<p align="left"><strong>App Icon & Launch Screen</strong></p>
+
+<p align="left">
+  <img src="Screenshot/9.png" alt="App Icon" width="25%">
+  <img src="Screenshot/10.png" alt="Launch Screen" width="25%">
+</p>
+
 <p align="left"><strong>Stock List Screen</strong></p>
 
 <p align="left">
@@ -43,11 +54,18 @@ Website: https://site.financialmodelingprep.com/developer/docs
 </p>
 
 
-<p align="left"><strong>Loading Screen and Error Popup</strong></p>
+<p align="left"><strong>Loading Screen & Error Popup</strong></p>
 
 <p align="left">
   <img src="Screenshot/1.png" alt="Stock List" width="25%">
   <img src="Screenshot/7.png" alt="RecipeDetail" width="25%">
+</p>
+
+<p align="left"><strong>Content Unavailable Screen & Image failed Screen</strong></p>
+
+<p align="left">
+  <img src="Screenshot/11.png" alt="Content Unavailable Screen" width="25%">
+  <img src="Screenshot/12.png" alt="Image failed Screen" width="25%">
 </p>
 
 
