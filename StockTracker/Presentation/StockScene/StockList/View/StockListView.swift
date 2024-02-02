@@ -8,9 +8,9 @@
 import SwiftUI
 import Combine
 
-struct StockListView: View {
+struct StockListView<VM: StockListViewModel>: View {
     
-    @ObservedObject private var viewModel: StockListViewModel
+    @ObservedObject private var viewModel: VM
     @State private var hasAppeared = false
     @State private var selectedStockID: Stock.ID?
     
@@ -22,8 +22,9 @@ struct StockListView: View {
     }
     
     //We may also use the environment variable for data injection
-    init(viewModel: StockListViewModel) {
+    init(viewModel: VM) {
         self.viewModel = viewModel
+        ob = DefaultXCC.init()
     }
     
     var body: some View {
@@ -80,7 +81,7 @@ struct StockListView: View {
         apiDataTransferService: DefaultAppDIContainer().apiDataTransferService,
         imageStorageService: DefaultImageResponseStorage()
     )
-    return StockListView(viewModel: container.makeStockListViewModel(actions: .init(showStockDetail: { symbol in
+    return StockListView<DefaultStockListViewModel>(viewModel: container.makeStockListViewModel(actions: .init(showStockDetail: { symbol in
         print(symbol)
-    })))
+    })) as! DefaultStockListViewModel)
 }

@@ -14,19 +14,22 @@ struct StockListViewModelActions {
     let showStockDetail: (String) -> Void
 }
 
-protocol StockListViewModelInput {
+protocol StockListViewModelInput: ObservableObject {
     func fetchStockList()
     func didSelectItem(_ symbol: String)
 }
 
-protocol StockListViewModelOutput {
+protocol StockListViewModelOutput: ObservableObject {
     var titles: StockListScreenTitle { get }
     var items: [Stock] { get }
+    var loadingState: LoadingState { get }
     var errorModel: AlertModel { get }
 }
 
 // MARK: - StockListViewModel
-final class StockListViewModel: ObservableObject, StockListViewModelOutput {
+typealias StockListViewModel = StockListViewModelInput & StockListViewModelOutput
+
+final class DefaultStockListViewModel: ObservableObject, StockListViewModel {
     
     let titles = StockListScreenTitle()
     @Published private(set) var errorModel: AlertModel = .init(title: "", message: .constant(""))
@@ -45,7 +48,7 @@ final class StockListViewModel: ObservableObject, StockListViewModelOutput {
     }
 }
 
-extension StockListViewModel: StockListViewModelInput {
+extension DefaultStockListViewModel {
     
     func fetchStockList() {
         loadingState = .loading

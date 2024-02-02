@@ -17,8 +17,8 @@ protocol StockSceneDIContainer {
 
 ///Using protocol inside #Preview of View to exposing viewModels
 protocol StockSceneDIContainerViewModel {
-    func makeStockListViewModel(actions: StockListViewModelActions) -> StockListViewModel
-    func makeStockDetailViewModel(symbol: String, actions: StockDetailViewModelActions) -> StockDetailViewModel
+    func makeStockListViewModel(actions: StockListViewModelActions) -> any StockListViewModel
+    func makeStockDetailViewModel(symbol: String, actions: StockDetailViewModelActions) -> any StockDetailViewModel
 }
 
 final class DefaultStockSceneDIContainer: StockSceneDIContainer {
@@ -40,22 +40,22 @@ final class DefaultStockSceneDIContainer: StockSceneDIContainer {
 extension DefaultStockSceneDIContainer: StockFlowCoordinatorDependencies {
   
     func makeStockListViewController(actions: StockListViewModelActions) -> UIViewController {
-        UIHostingController(rootView: StockListView(viewModel: makeStockListViewModel(actions: actions)))
+        UIHostingController(rootView: StockListView<DefaultStockListViewModel>(viewModel: makeStockListViewModel(actions: actions) as! DefaultStockListViewModel))
     }
     
     func makeStockDetailViewController(symbol: String, actions: StockDetailViewModelActions) -> UIViewController {
-        UIHostingController(rootView: StockDetailView(viewModel: makeStockDetailViewModel(symbol: symbol, actions: actions)))
+        UIHostingController(rootView: StockDetailView<DefaultStockDetailViewModel>(viewModel: makeStockDetailViewModel(symbol: symbol, actions: actions) as! DefaultStockDetailViewModel))
     }
 }
 
 extension DefaultStockSceneDIContainer: StockSceneDIContainerViewModel {
 
-    func makeStockListViewModel(actions: StockListViewModelActions) -> StockListViewModel {
-        StockListViewModel(fetchStockListUseCase: makeStockListUseCase(), actions: actions)
+    func makeStockListViewModel(actions: StockListViewModelActions) -> any StockListViewModel {
+        DefaultStockListViewModel(fetchStockListUseCase: makeStockListUseCase(), actions: actions)
     }
     
-    func makeStockDetailViewModel(symbol: String, actions: StockDetailViewModelActions) -> StockDetailViewModel {
-        StockDetailViewModel(
+    func makeStockDetailViewModel(symbol: String, actions: StockDetailViewModelActions) -> any StockDetailViewModel {
+        DefaultStockDetailViewModel(
             symbol: symbol,
             fetchStockDetailUseCase: makeStockDetailUseCase(),
             imageDownloadUseCase: makeImageDownloadUseCase(),

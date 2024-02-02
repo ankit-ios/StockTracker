@@ -14,29 +14,32 @@ struct StockDetailViewModelActions {
     let dismissStockDetailVC: () -> Void
 }
 
-protocol StockDetailViewModelInput {
+protocol StockDetailViewModelInput: ObservableObject {
     func fetchStockDetail()
     func downloadImage(for url: String?)
     func dismiss()
 }
 
-protocol StockDetailViewModelOutput {
+protocol StockDetailViewModelOutput: ObservableObject {
+    var screenTitle: String { get }
     var titles: StockDetailScreenTitle { get }
     var dataSource: [StockDetailSectionModel] { get }
-    var loadingState: LoadingState { get }
-    var imageDownloadingState: ImageDownloadingState { get }
+    var loadingState: LoadingState { get set }
+    var imageDownloadingState: ImageDownloadingState { get set }
     var errorModel: AlertModel { get }
-    var stockLogoImage: UIImage? { get }
+    var stockLogoImage: UIImage? { get set }
 }
 
 // MARK: - StockDetailViewModel Actions and Input/Output protocols
-final class StockDetailViewModel: ObservableObject, StockDetailViewModelOutput {
+typealias StockDetailViewModel = StockDetailViewModelInput & StockDetailViewModelOutput
+
+final class DefaultStockDetailViewModel: ObservableObject, StockDetailViewModel {
     
     let screenTitle: String
     let titles = StockDetailScreenTitle()
     @Published private(set) var errorModel: AlertModel = .init(title: "", message: .constant(""))
     @Published private(set) var dataSource: [StockDetailSectionModel] = []
-    @Published private(set) var loadingState: LoadingState = .idle
+    @Published var loadingState: LoadingState = .idle
     @Published var imageDownloadingState: ImageDownloadingState = .notStarted
     @Published var stockLogoImage: UIImage?
     
@@ -90,7 +93,7 @@ final class StockDetailViewModel: ObservableObject, StockDetailViewModelOutput {
     }
 }
 
-extension StockDetailViewModel: StockDetailViewModelInput {
+extension DefaultStockDetailViewModel {
     
     func fetchStockDetail() {
         loadingState = .loading

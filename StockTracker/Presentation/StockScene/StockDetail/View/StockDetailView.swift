@@ -8,9 +8,9 @@
 import SwiftUI
 import Combine
 
-struct StockDetailView: View {
+struct StockDetailView<VM: StockDetailViewModel>: View {
     
-    @ObservedObject private var viewModel: StockDetailViewModel
+    @ObservedObject private var viewModel: VM
     private var showError: Binding<Bool> {
         Binding(
             get: { viewModel.loadingState == .error || viewModel.imageDownloadingState == .error },
@@ -19,7 +19,7 @@ struct StockDetailView: View {
     }
     
     //We may also use the environment variable for data injection
-    init(viewModel: StockDetailViewModel) {
+    init(viewModel: VM) {
         self.viewModel = viewModel
     }
     
@@ -101,11 +101,11 @@ struct StockDetailView: View {
         imageStorageService: DefaultImageResponseStorage()
     )
     
-    return StockDetailView(
+    return StockDetailView<DefaultStockDetailViewModel>(
         viewModel:
             container.makeStockDetailViewModel(
                 symbol: "A",
                 actions: .init(dismissStockDetailVC: {})
-            )
+            ) as! DefaultStockDetailViewModel
     )
 }
