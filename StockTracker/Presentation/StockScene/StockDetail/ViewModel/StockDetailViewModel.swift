@@ -23,6 +23,8 @@ protocol StockDetailViewModelInput {
 protocol StockDetailViewModelOutput {
     var titles: StockDetailScreenTitle { get }
     var dataSource: [StockDetailSectionModel] { get }
+    var loadingState: LoadingState { get }
+    var imageDownloadingState: ImageDownloadingState { get }
     var errorModel: AlertModel { get }
     var stockLogoImage: UIImage? { get }
 }
@@ -35,6 +37,7 @@ final class StockDetailViewModel: ObservableObject, StockDetailViewModelOutput {
     @Published private(set) var errorModel: AlertModel = .init(title: "", message: .constant(""))
     @Published private(set) var dataSource: [StockDetailSectionModel] = []
     @Published private(set) var loadingState: LoadingState = .idle
+    @Published var imageDownloadingState: ImageDownloadingState = .notStarted
     @Published var stockLogoImage: UIImage?
     
     private let stockSymbol: String
@@ -42,7 +45,6 @@ final class StockDetailViewModel: ObservableObject, StockDetailViewModelOutput {
     private let fetchStockDetailUseCase: FetchStockDetailUseCase
     private let imageDownloadUseCase: ImageDownloadUseCase
     private var stockDetailLoadTask: Cancellable? { willSet { stockDetailLoadTask?.cancel() } }
-    private var imageDownloadingState: ImageDownloadingState = .notStarted
     
     init(symbol: String,
          fetchStockDetailUseCase: FetchStockDetailUseCase,
@@ -127,11 +129,11 @@ extension StockDetailViewModel: StockDetailViewModelInput {
                             if let imageData {
                                 self.stockLogoImage = UIImage(data: imageData)
                             }
+                            self.imageDownloadingState = .done
                         case .failure(let error):
-                            self.errorModel = .init(title: self.titles.errorTitle, message: .constant(error.localizedDescription))
-                            self.loadingState = .error
+                            self.errorModel = .init(title: self.titles.imageDownloadErrorTitle, message: .constant(error.localizedDescription))
+                            self.imageDownloadingState = .error
                         }
-                        self.imageDownloadingState = .done
                     }
                 })
         }

@@ -15,6 +15,7 @@ protocol StockSceneDIContainer {
     func makeStokeFlowCoordinator(navigationController: UINavigationController) -> StockFlowCoordinator
 }
 
+///Using protocol inside #Preview of View to exposing viewModels
 protocol StockSceneDIContainerViewModel {
     func makeStockListViewModel(actions: StockListViewModelActions) -> StockListViewModel
     func makeStockDetailViewModel(symbol: String, actions: StockDetailViewModelActions) -> StockDetailViewModel

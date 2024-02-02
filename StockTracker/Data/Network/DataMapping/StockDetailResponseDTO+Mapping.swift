@@ -11,7 +11,7 @@ import Foundation
 
 struct StockDetailResponseDTO: Decodable {
     let symbol: String
-    let image: String? //": "https://financialmodelingprep.com/image-stock/AXL.png",
+    let image: String? //"https://financialmodelingprep.com/image-stock/AXL.png"
     
     let companyName: String
     let currency: String?
@@ -21,17 +21,17 @@ struct StockDetailResponseDTO: Decodable {
     
     let description: String?
     
-    let industry: String? //": "Auto Parts",
-    let ceo: String? //": "Mr. David Charles Dauch",
-    let sector: String? //": "Consumer Cyclical",
-    let country: String? //": "US",
-    let fullTimeEmployees: String? //": "19000",
-    let phone: String? //": "313 758 2000",
-    let address: String? //": "One Dauch Drive",
-    let city: String? //": "Detroit",
-    let state: String? //": "MI",
-    let zip: String? //": "48211-1198",
-    let website: String? //": "https://www.aam.com",
+    let industry: String? //"Auto Parts"
+    let ceo: String? //"Mr. David Charles Dauch"
+    let sector: String? //"Consumer Cyclical"
+    let country: String? //"US"
+    let fullTimeEmployees: String? //"19000"
+    let phone: String? //"313 758 2000"
+    let address: String? //"One Dauch Drive"
+    let city: String? //"Detroit"
+    let state: String? //"MI"
+    let zip: String? //"48211-1198"
+    let website: String? //"https://www.aam.com"
 }
 
 // MARK: - Mappings to Domain

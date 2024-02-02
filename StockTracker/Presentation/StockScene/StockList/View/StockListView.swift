@@ -14,7 +14,6 @@ struct StockListView: View {
     @State private var hasAppeared = false
     @State private var selectedStockID: Stock.ID?
     
-    private let unavailableViewImage = "chart.bar.xaxis.ascending"
     private var showError: Binding<Bool> {
         Binding(
             get: { viewModel.loadingState == .error },
@@ -68,7 +67,7 @@ struct StockListView: View {
             }
         case .error:
             ContentUnavailableView {
-                Label(viewModel.titles.unavailableViewTitle, systemImage: unavailableViewImage)
+                Label(viewModel.titles.unavailableViewTitle, systemImage: ImageConstants.unavailable)
             } description: {
                 Text(viewModel.titles.unavailableViewDesc)
             }

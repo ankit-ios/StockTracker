@@ -18,6 +18,7 @@ enum ImageDownloadingState {
     case notStarted
     case inProgress
     case done
+    case error
 }
 
 struct StockListScreenTitle {
@@ -30,6 +31,13 @@ struct StockListScreenTitle {
 struct StockDetailScreenTitle {
     let loadingTitle: String = "Fetching Stock Details..."
     let errorTitle = "Failed loading Stock details"
+    let imageDownloadErrorTitle = "Failed to download Company Logo"
     let unavailableViewTitle = "No stock details found"
     let unavailableViewDesc = "Try fetching again."
+}
+
+struct ImageConstants {
+    static let back = "chevron.left"
+    static let unavailable = "chart.bar.xaxis.ascending"
+    static let failedLogo = "exclamationmark.triangle.fill"
 }

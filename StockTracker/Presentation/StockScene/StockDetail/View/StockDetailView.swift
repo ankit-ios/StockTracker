@@ -11,10 +11,9 @@ import Combine
 struct StockDetailView: View {
     
     @ObservedObject private var viewModel: StockDetailViewModel
-    private let unavailableViewImage = "chart.bar.xaxis.ascending"
     private var showError: Binding<Bool> {
         Binding(
-            get: { viewModel.loadingState == .error },
+            get: { viewModel.loadingState == .error || viewModel.imageDownloadingState == .error },
             set: { _ in }
         )
     }
@@ -59,7 +58,7 @@ struct StockDetailView: View {
             }
         case .error:
             ContentUnavailableView {
-                Label(viewModel.titles.unavailableViewTitle, systemImage: unavailableViewImage)
+                Label(viewModel.titles.unavailableViewTitle, systemImage: ImageConstants.unavailable)
             } description: {
                 Text(viewModel.titles.unavailableViewDesc)
             }
@@ -75,7 +74,7 @@ struct StockDetailView: View {
         case .readMoreCell:
             StockDetailReadMoreItem(vm: .init(title: item.title, description: item.description))
         case .imageCell:
-            StockLogoItem(title: item.title, image: $viewModel.stockLogoImage)
+            StockLogoItem(title: item.title, image: $viewModel.stockLogoImage, downloadingState: $viewModel.imageDownloadingState)
                 .onAppear {
                     viewModel.downloadImage(for: item.description)
                 }
@@ -89,9 +88,9 @@ struct StockDetailView: View {
             Button {
                 viewModel.dismiss()
             } label: {
-                Image(systemName: "chevron.left")
+                Image(systemName: ImageConstants.back)
             }
-            .foregroundColor(.white)
+            .foregroundColor(.init(uiColor: AppColor.foregroundColor))
         })
     }
 }
