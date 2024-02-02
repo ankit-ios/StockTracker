@@ -22,5 +22,6 @@ final class AppAppearance {
         appearance.backgroundColor = AppColor.backgroundColor
         UINavigationBar.appearance().standardAppearance = appearance
         UINavigationBar.appearance().scrollEdgeAppearance = appearance
+        UINavigationBar.appearance().titleTextAttributes = [NSAttributedString.Key.foregroundColor: AppColor.foregroundColor]
     }
 }
