@@ -24,7 +24,6 @@ struct StockListView<VM: StockListViewModel>: View {
     //We may also use the environment variable for data injection
     init(viewModel: VM) {
         self.viewModel = viewModel
-        ob = DefaultXCC.init()
     }
     
     var body: some View {
