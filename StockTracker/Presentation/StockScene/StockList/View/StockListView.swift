@@ -63,7 +63,6 @@ struct StockListView<VM: StockListViewModel>: View {
             Table(viewModel.items, selection: $selectedStockID) {
                 TableColumn("Stock") { stock in
                     StockListItem(stock: stock)
-                        .frame(maxWidth: .infinity, alignment: .leading)
                 }
             }
         case .error:

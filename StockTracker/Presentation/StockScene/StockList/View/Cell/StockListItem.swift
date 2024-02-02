@@ -23,6 +23,11 @@ struct StockListItem: View {
                     .font(font)
             }
         }
+        .frame(maxWidth: .infinity, alignment: .leading)
+        .padding(10)
+        .background(Color.init(uiColor: AppColor.foregroundColor))
+        .cornerRadius(10)
+        .shadow(radius: 5)
     }
 }
 
