@@ -17,6 +17,7 @@ struct StockDetailViewModelActions {
 protocol StockDetailViewModelInput {
     func fetchStockDetail()
     func downloadImage(for url: String?)
+    func dismiss()
 }
 
 protocol StockDetailViewModelOutput {
@@ -134,5 +135,9 @@ extension StockDetailViewModel: StockDetailViewModelInput {
                     }
                 })
         }
+    }
+    
+    func dismiss() {
+        actions?.dismissStockDetailVC()
     }
 }

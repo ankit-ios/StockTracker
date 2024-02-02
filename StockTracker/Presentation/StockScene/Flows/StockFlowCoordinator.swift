@@ -37,10 +37,11 @@ final class StockFlowCoordinator {
     private func showStockDetail(symbol: String) {
         let actions = StockDetailViewModelActions(dismissStockDetailVC: dismissStockDetailVC)
         let vc = dependencies.makeStockDetailViewController(symbol: symbol, actions: actions)
+        vc.navigationItem.hidesBackButton = true
         navigationController?.pushViewController(vc, animated: true)
     }
     
     private func dismissStockDetailVC() {
-        navigationController?.dismiss(animated: true)
+        navigationController?.popViewController(animated: true)
     }
 }

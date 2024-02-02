@@ -31,6 +31,8 @@ struct StockDetailView: View {
         .showAlert(isPresented: showError, model: viewModel.errorModel)
         .listStyle(GroupedListStyle())
         .navigationBarTitle(viewModel.screenTitle, displayMode: .inline)
+        .navigationBarBackButtonHidden()
+        .toolbar(content: createLeftBarItem)
         .task {
             viewModel.fetchStockDetail()
         }
@@ -78,6 +80,19 @@ struct StockDetailView: View {
                     viewModel.downloadImage(for: item.description)
                 }
         }
+    }
+    
+    ///Returing ToolbarContent (Back button item)
+    func createLeftBarItem() -> some ToolbarContent {
+        ToolbarItem(placement: .topBarLeading, content: {
+            //Back button
+            Button {
+                viewModel.dismiss()
+            } label: {
+                Image(systemName: "chevron.left")
+            }
+            .foregroundColor(.white)
+        })
     }
 }
 

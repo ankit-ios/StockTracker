@@ -28,7 +28,7 @@ struct StockListView: View {
     }
     
     var body: some View {
-        NavigationView {
+        NavigationStack {
             VStack {
                 getBody(for: viewModel.loadingState)
             }
