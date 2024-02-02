@@ -40,10 +40,7 @@ final class DefaultNetworkSessionManager: NetworkSessionManager {
         if let certificatePath = CertConstants.certificatePath,
            let serverCertificateData = try? Data(contentsOf: URL(fileURLWithPath: certificatePath)) {
             let pinnedCertificates = [serverCertificateData]
-            
-            // Create a policy that validates against the server's certificate
-            let policy = SecPolicyCreateSSL(true, CertConstants.serverBaseURL as CFString)
-            
+                        
             // Set the SSL configuration for the session
             configuration = URLSessionConfiguration.ephemeral
             configuration.timeoutIntervalForRequest = 30
